@@ -22,6 +22,8 @@ gem 'web-console',             '3.1.1'
 gem 'listen',                  '3.0.8'
 gem 'spring',                  '1.7.2'
 gem 'spring-watcher-listen',   '2.0.0'
+gem 'devise',                  '4.0'
+gem 'cancan',                  '1.6.10'
 
 group :test do
   gem 'rails-controller-testing', '0.1.1'
