@@ -1,0 +1,2 @@
+class Mobiliario < ApplicationRecord
+end

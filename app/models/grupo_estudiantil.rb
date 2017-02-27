@@ -1,0 +1,2 @@
+class GrupoEstudiantil < ApplicationRecord
+end

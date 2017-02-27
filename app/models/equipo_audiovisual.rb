@@ -1,0 +1,2 @@
+class EquipoAudiovisual < ApplicationRecord
+end

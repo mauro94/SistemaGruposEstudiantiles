@@ -1,0 +1,2 @@
+class InventarioCe < ApplicationRecord
+end

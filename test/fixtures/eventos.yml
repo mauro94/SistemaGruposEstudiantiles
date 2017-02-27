@@ -1,0 +1,51 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nombre: MyString
+  folio: 
+  descripcion: MyString
+  aprobadoMercadotecnia: false
+  aprobadoConsejo: false
+  aprobadoLogistica: false
+  aprobadoFinanzas: false
+  revisadoAlimentos: false
+  revisadoSeguridad: false
+  ubicacion: MyString
+  fechaFin: 2017-02-27
+  fechaInicio: 2017-02-27
+  numAsistentes: 
+  horaInauguracion: 2017-02-27 14:35:26
+  estatus: MyString
+  tipoEvento: MyString
+  archivoCroquis: MyString
+  archivoContactosElectricos: MyString
+  archivoMercadotecnia: MyString
+  archivoPresupuesto: MyString
+  archivoAlimentos: MyString
+  archivoAsistentes: MyString
+  archivoVip: MyString
+
+two:
+  nombre: MyString
+  folio: 
+  descripcion: MyString
+  aprobadoMercadotecnia: false
+  aprobadoConsejo: false
+  aprobadoLogistica: false
+  aprobadoFinanzas: false
+  revisadoAlimentos: false
+  revisadoSeguridad: false
+  ubicacion: MyString
+  fechaFin: 2017-02-27
+  fechaInicio: 2017-02-27
+  numAsistentes: 
+  horaInauguracion: 2017-02-27 14:35:26
+  estatus: MyString
+  tipoEvento: MyString
+  archivoCroquis: MyString
+  archivoContactosElectricos: MyString
+  archivoMercadotecnia: MyString
+  archivoPresupuesto: MyString
+  archivoAlimentos: MyString
+  archivoAsistentes: MyString
+  archivoVip: MyString

@@ -1,0 +1,2 @@
+class PersonaTec < ApplicationRecord
+end
