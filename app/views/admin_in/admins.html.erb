@@ -1,0 +1,38 @@
+<div class="row">
+	<h3> Administradores </h3>
+</div>
+
+<div class="row">
+	<table class="bordered highlight responsive-table">
+        <thead>
+          <tr>
+              <th>Nombre</th>
+              <th>Correo</th>
+              <th>Departamento</th>
+              <th>Consejo</th>
+              <th>Extensión</th>
+              <th>Editar</th>
+          </tr>
+        </thead>
+
+        <tbody>
+        	<% @admins.each do |a| %>
+          <% if a != @admin %>
+          <tr>
+            <td></td>
+    				<td><%=a.email%></td>
+            <td></td>
+            <td></td>
+            <td></td>
+    				<td><a class="waves-effect waves-light btn"><i class="material-icons">mode_edit</i></a></td>
+    			</tr>
+          <%end%>
+  			<%end%>
+        </tbody>
+    </table>
+</div>
+
+<div class="row">
+	<%= will_paginate @admins %>
+  <a class="btn-floating btn-large waves-effect waves-light right" href="/admin/new"><i class="material-icons">add</i></a>
+</div>

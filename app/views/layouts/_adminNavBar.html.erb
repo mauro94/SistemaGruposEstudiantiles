@@ -1,27 +1,24 @@
 <!--Admin Navbar-->
 <ul id="dropdown1" class="dropdown-content">
-  <li><a href="#!">Perfil</a></li>
+  <li><%=link_to "Perfil", "/admin/edit"%></li>
   <li class="divider"></li>
-  <li><a href="#!">Salir</a></li>
+  <li><%=link_to "Salir", "/admin/sign_out"%></li>
 </ul>
-<nav>
+<nav class="red">
   <div class="nav-wrapper container">
-    <a href="#" class="brand-logo">Grupos Estudiantiles</a>
+    <%=link_to "Grupos Estudiantiles", "/admin/home", class: "brand-logo"%>
     <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
     <ul id="nav-mobile" class="right hide-on-med-and-down">
-      <li><a class="dropdown-button" href="#!" data-activates="dropdown1">USUARIO<i class="material-icons right">arrow_drop_down</i></a></li>
+      <li><a class="dropdown-button" href="#!" data-activates="dropdown1"><%=@admin.email%><i class="material-icons right">arrow_drop_down</i></a></li>
     </ul>
     <ul class="side-nav" id="mobile-demo">
       <li><div class="userView">
-      <div class="background">
-          <img src="">
-        </div>
-        <a href="#"><span class="white-text name"></span></a>
-        <a href="#"><span class="white-text email"></span></a>
+        <span class="black-text"><%=@admin.email%></span>
       </div></li>
-      <li><a href="#!">Perfil</a></li>
       <li class="divider"></li>
-      <li><a href="#!">Salir</a></li>
+      <li><%=link_to "Perfil", "/admin/edit"%></li>
+      <li class="divider"></li>
+      <li><%=link_to "Salir", "/admin/sign_out"%></li>
     </ul>
   </div>
 </nav>

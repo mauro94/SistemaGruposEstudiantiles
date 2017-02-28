@@ -1,0 +1,29 @@
+<div class="row">
+	<h3> Eventos </h3>
+</div>
+
+<div class="row">
+	<table class="bordered highlight responsive-table">
+        <thead>
+          <tr>
+              <th>Nombre</th>
+              <th>Información</th>
+              <th>Editar</th>
+          </tr>
+        </thead>
+
+        <tbody>
+        	<% @admins.each do |a| %>
+        	<tr>
+				<td><</td>
+				<td></td>
+				<td></td>
+			</tr>
+			<%end%>
+        </tbody>
+    </table>
+</div>
+
+<div class="row">
+	<%= will_paginate @admins %>
+</div>

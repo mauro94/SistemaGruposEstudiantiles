@@ -24,9 +24,21 @@
 
   <body>
   	<div class="container">
-	  	<p class="notice"><%= notice %></p>
-	    <p class="alert"><%= alert %></p>
+  		<% if notice != nil && notice != '' %>
+  		<div class="card-panel blue lighten-4">
+  			<h6 class="notice"><%= notice %></h6>
+  		</div>
+  		<% end %>
+  		<% if alert != nil && alert != '' %>
+  		<div class="card-panel red lighten-3">
+	    	<h6 class="alert"><%= alert %></h6>
+	    </div>
+	    <% end %>
 	    <%= yield %>
     </div>
+    <!--Import jQuery before materialize.js-->
+      <script>
+        $(".button-collapse").sideNav();
+      </script>
   </body>
 </html>
