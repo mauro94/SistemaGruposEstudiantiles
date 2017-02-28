@@ -1,6 +1,7 @@
 class CreateMobiliarios < ActiveRecord::Migration[5.0]
   def change
     create_table :mobiliarios, id: false, primary_key: :identificador do |t|
+      t.belongs_to :inventario_ce, index: true
       t.float :largo
       t.float :ancho
       t.string :nombre

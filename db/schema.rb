@@ -16,10 +16,12 @@ ActiveRecord::Schema.define(version: 20170228185455) do
   enable_extension "plpgsql"
 
   create_table "administradors", force: :cascade do |t|
+    t.integer  "admin_id"
     t.string   "departamento"
     t.string   "consejo"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+    t.index ["admin_id"], name: "index_administradors_on_admin_id", using: :btree
   end
 
   create_table "admins", force: :cascade do |t|
@@ -47,20 +49,25 @@ ActiveRecord::Schema.define(version: 20170228185455) do
     t.integer  "semestre"
     t.string   "carrera"
     t.string   "matricula"
+    t.date     "fechaInicio"
+    t.date     "fechaFin"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
   end
 
   create_table "equipo_audiovisuals", id: false, force: :cascade do |t|
+    t.integer  "inventario_ce_id"
     t.string   "identificador"
     t.string   "nombre"
     t.string   "descripcion"
     t.string   "marca"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.index ["inventario_ce_id"], name: "index_equipo_audiovisuals_on_inventario_ce_id", using: :btree
   end
 
   create_table "eventos", id: false, force: :cascade do |t|
+    t.integer  "grupo_estudiantil_id"
     t.string   "nombre"
     t.integer  "folio"
     t.string   "descripcion"
@@ -86,15 +93,20 @@ ActiveRecord::Schema.define(version: 20170228185455) do
     t.string   "archivoVip"
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
+    t.index ["grupo_estudiantil_id"], name: "index_eventos_on_grupo_estudiantil_id", using: :btree
   end
 
   create_table "grupo_estudiantils", id: false, force: :cascade do |t|
+    t.integer  "evento_id"
+    t.integer  "grupo_id"
     t.string   "nombre"
     t.string   "cuentaBanco"
     t.string   "consejo"
-    t.string   "id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.string   "identificador"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["evento_id"], name: "index_grupo_estudiantils_on_evento_id", using: :btree
+    t.index ["grupo_id"], name: "index_grupo_estudiantils_on_grupo_id", using: :btree
   end
 
   create_table "grupos", force: :cascade do |t|
@@ -121,6 +133,7 @@ ActiveRecord::Schema.define(version: 20170228185455) do
   end
 
   create_table "mobiliarios", id: false, force: :cascade do |t|
+    t.integer  "inventario_ce_id"
     t.float    "largo"
     t.float    "ancho"
     t.string   "nombre"
@@ -128,25 +141,32 @@ ActiveRecord::Schema.define(version: 20170228185455) do
     t.float    "alto"
     t.string   "descripcion"
     t.string   "identificador"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.index ["inventario_ce_id"], name: "index_mobiliarios_on_inventario_ce_id", using: :btree
   end
 
   create_table "persona_tecs", id: false, force: :cascade do |t|
+    t.integer  "grupo_estudiantil_id"
     t.string   "nomina"
     t.string   "nombre"
     t.string   "apellido"
     t.string   "puesto"
     t.string   "telefono"
     t.string   "correoElectronico"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.index ["grupo_estudiantil_id"], name: "index_persona_tecs_on_grupo_estudiantil_id", using: :btree
   end
 
   create_table "renta", force: :cascade do |t|
+    t.integer  "evento_id"
+    t.integer  "inventario_ce_id"
     t.integer  "cantidad"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.index ["evento_id"], name: "index_renta_on_evento_id", using: :btree
+    t.index ["inventario_ce_id"], name: "index_renta_on_inventario_ce_id", using: :btree
   end
 
 end
