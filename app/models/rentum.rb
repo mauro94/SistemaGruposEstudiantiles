@@ -1,0 +1,2 @@
+class Rentum < ApplicationRecord
+end
