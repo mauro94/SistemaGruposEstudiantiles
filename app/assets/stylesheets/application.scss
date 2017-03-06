@@ -4,3 +4,6 @@ $secondary-color: color("blue", "lighten-2") !default;
 
 @import "materialize";
 @import "https://fonts.googleapis.com/icon?family=Material+Icons";
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
