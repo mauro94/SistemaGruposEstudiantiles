@@ -1,0 +1,20 @@
+<%= simple_form_for @grupo do |f| %>
+
+<!-- Nombre y ID del grupo -->
+<div>
+  <%= f.input :nombre, placeholder: 'Escribe el nombre del Grupo Estudiantil',:label => "Nombre del Grupo:", :input_html => {:style => 'width: 350px'}%>
+  <%= f.input :id, placeholder: 'Escribe el ID del Grupo',:label => "ID:"  %>
+
+<!--Consejo Estudiantil -->
+<%= f.input :consejo , as: :select, collection:["CSA","CCE","CARE", "FEITESM", "Consejo/Institucional"], :label => "Consejo:", :input_html => {:style => 'width: 250px'}%>
+
+<!--Cuenta Bancaria -->
+<%= f.input :cuentaBancaria, placeholder: 'Escribe la Cuenta Bancaria del Grupo',:label => "Cuenta Bancaria:", :input_html => {:style => 'width: 350px'}%>
+</div>
+
+
+<br>
+<div class="row center">
+  <%= link_to "Agregar Grupo" , :class => 'waves-effect waves-light btn'%>
+</div>
+<% end %>
