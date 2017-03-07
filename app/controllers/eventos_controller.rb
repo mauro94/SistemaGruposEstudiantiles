@@ -1,7 +1,7 @@
 class EventosController < ApplicationController 
 
 	def index
-		@eventos = Evento.all.order("created_at DESC")
+		@eventos = Evento.all
 		@grupo = current_grupo
 		@admin = current_admin
 	end
