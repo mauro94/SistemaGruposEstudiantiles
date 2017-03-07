@@ -12,6 +12,7 @@ class AdminInController < ApplicationController
 	def eventos
 		@admin = current_admin
 		@admins = Admin.paginate(:page => params[:page], :per_page => 10)
+		@eventos = Evento.all
 	end
 
 	def grupos

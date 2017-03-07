@@ -7,6 +7,8 @@ class EventosController < ApplicationController
 	end
 	def show
 		@evento = Evento.find(params[:id])
+		@grupo = current_grupo
+		@admin = current_admin
 	end
 	def new
 		@evento = Evento.new
@@ -16,7 +18,7 @@ class EventosController < ApplicationController
 	def create
 		@evento = Evento.new(evento_params)
 		if @evento.save
-			redirect_to root_path
+			redirect_to '/home'
 		else
 			render 'new'
 		end
@@ -31,7 +33,7 @@ class EventosController < ApplicationController
 	def update
 		@evento = Evento.find(params[:id])
 		if @evento.update(evento_params)
-			redirect_to root_path
+			redirect_to '/home'
 		else
 			render 'edit'
 		end
@@ -43,6 +45,6 @@ class EventosController < ApplicationController
 	private
 
 	def evento_params
-		params.require(:evento).permit(:nombre,:descripcion)
+		params.require(:evento).permit(:nombre,:descripcion,:estatus,:fechaInicio,:fechaFin)
 	end
 end

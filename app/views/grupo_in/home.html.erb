@@ -10,31 +10,33 @@
 </div>
 
 <div class="row center">
-  <%= link_to "Crear Evento", "/admin/eventos" , :class => 'waves-effect waves-light btn'%>
+  <%= link_to "Crear Evento", "/eventos/new" , :class => 'waves-effect waves-light btn'%>
 </div>
 <!--Eventos de la semana-->
 <div class="row">
   <div class="col s12">
     <table class="bordered highlight responsive-table">
-        <thead>
-          <tr>
-              <th>Fecha</th>
-              <th>Nombre</th>
-              <th>Responsable</th>
-              <th>Estatus</th>
-              <th>Editar</th>
-          </tr>
-        </thead>
+      <thead>
+        <tr>
+          <th>Fecha</th>
+          <th>Nombre</th>
+          <th>Responsable</th>
+          <th>Estatus</th>
+          <th>Editar</th>
+        </tr>
+      </thead>
 
-        <tbody>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-        </tbody>
+      <tbody>
+        <%@eventos.each do |evento|%>
+        <tr>
+        <td><%=evento.fechaInicio%></td>
+          <td><%=evento.nombre%></td>
+          <td>Alvin</td>
+          <td><%=evento.estatus %></td>
+          <td><%= link_to 'Editar evento', edit_evento_path(evento) %></td>
+        </tr>
+        <%end%>
+      </tbody>
     </table>
   </div>
 </div>

@@ -4,24 +4,24 @@
 
 <div class="row">
 	<table class="bordered highlight responsive-table">
-        <thead>
-          <tr>
-              <th>Nombre</th>
-              <th>Información</th>
-              <th>Editar</th>
-          </tr>
-        </thead>
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Información</th>
+        <th>Editar</th>
+      </tr>
+    </thead>
 
-        <tbody>
-        	<% @admins.each do |a| %>
-        	<tr>
-				<td><</td>
-				<td></td>
-				<td></td>
-			</tr>
-			<%end%>
-        </tbody>
-    </table>
+    <tbody>
+      <%@eventos.each do |evento|%>
+      <tr>
+        <td><%=evento.nombre%></td>
+        <td><%=evento.descripcion%></td>
+        <td><%= link_to 'Editar evento', edit_evento_path(evento) %></td>
+      </tr>
+      <%end%>
+    </tbody>
+  </table>
 </div>
 
 <div class="row">

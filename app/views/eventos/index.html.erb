@@ -1,6 +1,29 @@
-<h1>Index</h1>
+<br>
 
+<div class="row">
+	<div class="col s12">
+		<table class="bordered highlight responsive-table">
+			<thead>
+				<tr>
+					<th>Folio</th>
+					<th>Nombre</th>
+					<th>Responsable</th>
+					<th>Estatus</th>
+					<th>Editar</th>
+				</tr>
+			</thead>
 
- <%@eventos.each do |evento|%>
- <h2><%=evento.nombre%></h2>
- <%end%>
+			<tbody>
+				<%@eventos.each do |evento|%>
+				<tr>
+					<td><%=evento.folio%></td>
+					<td><%=evento.nombre%></td>
+					<td>Alvin</td>
+					<td><%= link_to 'Mostrar evento', evento_path(evento) %></td>
+					<td><%= link_to 'Editar evento', edit_evento_path(evento) %></td>
+				</tr>
+				<%end%>
+			</tbody>
+		</table>
+	</div>
+</div>
