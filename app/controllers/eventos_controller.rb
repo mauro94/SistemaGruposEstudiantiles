@@ -1,11 +1,16 @@
 class EventosController < ApplicationController 
+
 	def index
 		@eventos = Evento.all.order("created_at DESC")
+		@grupo = current_grupo
+		@admin = current_admin
 	end
 	def show
 	end
 	def new
 		@evento = Evento.new
+		@grupo = current_grupo
+		@admin = current_admin
 	end
 	def create
 		@evento = Evento.new(evento_params)
@@ -17,7 +22,9 @@ class EventosController < ApplicationController
 	end
 
 	def edit
-		 @evento = Evento.find(params[:id])
+		@evento = Evento.find(params[:id])
+		@grupo = current_grupo
+		@admin = current_admin
 	end
 
 	def update
