@@ -1,3 +1,3 @@
 class Administrador < PersonaTec
-	belongs_to: admin
+	belongs_to :admin
 end
