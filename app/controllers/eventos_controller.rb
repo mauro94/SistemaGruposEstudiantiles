@@ -6,6 +6,7 @@ class EventosController < ApplicationController
 		@admin = current_admin
 	end
 	def show
+		@evento = Evento.find(params[:id])
 	end
 	def new
 		@evento = Evento.new
@@ -28,6 +29,7 @@ class EventosController < ApplicationController
 	end
 
 	def update
+		@evento = Evento.find(params[:id])
 		if @evento.update(evento_params)
 			redirect_to root_path
 		else
