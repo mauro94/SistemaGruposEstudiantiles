@@ -4,32 +4,30 @@
 
 <div class="row">
 	<table class="bordered highlight responsive-table">
-        <thead>
-          <tr>
-              <th>Nombre</th>
-              <th>Correo</th>
-              <th>Departamento</th>
-              <th>Consejo</th>
-              <th>Extensión</th>
-              <th>Editar</th>
-          </tr>
-        </thead>
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Correo</th>
+        <th>Departamento</th>
+        <th>Consejo</th>
+        <th>Extensión</th>
+        <th>Editar</th>
+      </tr>
+    </thead>
 
-        <tbody>
-        	<% @admins.each do |a| %>
-          <% if a != @admin %>
-          <tr>
-            <td></td>
-    				<td><%=a.email%></td>
-            <td></td>
-            <td></td>
-            <td></td>
-    				<td><a class="waves-effect waves-light btn"><i class="material-icons">mode_edit</i></a></td>
-    			</tr>
-          <%end%>
-  			<%end%>
-        </tbody>
-    </table>
+    <tbody>
+      <%@administradors.each do |administrador|%>
+      <tr>
+        <td><%=administrador.nombre%></td>
+        <td><%=administrador.correo%></td>
+        <td><%=administrador.departamento%></td>
+        <td><%=administrador.consejo%></td>
+        <td><%=administrador.extension%></td>
+        <td><%= link_to 'Editar administrador', edit_administrador_path(administrador) %></td>
+      </tr>
+      <%end%>
+    </tbody>
+  </table>
 </div>
 
 <div class="row">

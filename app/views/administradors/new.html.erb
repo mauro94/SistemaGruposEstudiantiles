@@ -1,14 +1,2 @@
-<%= simple_form_for @administrador do |f| %>
-<br>
-<div>
-	<%= f.input :nombre, placeholder: 'Escribe el nombre del administrador',:label => "Nombre del adminstrador:", :input_html => {:style => 'width: 350px'}%>
-	<%= f.input :correo, placeholder: 'Escribe el correo',:label => "Correo:",:input_html => {:style => 'width: 550px'} %>
-	<%= f.input :departamento, placeholder: 'Escribe el departamento',:label => "Departamento:",:input_html => {:style => 'width: 350px'} %>
-	<%= f.input :consejo, placeholder: 'Escribe el consejo',:label => "Consejo:",:input_html => {:style => 'width: 350px'} %>
-	<%= f.input :extension, placeholder: 'Escribe el numero de extension',:label => "Extension:",:input_html => {:style => 'width: 250px'} %>
-</div>
-
-<br>
-<%= f.submit nil, :class => 'btn btn-default'%>
-<%= link_to "Cancel", :back, {:class=>"btn btn-default"} %>
-<% end %>
+<h1>Creacion de un nuevo administrador</h1>
+<%= render 'form' %>

@@ -11,6 +11,7 @@ class AdminInController < ApplicationController
 		@admin = current_admin
 		@eventos = Evento.all
 		@admins = Admin.paginate(:page => params[:page], :per_page => 10)
+		@administradors = Administrador.all 
 	end
 
 	def eventos
