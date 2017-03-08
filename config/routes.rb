@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   resources :eventos
+  resources :administrador
   devise_for :admins
   devise_scope :admin do
 	get '/admin' => 'admins/sessions#new'

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170307152432) do
+ActiveRecord::Schema.define(version: 20170308200400) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,9 @@ ActiveRecord::Schema.define(version: 20170307152432) do
     t.string   "consejo"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+    t.string   "nombre"
+    t.string   "correo"
+    t.integer  "extension"
     t.index ["admin_id"], name: "index_administradors_on_admin_id", using: :btree
   end
 
