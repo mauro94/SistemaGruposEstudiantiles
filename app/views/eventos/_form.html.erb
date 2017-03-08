@@ -65,6 +65,7 @@
 </div>
 
 <br>
-<%= f.submit%>
+<%= f.submit nil, :class => 'btn btn-default'%>
+<%= link_to "Cancel", :back, {:class=>"btn btn-default"} %>
 <% end %>
 </div>
