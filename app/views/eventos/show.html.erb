@@ -1,3 +1,22 @@
-<h1>show</h1>
-<h2> <%= @evento.nombre%></h2>
-<h3> <%= @evento.descripcion%></h3>
+<h2>Este es el numero de evento: <%=@evento.folio%></h2>
+<div>
+	<table class="bordered highlight responsive-table">
+		<thead>
+			<tr>
+				<th><%=@evento.nombre%></th>
+			</tr>
+		</thead>
+
+		<tbody>
+			<tr>
+				<td>Descripcion: <%=@evento.descripcion%></td>
+				<td>fechaInicio: <%=@evento.fechaInicio%></td>
+				<td>fechaFin: <%=@evento.fechaFin%></td>
+				<td>Estatus del evento: <%=@evento.estatus%></td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<br>
+<%= link_to "Regresar a lista de eventos", root_path, {:class=>"btn btn-default"} %>
