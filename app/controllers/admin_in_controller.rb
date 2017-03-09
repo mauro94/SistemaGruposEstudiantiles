@@ -4,17 +4,22 @@ class AdminInController < ApplicationController
 		@admin = current_admin
 	end
 
-	def admins
+	def show_admins
 		@admin = current_admin
 		@admins = Admin.paginate(:page => params[:page], :per_page => 10)
 	end
 
-	def eventos
+	def new_admin
+		@admin = current_admin
+		@new_admin = current_admin
+	end
+
+	def show_eventos
 		@admin = current_admin
 		@admins = Admin.paginate(:page => params[:page], :per_page => 10)
 	end
 
-	def grupos
+	def show_grupos
 		@admin = current_admin
 		@admins = Admin.paginate(:page => params[:page], :per_page => 10)
 	end
