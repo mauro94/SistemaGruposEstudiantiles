@@ -1,6 +1,7 @@
 class CreateAlumnos < ActiveRecord::Migration[5.0]
   def change
     create_table :alumnos, id: false, primary_key: :matricula  do |t|
+      t.belongs_to :grupo_estudiantil, index: true
       t.string :correoElectronico
       t.string :nombre
       t.string :apellido

@@ -3,7 +3,7 @@ class CreateEventos < ActiveRecord::Migration[5.0]
     create_table :eventos, id: false, primary_key: :folio do |t|
       t.belongs_to :grupo_estudiantil, index: true
       t.string :nombre
-      t.integer :folio
+      t.string :folio
       t.string :descripcion
       t.boolean :aprobadoMercadotecnia
       t.boolean :aprobadoConsejo
@@ -18,13 +18,13 @@ class CreateEventos < ActiveRecord::Migration[5.0]
       t.time :horaInauguracion
       t.string :estatus
       t.string :tipoEvento
-      t.string :archivoCroquis
-      t.string :archivoContactosElectricos
-      t.string :archivoMercadotecnia
-      t.string :archivoPresupuesto
-      t.string :archivoAlimentos
-      t.string :archivoAsistentes
-      t.string :archivoVip
+      t.boolean :archivoCroquis
+      t.boolean :archivoContactosElectricos
+      t.boolean :archivoMercadotecnia
+      t.boolean :archivoPresupuesto
+      t.boolean :archivoAlimentos
+      t.boolean :archivoAsistentes
+      t.boolean :archivoVip
 
       t.timestamps
     end
