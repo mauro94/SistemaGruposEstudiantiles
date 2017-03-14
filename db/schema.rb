@@ -93,9 +93,8 @@ ActiveRecord::Schema.define(version: 20170314215859) do
     t.string   "archivoAlimentos"
     t.string   "archivoAsistentes"
     t.string   "archivoVip"
-    t.datetime "created_at",                                                                              null: false
-    t.datetime "updated_at",                                                                              null: false
-    t.integer  "folioid",                    default: -> { "nextval('clients_position_seq'::regclass)" }, null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
     t.index ["grupo_estudiantil_id"], name: "index_eventos_on_grupo_estudiantil_id", using: :btree
   end
 

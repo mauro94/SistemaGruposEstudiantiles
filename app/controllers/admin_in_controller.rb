@@ -22,7 +22,7 @@ class AdminInController < ApplicationController
 
 	def grupos
 		@admin = current_admin
-		@grupos = Grupo.all
+		@grupoestudiantils = GrupoEstudiantil.all
 	end
 
 end

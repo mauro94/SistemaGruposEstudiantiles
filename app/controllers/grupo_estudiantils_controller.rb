@@ -1,11 +1,6 @@
 class GrupoEstudiantilsController < ApplicationController
-	def index
-		@grupoestudiantils = GrupoEstudiantil.all
-		@grupo = current_grupo
-		@admin = current_admin
-	end
 	def show
-		@grupoestudiantils = GrupoEstudiantil.find(params[:id])
+		@grupoestudiantil = GrupoEstudiantil.find(params[:id])
 		@grupo = current_grupo
 		@admin = current_admin
 	end
@@ -19,7 +14,7 @@ class GrupoEstudiantilsController < ApplicationController
 		@grupo = current_grupo
 		@admin = current_admin
 		if @grupoestudiantil.save
-			redirect_to '/home'
+			redirect_to '/admin'
 		else
 			render 'new'
 		end
@@ -35,7 +30,7 @@ class GrupoEstudiantilsController < ApplicationController
 		@grupo = current_grupo
 		@admin = current_admin
 		if @grupoestudiantil.update(grupoestudiantil_params)
-			redirect_to '/home'
+			redirect_to '/admin'
 		else
 			render 'edit'
 		end

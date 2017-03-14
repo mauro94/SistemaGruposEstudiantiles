@@ -13,10 +13,11 @@
     </thead>
 
     <tbody>
-    <%@grupoestudiantils.each do |grupoestudiantil|%>
+      <%@grupoestudiantils.each do |grupoestudiantil|%>
       <tr>
-        <td>=group.nombre</td>
-        <td>=evento.descripcion</td>
+        <td><%=grupoestudiantil.nombre%></td>
+        <td><%=grupoestudiantil.consejo%></td>
+        <td><%= link_to 'Editar grupo estudiantil', edit_grupo_estudiantil_path(grupoestudiantil) %></td>
       </tr>
       <%end%>
     </tbody>
