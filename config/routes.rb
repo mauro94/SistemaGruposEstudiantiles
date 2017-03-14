@@ -22,4 +22,7 @@ Rails.application.routes.draw do
   get '/admin/grupos' => 'admin_in#grupos'
 
   get '/home' => 'grupo_in#home'
+
+  get '/admin/grupos/new' => 'grupo_in#new'
+  get '/admin/grupos/edit' => 'grupo_in#edit'
 end
