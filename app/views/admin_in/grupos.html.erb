@@ -4,27 +4,22 @@
 
 <div class="row">
 	<table class="bordered highlight responsive-table">
-        <thead>
-          <tr>
-              <th>Nombre</th>
-              <th>Información</th>
-              <th>Editar</th>
-          </tr>
-        </thead>
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Información</th>
+        <th>Editar</th>
+      </tr>
+    </thead>
 
-        <tbody>
-        	<% @admins.each do |a| %>
-        	<tr>
-				<td><</td>
-				<td></td>
-				<td></td>
-			</tr>
-			<%end%>
-        </tbody>
-    </table>
-</div>
-<div class="row">
-  <%= will_paginate @admins %>
-  <a class="btn-floating btn-large waves-effect waves-light right" href="/admin/grupos/new"><i class="material-icons">add</i></a>
+    <tbody>
+    <%@grupoestudiantils.each do |grupoestudiantil|%>
+      <tr>
+        <td>=group.nombre</td>
+        <td>=evento.descripcion</td>
+      </tr>
+      <%end%>
+    </tbody>
+  </table>
 </div>
 <%= link_to "Regresar", :back, {:class=>"btn btn-default"} %>
