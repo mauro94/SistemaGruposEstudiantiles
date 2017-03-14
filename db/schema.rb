@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170313164219) do
+ActiveRecord::Schema.define(version: 20170314214904) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -93,14 +93,14 @@ ActiveRecord::Schema.define(version: 20170313164219) do
     t.string   "archivoAlimentos"
     t.string   "archivoAsistentes"
     t.string   "archivoVip"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at",                                                                              null: false
+    t.datetime "updated_at",                                                                              null: false
+    t.integer  "folioid",                    default: -> { "nextval('clients_position_seq'::regclass)" }, null: false
     t.index ["grupo_estudiantil_id"], name: "index_eventos_on_grupo_estudiantil_id", using: :btree
   end
 
-  create_table "grupo_estudiantils", id: false, force: :cascade do |t|
+  create_table "grupo_estudiantils", primary_key: "grupo_id", id: :integer, default: -> { "nextval('grupoestudiantils_sequence'::regclass)" }, force: :cascade do |t|
     t.integer  "evento_id"
-    t.integer  "grupo_id"
     t.string   "nombre"
     t.string   "cuentaBanco"
     t.string   "consejo"
