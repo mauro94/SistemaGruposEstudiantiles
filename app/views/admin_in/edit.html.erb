@@ -1,0 +1,73 @@
+<div class="row">
+	<h3> Editar Administrador </h3>
+</div>
+
+<div class="row">
+  <%= form_for @edit_admin, url: admin_admin_index_path(@edit_admin) do |f| %>
+
+    <div class="row">
+      <div class="col s12 m6 input-field">
+        <%= f.text_field :nombre, placeholder: "Alejandra"%>
+        <label>Nombre</label>
+      </div>
+
+      <div class="col s12 m6 input-field">
+        <%= f.text_field :apellido, placeholder: "Garza" %>
+        <label>Apellido</label>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col s12 m6 input-field">
+        <%= f.email_field :email, placeholder: "alejandra.garza@itesm.mx" %>
+        <label>Correo</label>
+      </div>
+
+      <div class="col s12 m6 input-field">
+        <%= f.select(:puesto) do %>
+          <% [['Logística', 'Logistica'], ['Finanzas', 'Finanzas'], ['Administración', 'Administracion']].each do |c| -%>
+            <%= content_tag(:option, c.first, value: c.last) %>
+          <% end %>
+        <% end %>
+        <label>Puesto</label>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col s12 m6 input-field">
+        <%= f.text_field :extension, placeholder: "4653" %>
+        <label>Extensión</label>
+      </div>
+
+      <div class="col s12 m6 input-field">
+        <%= f.select(:departamento) do %>
+          <% [['Logística', 'Logistica'], ['Finanzas', 'Finanzas'], ['Administración', 'Administracion']].each do |c| -%>
+            <%= content_tag(:option, c.first, value: c.last) %>
+          <% end %>
+        <% end %>
+        <label>Departamento</label>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col s12 m6 input-field">
+        <%= f.select(:consejo) do %>
+          <% [['CCE', 'CCE'], ['CSA', 'CSA'], ['CARE', 'CARE'], ['FEITESM', 'FEITESM'], ['N/A', 'N/A']].each do |c| -%>
+            <%= content_tag(:option, c.first, value: c.last) %>
+          <% end %>
+        <% end %>
+        <label>Consejo</label>
+      </div>
+
+      <div class="col s12 m6 input-field">
+        <%= f.text_field :oficina, placeholder: "CE-211" %>
+        <label>Oficina</label>
+      </div>
+    </div>
+
+    <div class="row center">
+      <%= link_to "Cancelar", "/admin/admins", {:class=>"btn btn-default"} %>
+      <%= f.submit nil, :class => 'btn btn-default'%>
+    </div>
+  <% end %>
+</div>

@@ -15,16 +15,6 @@ ActiveRecord::Schema.define(version: 20170313164219) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "administradors", id: false, force: :cascade do |t|
-    t.integer  "admin_id"
-    t.string   "departamento"
-    t.string   "consejo"
-    t.string   "id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-    t.index ["admin_id"], name: "index_administradors_on_admin_id", using: :btree
-  end
-
   create_table "admins", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -36,6 +26,13 @@ ActiveRecord::Schema.define(version: 20170313164219) do
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
+    t.string   "nombre"
+    t.string   "apellido"
+    t.string   "puesto"
+    t.string   "extension"
+    t.string   "departamento"
+    t.string   "consejo"
+    t.string   "oficina"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.index ["email"], name: "index_admins_on_email", unique: true, using: :btree
@@ -89,19 +86,13 @@ ActiveRecord::Schema.define(version: 20170313164219) do
   end
 
   create_table "grupo_estudiantils", id: false, force: :cascade do |t|
-    t.integer  "evento_id"
-    t.integer  "grupo_id"
-    t.string   "nombre"
-    t.string   "cuentaBanco"
-    t.string   "consejo"
-    t.string   "id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.index ["evento_id"], name: "index_grupo_estudiantils_on_evento_id", using: :btree
-    t.index ["grupo_id"], name: "index_grupo_estudiantils_on_grupo_id", using: :btree
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "grupos", force: :cascade do |t|
+    t.integer  "evento_id"
+    t.integer  "grupo_id"
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
@@ -112,9 +103,14 @@ ActiveRecord::Schema.define(version: 20170313164219) do
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
+    t.string   "nombre"
+    t.string   "cuentaBanco"
+    t.string   "consejo"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.index ["email"], name: "index_grupos_on_email", unique: true, using: :btree
+    t.index ["evento_id"], name: "index_grupos_on_evento_id", using: :btree
+    t.index ["grupo_id"], name: "index_grupos_on_grupo_id", using: :btree
     t.index ["reset_password_token"], name: "index_grupos_on_reset_password_token", unique: true, using: :btree
   end
 
@@ -140,7 +136,6 @@ ActiveRecord::Schema.define(version: 20170313164219) do
     t.string   "puesto"
     t.string   "telefono"
     t.string   "correoElectronico"
-    t.string   "type"
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
     t.index ["grupo_estudiantil_id"], name: "index_persona_tecs_on_grupo_estudiantil_id", using: :btree

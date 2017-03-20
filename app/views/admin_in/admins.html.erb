@@ -11,28 +11,40 @@
         <th>Departamento</th>
         <th>Consejo</th>
         <th>Extensión</th>
+        <th>Oficina</th>
         <th>Editar</th>
+        <th>Eliminar</th>
       </tr>
     </thead>
 
     <tbody>
-      <%@administradors.each do |administrador|%>
-      <tr>
-        <td><%=administrador.nombre%></td>
-        <td><%=administrador.correo%></td>
-        <td><%=administrador.departamento%></td>
-        <td><%=administrador.consejo%></td>
-        <td><%=administrador.extension%></td>
-        <td><%= link_to 'Editar administrador', edit_administrador_path(administrador) %></td>
-      </tr>
+      <%@admins.each do |a|%>
+        <% if  a.email != @admin.email%>
+          <tr>
+            <td><%=a.nombre%> <%=a.apellido%></td>
+            <td><%=a.email%></td>
+            <td><%=a.departamento%></td>
+            <td><%=a.consejo%></td>
+            <td><%=a.extension%></td>
+            <td><%=a.oficina%></td>
+            <td><%= link_to edit_admin_admin_path(a), :class => "waves-effect waves-light btn" do %>
+            <%= content_tag :i, 'edit',  :class => "material-icons center"%>
+            <%end%></td>
+            <td><%= link_to admin_admin_path(a), :class => "waves-effect waves-light btn red", data: {confirm: "¿Estas seguro?"}, :method => :delete do %>
+            <%= content_tag :i, 'delete',  :class => "material-icons center"%>
+            <%end%></td>
+          </tr>
+        <%end%>
       <%end%>
     </tbody>
   </table>
 </div>
 
-<div class="row">
-	<%= will_paginate @admins %>
-  <a class="btn-floating btn-large waves-effect waves-light right" href="/administradors/new"><i class="material-icons">add</i></a>
+<div class="row center">
+	<%= will_paginate @admins, :previous_label => 'Anterior', :next_label => 'Siguiente' %>
 </div>
 
-<%= link_to "Regresar", :back, {:class=>"btn btn-default"} %>
+<div class="row">
+  <%= link_to "Regresar", "/admin/home", {:class=>"btn btn-default"} %>
+  <a class="btn-floating btn-large waves-effect waves-light right" href="/admin/new_admin"><i class="material-icons">add</i></a>
+</div>

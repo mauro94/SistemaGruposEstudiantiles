@@ -1,6 +1,9 @@
 class DeviseCreateGrupos < ActiveRecord::Migration[5.0]
   def change
     create_table :grupos do |t|
+      t.belongs_to :evento, index: true
+      t.belongs_to :grupo, index: true
+      
       ## Database authenticatable
       t.string :email,              null: false, default: ""
       t.string :encrypted_password, null: false, default: ""
@@ -30,6 +33,9 @@ class DeviseCreateGrupos < ActiveRecord::Migration[5.0]
       # t.string   :unlock_token # Only if unlock strategy is :email or :both
       # t.datetime :locked_at
 
+      t.string :nombre
+      t.string :cuentaBanco
+      t.string :consejo
 
       t.timestamps null: false
     end

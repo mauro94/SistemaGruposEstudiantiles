@@ -8,7 +8,6 @@ class CreatePersonaTecs < ActiveRecord::Migration[5.0]
       t.string :puesto
       t.string :telefono
       t.string :correoElectronico
-      t.string :type
 
       t.timestamps
     end

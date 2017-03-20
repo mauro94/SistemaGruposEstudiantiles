@@ -26,6 +26,7 @@ gem 'devise',                  '4.0'
 gem 'cancan',                  '1.6.10'
 gem 'rails-i18n', 			   '~> 5.0.0'
 gem 'auto_increment'
+gem 'simple_form'
 
 group :test do
   gem 'rails-controller-testing', '0.1.1'

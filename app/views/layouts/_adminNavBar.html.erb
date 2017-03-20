@@ -9,11 +9,11 @@
     <%=link_to "Grupos Estudiantiles", "/admin/home", class: "brand-logo"%>
     <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
     <ul id="nav-mobile" class="right hide-on-med-and-down">
-      <li><a class="dropdown-button" href="#!" data-activates="dropdown1"><%=@admin.email%><i class="material-icons right">arrow_drop_down</i></a></li>
+      <li><a class="dropdown-button" href="#!" data-activates="dropdown1"><%=@admin.nombre%><i class="material-icons right">arrow_drop_down</i></a></li>
     </ul>
     <ul class="side-nav" id="mobile-demo">
       <li><div class="userView">
-        <span class="black-text"><%=@admin.email%></span>
+        <span class="black-text"><%=@admin.nombre%></span>
       </div></li>
       <li class="divider"></li>
       <li><%=link_to "Perfil", "/admin/edit"%></li>
