@@ -1,0 +1,40 @@
+<div class="row">
+  <h3> Editar Grupo </h3>
+</div>
+
+<div class="row">
+  <%= form_for @grupo, url: admin_in_grupos_path(@grupo) do |f| %>
+
+    <div class="row">
+      <div class="col s12 m6 input-field">
+        <%= f.text_field :nombre, placeholder: "ACM Moonterrey"%>
+        <label>Nombre</label>
+      </div>
+
+      <div class="col s12 m6 input-field">
+        <%= f.email_field :email, placeholder: "acmmonterrey@gmail.com" %>
+        <label>Correo</label>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col s12 m6 input-field">
+        <%= f.text_field :cuentaBanco, placeholder: "0082934" %>
+        <label>Cuenta Banco</label>
+      </div>
+      <div class="col s12 m6 input-field">
+        <%= f.select(:consejo) do %>
+          <% [['CCE', 'CCE'], ['CSA', 'CSA'], ['CARE', 'CARE'], ['FEITESM', 'FEITESM'], ['N/A', 'N/A']].each do |c| -%>
+            <%= content_tag(:option, c.first, value: c.last) %>
+          <% end %>
+        <% end %>
+        <label>Consejo</label>
+      </div>
+    </div>
+
+    <div class="row center">
+      <%= link_to "Cancelar", "/admin/grupos", {:class=>"btn btn-default"} %>
+      <%= f.submit nil, :class => 'btn btn-default'%>
+    </div>
+  <% end %>
+</div>

@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
-  resources :grupo_estudiantils
   resources :eventos
   resources :admin_in
   resources :admin_admin, :controller => 'admin_in'
+  resources :admin_in_grupos, :controller => 'admin_in_grupos'
 
   devise_for :admins
   devise_scope :admin do
@@ -26,8 +26,10 @@ Rails.application.routes.draw do
   get '/admin/new_admin' => 'admin_in#new_admin'
   patch '/admin_admin.:id' => 'admin_in#update'
 
- get '/home' => 'grupo_in#home'
+  get '/admin/grupo/new' => 'admin_in_grupos#new'
+  patch '/admin_in_grupos.:id' => 'admin_in_grupos#update'
+  delete '/admin_in_grupos.:id' => 'admin_in_grupos#destroy'
 
- get '/admin/grupos/new' => 'grupo_in#new'
- get '/admin/grupos/edit' => 'grupo_in#edit'
+
+ get '/home' => 'grupo_in#home'
 end
