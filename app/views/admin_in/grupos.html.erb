@@ -1,27 +1,26 @@
 <div class="row">
-	<h3> Eventos </h3>
+	<h3> Grupos </h3>
 </div>
 
 <div class="row">
 	<table class="bordered highlight responsive-table">
-        <thead>
-          <tr>
-              <th>Nombre</th>
-              <th>Información</th>
-              <th>Editar</th>
-          </tr>
-        </thead>
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Información</th>
+        <th>Editar</th>
+      </tr>
+    </thead>
 
-        <tbody>
-        	<% @admins.each do |a| %>
-        	<tr>
-				<td><</td>
-				<td></td>
-				<td></td>
-			</tr>
-			<%end%>
-        </tbody>
-    </table>
+    <tbody>
+      <%@grupoestudiantils.each do |grupoestudiantil|%>
+      <tr>
+        <td><%=grupoestudiantil.nombre%></td>
+        <td><%=grupoestudiantil.consejo%></td>
+        <td><%= link_to 'Editar grupo estudiantil', edit_grupo_estudiantil_path(grupoestudiantil) %></td>
+      </tr>
+      <%end%>
+    </tbody>
+  </table>
 </div>
-
 <%= link_to "Regresar", :back, {:class=>"btn btn-default"} %>

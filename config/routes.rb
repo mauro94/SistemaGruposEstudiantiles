@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :grupo_estudiantils
   resources :eventos
   resources :admin_in
   resources :admin_admin, :controller => 'admin_in'
@@ -25,5 +26,8 @@ Rails.application.routes.draw do
   get '/admin/new_admin' => 'admin_in#new_admin'
   patch '/admin_admin.:id' => 'admin_in#update'
 
-  get '/home' => 'grupo_in#home'
+ get '/home' => 'grupo_in#home'
+
+ get '/admin/grupos/new' => 'grupo_in#new'
+ get '/admin/grupos/edit' => 'grupo_in#edit'
 end

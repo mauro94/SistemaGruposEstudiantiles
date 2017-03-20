@@ -1,0 +1,12 @@
+<%= simple_form_for @grupoestudiantil do |f| %>
+<br>
+<div>
+	<%= f.input :nombre, placeholder: 'Escribe el nombre del grupo',:label => "Nombre del grupo:", :input_html => {:style => 'width: 350px'}%>
+	<%= f.input :cuentaBanco, placeholder: 'Escribe la Cuenta Bancaria',:label => "Cuenta:",:input_html => {:style => 'width: 550px'} %>
+	<%= f.input :consejo, as: :select, collection:["CSA","CCE","CARE", "FEITESM", "N/A"], :label => "Consejo:", :input_html => {:style => 'width: 250px'}%>
+</div>
+
+<br>
+<%= f.submit nil, :class => 'btn btn-default'%>
+<%= link_to "Cancel", :back, {:class=>"btn btn-default"} %>
+<% end %>

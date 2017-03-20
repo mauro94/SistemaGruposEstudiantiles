@@ -85,11 +85,6 @@ ActiveRecord::Schema.define(version: 20170313164219) do
     t.index ["grupo_estudiantil_id"], name: "index_eventos_on_grupo_estudiantil_id", using: :btree
   end
 
-  create_table "grupo_estudiantils", id: false, force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "grupos", force: :cascade do |t|
     t.integer  "evento_id"
     t.integer  "grupo_id"
