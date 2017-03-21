@@ -1,31 +1,31 @@
 <div class="row">
-	<h3> Grupos </h3>
+	<h3 style = "text-align: center"> Grupos </h3>
 </div>
 
 <div class="row">
 	<table class="bordered highlight responsive-table">
     <thead>
       <tr>
-        <th>Nombre</th>
-        <th>Consejo</th>
-        <th>Cuenta Banco</th>
-        <th>Correo</th>
-        <th>Editar</th>
-        <th>Eliminar</th>
+        <th style = "text-align: center;">Nombre</th>
+        <th style = "text-align: center;">Consejo</th>
+        <th style = "text-align: center;">Cuenta Banco</th>
+        <th style = "text-align: center;">Correo</th>
+        <th style = "text-align: center;">Editar</th>
+        <th style = "text-align: center;">Eliminar</th>
       </tr>
     </thead>
 
     <tbody>
       <%@grupos.each do |g|%>
       <tr>
-        <td><%=g.nombre%></td>
-        <td><%=g.consejo%></td>
-        <td><%=g.cuentaBanco%></td>
-        <td><%=g.email%></td>
-        <td><%= link_to edit_admin_in_grupo_path(g), :class => "waves-effect waves-light btn" do %>
+        <td style = "text-align: center;"><%=g.nombre%></td>
+        <td style = "text-align: center;"><%=g.consejo%></td>
+        <td style = "text-align: center;"><%=g.cuentaBanco%></td>
+        <td style = "text-align: center;"><%=g.email%></td>
+        <td style = "text-align: center;"><%= link_to edit_admin_in_grupo_path(g), :class => "waves-effect waves-light btn" do %>
         <%= content_tag :i, 'edit',  :class => "material-icons center"%>
         <%end%></td>
-        <td><%= link_to admin_in_grupos_path(g), :class => "waves-effect waves-light btn red", data: {confirm: "¿Estas seguro?"}, :method => :delete do %>
+        <td style = "text-align: center;"><%= link_to admin_in_grupos_path(g), :class => "waves-effect waves-light btn red", data: {confirm: "¿Estás seguro de eliminar al grupo?"}, :method => :delete do %>
         <%= content_tag :i, 'delete',  :class => "material-icons center"%>
         <%end%></td>
       </tr>

@@ -1,19 +1,19 @@
 <div class="row">
-	<h3> Administradores </h3>
+	<h3 style = "text-align: center"> Administradores </h3>
 </div>
 
 <div class="row">
 	<table class="bordered highlight responsive-table">
     <thead>
       <tr>
-        <th>Nombre</th>
-        <th>Correo</th>
-        <th>Departamento</th>
-        <th>Consejo</th>
-        <th>Extensión</th>
-        <th>Oficina</th>
-        <th>Editar</th>
-        <th>Eliminar</th>
+        <th style = "text-align: center;">Nombre</th>
+        <th style = "text-align: center;">Correo</th>
+        <th style = "text-align: center;">Departamento</th>
+        <th style = "text-align: center;">Consejo</th>
+        <th style = "text-align: center;">Extensión</th>
+        <th style = "text-align: center;">Oficina</th>
+        <th style = "text-align: center;">Editar</th>
+        <th style = "text-align: center;">Eliminar</th>
       </tr>
     </thead>
 
@@ -21,16 +21,16 @@
       <%@admins.each do |a|%>
         <% if  a.email != @admin.email%>
           <tr>
-            <td><%=a.nombre%> <%=a.apellido%></td>
-            <td><%=a.email%></td>
-            <td><%=a.departamento%></td>
-            <td><%=a.consejo%></td>
-            <td><%=a.extension%></td>
-            <td><%=a.oficina%></td>
-            <td><%= link_to edit_admin_admin_path(a), :class => "waves-effect waves-light btn" do %>
+            <td style = "text-align: center;"><%=a.nombre%> <%=a.apellido%></td>
+            <td style = "text-align: center;"><%=a.email%></td>
+            <td style = "text-align: center;"><%=a.departamento%></td>
+            <td style = "text-align: center;"><%=a.consejo%></td>
+            <td style = "text-align: center;"><%=a.extension%></td>
+            <td style = "text-align: center;"><%=a.oficina%></td>
+            <td style = "text-align: center;"><%= link_to edit_admin_admin_path(a), :class => "waves-effect waves-light btn" do %>
             <%= content_tag :i, 'edit',  :class => "material-icons center"%>
             <%end%></td>
-            <td><%= link_to admin_admin_path(a), :class => "waves-effect waves-light btn red", data: {confirm: "¿Estas seguro?"}, :method => :delete do %>
+            <td style = "text-align: center;"><%= link_to admin_admin_path(a), :class => "waves-effect waves-light btn red", data: {confirm: "¿Estás seguro de eliminar al administrador?"}, :method => :delete do %>
             <%= content_tag :i, 'delete',  :class => "material-icons center"%>
             <%end%></td>
           </tr>
