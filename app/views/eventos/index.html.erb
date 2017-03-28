@@ -5,22 +5,22 @@
 		<table class="bordered highlight responsive-table">
 			<thead>
 				<tr>
-					<th>Folio</th>
-					<th>Nombre</th>
-					<th>Responsable</th>
-					<th>Estatus</th>
-					<th>Editar</th>
+					<th style = "text-align: center">Folio</th>
+					<th style = "text-align: center">Nombre</th>
+					<th style = "text-align: center">Responsable</th>
+					<th style = "text-align: center">Estatus</th>
+					<th style = "text-align: center">Editar</th>
 				</tr>
 			</thead>
 
 			<tbody>
 				<%@eventos.each do |evento|%>
 				<tr>
-					<td><%=evento.folio%></td>
-					<td><%=evento.nombre%></td>
-					<td>Alvin</td>
-					<td><%= link_to 'Mostrar evento', evento_path(evento) %></td>
-					<td><%= link_to 'Editar evento', edit_evento_path(evento) %></td>
+					<td style = "text-align: center"><%=evento.folio%></td>
+					<td style = "text-align: center"><%=evento.nombre%></td>
+					<td style = "text-align: center">Alvin</td>
+					<td style = "text-align: center"><%= link_to 'Mostrar evento', evento_path(evento) %></td>
+					<td style = "text-align: center"><%= link_to 'Editar evento', edit_evento_path(evento) %></td>
 				</tr>
 				<%end%>
 			</tbody>

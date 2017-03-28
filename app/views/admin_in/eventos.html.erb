@@ -1,33 +1,33 @@
 <div class="row">
-	<h3> Eventos </h3>
+	<h3 style = "text-align: center"> Eventos </h3>
 </div>
 
 <div class="row">
 	<table class="bordered highlight responsive-table">
       <thead>
         <tr>
-          <th>Folio</th>
-          <th>Fecha</th>
-          <th>Nombre</th>
-          <th>Responsable</th>
-          <th>Estatus</th>
-          <th>Editar</th>
-          <th>Eliminar</th>
+          <th style = "text-align: center;">Folio</th>
+          <th style = "text-align: center;">Fecha</th>
+          <th style = "text-align: center;">Nombre</th>
+          <th style = "text-align: center;">Responsable</th>
+          <th style = "text-align: center;">Estatus</th>
+          <th style = "text-align: center;">Editar</th>
+          <th style = "text-align: center;">Eliminar</th>
         </tr>
       </thead>
 
       <tbody>
         <%@eventos.each do |e|%>
         <tr>
-          <td><%=e.folio%></td>
-          <td><%=e.fechaInicio%></td>
-          <td><%=e.nombre%></td>
-          <td><%=(Grupo.find_by evento_id: e.id).nombre%></td>
-          <td><%=e.estatus %></td>
-          <td><%= link_to edit_evento_path(e.folio), :class => "waves-effect waves-light btn" do %>
+          <td style = "text-align: center;"><%=e.folio%></td>
+          <td style = "text-align: center;"><%=e.fechaInicio%></td>
+          <td style = "text-align: center;"><%=e.nombre%></td>
+          <td style = "text-align: center;"><%=(Grupo.find_by evento_id: e.id).nombre%></td>
+          <td style = "text-align: center;"><%=e.estatus %></td>
+          <td style = "text-align: center;"><%= link_to edit_evento_path(e.folio), :class => "waves-effect waves-light btn" do %>
             <%= content_tag :i, 'edit',  :class => "material-icons center"%>
             <%end%></td>
-          <td><%= link_to evento_path(e.folio), :class => "waves-effect waves-light btn red", data: {confirm: "¿Estas seguro?"}, :method => :delete do %>
+          <td style = "text-align: center;"><%= link_to evento_path(e.folio), :class => "waves-effect waves-light btn red", data: {confirm: "¿Estas seguro?"}, :method => :delete do %>
             <%= content_tag :i, 'delete',  :class => "material-icons center"%>
             <%end%></td>
         </tr>

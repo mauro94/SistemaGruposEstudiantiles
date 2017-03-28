@@ -16,28 +16,28 @@
     <table class="bordered highlight responsive-table">
       <thead>
         <tr>
-          <th>Folio</th>
-          <th>Fecha</th>
-          <th>Nombre</th>
-          <th>Responsable</th>
-          <th>Estatus</th>
-          <th>Administrar</th>
+          <th style = "text-align: center">Folio</th>
+          <th style = "text-align: center">Fecha</th>
+          <th style = "text-align: center">Nombre</th>
+          <th style = "text-align: center">Responsable</th>
+          <th style = "text-align: center">Estatus</th>
+          <th style = "text-align: center">Administrar</th>
         </tr>
       </thead>
 
       <tbody>
         <%@eventos.each do |e|%>
         <tr>
-          <td><%=e.folio%></td>
-          <td><%=e.fechaInicio%></td>
-          <td><%=e.nombre%></td>
-          <td><%=@grupo.nombre%></td>
+          <td style = "text-align: center"><%=e.folio%></td>
+          <td style = "text-align: center"><%=e.fechaInicio%></td>
+          <td style = "text-align: center"><%=e.nombre%></td>
+          <td style = "text-align: center"><%=@grupo.nombre%></td>
           <%if e.estatus == 'pendiente'%>
-            <td><a class="waves-effect waves-light btn yellow"><i class="material-icons center">stop</i></a></td>
+            <td style = "text-align: center"><a class="waves-effect waves-light btn yellow"><i class="material-icons center">stop</i></a></td>
           <%else %>
-            <td><a class="waves-effect waves-light btn green"><i class="material-icons center">done</i></a></td>
+            <td style = "text-align: center"><a class="waves-effect waves-light btn green"><i class="material-icons center">done</i></a></td>
           <%end%>
-          <td><%= link_to edit_evento_path(e.folio), :class => "waves-effect waves-light btn" do %>
+          <td style = "text-align: center"><%= link_to edit_evento_path(e.folio), :class => "waves-effect waves-light btn" do %>
             <%= content_tag :i, 'assignment',  :class => "material-icons center"%>
             <%end%></td>
         </tr>
