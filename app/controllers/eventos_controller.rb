@@ -4,20 +4,25 @@ class EventosController < ApplicationController
 		@eventos = Evento.all
 		@grupo = current_grupo
 		@admin = current_admin
+		@responsable = Grupo.joins(:eventos)
 	end
+
 	def show
 		@evento = Evento.find(params[:id])
 		@grupo = current_grupo
 		@admin = current_admin
 	end
+
 	def new
 		@evento = Evento.new
 		@grupo = current_grupo
 		@admin = current_admin
 	end
+	
 	def create
+		@grupo = current_grupo
 		@evento = Evento.new(evento_params)
-		if @evento.save
+		if @grupo.eventos.create(evento_params)
 			redirect_to '/home'
 		else
 			render 'new'
@@ -45,6 +50,6 @@ class EventosController < ApplicationController
 	private
 
 	def evento_params
-		params.require(:evento).permit(:nombre,:descripcion,:estatus,:fechaInicio,:fechaFin,:revisadoSeguridad)
+		params.require(:evento).permit(:nombre,:numAsistentes,:tipoEvento,:descripcion,:fechaInicio,:fechaFin,:horaInauguracion, :estatus)
 	end
 end

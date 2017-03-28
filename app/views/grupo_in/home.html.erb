@@ -1,42 +1,52 @@
 <div class="row">
-  <h4>Hola <%=@grupo.email%>,</h4>
+  <h4>Hola <%=@grupo.nombre%>,</h4>
 </div>
 <!--Notificaciones-->
-<div class="row">
+<!--<div class="row">
   <h5>Avisos:</h5>
   <div class="collection">
     <a href="#" class="collection-item">Alvin</a>
   </div>
-</div>
+</div>-->
 
-<div class="row center">
-  <%= link_to "Crear Evento", "/eventos/new" , :class => 'waves-effect waves-light btn'%>
-</div>
 <!--Eventos de la semana-->
 <div class="row">
+  <h5>Eventos:</h5>
   <div class="col s12">
     <table class="bordered highlight responsive-table">
       <thead>
         <tr>
+          <th>Folio</th>
           <th>Fecha</th>
           <th>Nombre</th>
           <th>Responsable</th>
           <th>Estatus</th>
-          <th>Editar</th>
+          <th>Administrar</th>
         </tr>
       </thead>
 
       <tbody>
-        <%@eventos.each do |evento|%>
+        <%@eventos.each do |e|%>
         <tr>
-        <td><%=evento.fechaInicio%></td>
-          <td><%=evento.nombre%></td>
-          <td>Alvin</td>
-          <td><%=evento.estatus %></td>
-          <td><%= link_to 'Editar evento', edit_evento_path(evento) %></td>
+          <td><%=e.folio%></td>
+          <td><%=e.fechaInicio%></td>
+          <td><%=e.nombre%></td>
+          <td><%=@grupo.nombre%></td>
+          <%if e.estatus == 'pendiente'%>
+            <td><a class="waves-effect waves-light btn yellow"><i class="material-icons center">stop</i></a></td>
+          <%else %>
+            <td><a class="waves-effect waves-light btn green"><i class="material-icons center">done</i></a></td>
+          <%end%>
+          <td><%= link_to edit_evento_path(e.folio), :class => "waves-effect waves-light btn" do %>
+            <%= content_tag :i, 'assignment',  :class => "material-icons center"%>
+            <%end%></td>
         </tr>
         <%end%>
       </tbody>
     </table>
   </div>
+</div>
+
+<div class="row center">
+  <%= link_to "Crear Evento", new_evento_path() , :class => 'waves-effect waves-light btn'%>
 </div>

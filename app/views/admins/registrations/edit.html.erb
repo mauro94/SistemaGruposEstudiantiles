@@ -12,41 +12,37 @@
   <% end %>
 
   <div class="row">
-    <div class="input-field">
-      <label class = "active" for="user">Usuario</label>
+    <div class="col s12 input-field">
+      <label class = "active" for="user">Correo</label>
       <%= f.email_field :email %>
     </div>
   </div>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
-
   <div class="row">
-    <div class="input-field">
-      <label for="password">Nueva contraseña</label>
+    <div class="col s12 input-field">
       <%= f.password_field :password, autocomplete: "off" %>
+      <label>Nueva contraseña</label>
     </div>
   </div>
 
   <div class="row">
-    <div class="input-field">
-      <label for="password">Confirmación contraseña</label>
+    <div class="col s12 input-field">
       <%= f.password_field :password_confirmation, autocomplete: "off" %>
+      <label>Confirmación contraseña</label>
     </div>
   </div>
 
   <div class="row">
-    <div class="input-field">
-    <label for="password">Contraseña actual</label>
+    <div class="col s12 input-field">
       <%= f.password_field :current_password, autocomplete: "off" %>
+      <label>Contraseña actual</label>
     </div>
   </div>
 
   <div class="row right">
     <div class="actions">
-      <%= f.submit "Update", :class => 'btn waves-effect waves-light'%>
       <%= link_to "Cancelar", :back , :class => 'btn waves-effect waves-light'%>
+      <%= f.submit "Actualizar", :class => 'btn waves-effect waves-light'%>
     </div>
   </div>
 <% end %>

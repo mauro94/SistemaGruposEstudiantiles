@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :eventos
+  resources :eventos, :controller => 'eventos'
   resources :admin_in
   resources :admin_admin, :controller => 'admin_in'
   resources :admin_in_grupos, :controller => 'admin_in_grupos'

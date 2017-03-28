@@ -1,7 +1,7 @@
 class CreatePersonaTecs < ActiveRecord::Migration[5.0]
   def change
     create_table :persona_tecs, id: false, primary_key: :nomina do |t|
-      t.belongs_to :grupo_estudiantil, index: true
+      t.belongs_to :grupo, index: true
       t.string :nomina
       t.string :nombre
       t.string :apellido

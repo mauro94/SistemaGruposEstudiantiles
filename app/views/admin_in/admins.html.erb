@@ -8,7 +8,7 @@
       <tr>
         <th>Nombre</th>
         <th>Correo</th>
-        <th>Departamento</th>
+        <th>Puesto</th>
         <th>Consejo</th>
         <th>Extensión</th>
         <th>Oficina</th>
@@ -19,11 +19,10 @@
 
     <tbody>
       <%@admins.each do |a|%>
-        <% if  a.email != @admin.email%>
           <tr>
             <td><%=a.nombre%> <%=a.apellido%></td>
             <td><%=a.email%></td>
-            <td><%=a.departamento%></td>
+            <td><%=a.puesto%></td>
             <td><%=a.consejo%></td>
             <td><%=a.extension%></td>
             <td><%=a.oficina%></td>
@@ -34,7 +33,6 @@
             <%= content_tag :i, 'delete',  :class => "material-icons center"%>
             <%end%></td>
           </tr>
-        <%end%>
       <%end%>
     </tbody>
   </table>

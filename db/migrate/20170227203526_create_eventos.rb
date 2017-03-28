@@ -1,7 +1,7 @@
 class CreateEventos < ActiveRecord::Migration[5.0]
   def change
     create_table :eventos, id: false, primary_key: :folio do |t|
-      t.belongs_to :grupo_estudiantil, index: true
+      t.belongs_to :grupo, index: true
       t.string :nombre
       t.string :folio
       t.string :descripcion
@@ -15,7 +15,7 @@ class CreateEventos < ActiveRecord::Migration[5.0]
       t.date :fechaFin
       t.date :fechaInicio
       t.integer :numAsistentes
-      t.time :horaInauguracion
+      t.date :horaInauguracion
       t.string :estatus
       t.string :tipoEvento
       t.boolean :archivoCroquis

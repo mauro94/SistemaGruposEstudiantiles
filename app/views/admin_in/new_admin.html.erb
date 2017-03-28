@@ -6,21 +6,32 @@
   <%= form_for @new_admin, url: admin_admin_index_path(@new_admin) do |f| %>
 
     <div class="row">
-      <div class="col s12 m6 input-field">
-        <%= f.text_field :nombre, placeholder: "Alejandra"%>
-        <label>Nombre</label>
-      </div>
-
-      <div class="col s12 m6 input-field">
-        <%= f.text_field :apellido, placeholder: "Garza" %>
-        <label>Apellido</label>
+        <div class="col s12 input-field">
+        <%= f.email_field :email, placeholder: "alejandra.garza@itesm.mx" %>
+        <label class = "active">Correo</label>
       </div>
     </div>
 
     <div class="row">
       <div class="col s12 m6 input-field">
-        <%= f.email_field :email, placeholder: "alejandra.garza@itesm.mx" %>
-        <label>Correo</label>
+        <%= f.text_field :nombre, placeholder: "Alejandra"%>
+        <label class = "active">Nombre</label>
+      </div>
+
+      <div class="col s12 m6 input-field">
+        <%= f.text_field :apellido, placeholder: "Garza" %>
+        <label class = "active">Apellido</label>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col s12 m6 input-field">
+        <%= f.select(:consejo) do %>
+          <% [['CCE', 'CCE'], ['CSA', 'CSA'], ['CARE', 'CARE'], ['FEITESM', 'FEITESM'], ['N/A', 'N/A']].each do |c| -%>
+            <%= content_tag(:option, c.first, value: c.last) %>
+          <% end %>
+        <% end %>
+        <label>Consejo</label>
       </div>
 
       <div class="col s12 m6 input-field">
@@ -36,41 +47,21 @@
     <div class="row">
       <div class="col s12 m6 input-field">
         <%= f.text_field :extension, placeholder: "4653" %>
-        <label>Extensión</label>
-      </div>
-
-      <div class="col s12 m6 input-field">
-        <%= f.select(:departamento) do %>
-          <% [['Logística', 'Logistica'], ['Finanzas', 'Finanzas'], ['Administración', 'Administracion']].each do |c| -%>
-            <%= content_tag(:option, c.first, value: c.last) %>
-          <% end %>
-        <% end %>
-        <label>Departamento</label>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col s12 m6 input-field">
-        <%= f.select(:consejo) do %>
-          <% [['CCE', 'CCE'], ['CSA', 'CSA'], ['CARE', 'CARE'], ['FEITESM', 'FEITESM'], ['N/A', 'N/A']].each do |c| -%>
-            <%= content_tag(:option, c.first, value: c.last) %>
-          <% end %>
-        <% end %>
-        <label>Consejo</label>
+        <label class = "active">Extensión</label>
       </div>
 
       <div class="col s12 m6 input-field">
         <%= f.text_field :oficina, placeholder: "CE-211" %>
-        <label>Oficina</label>
+        <label class = "active">Oficina</label>
       </div>
     </div>
 
     <%= f.hidden_field 'password', :value => '12345678' %>
     <%= f.hidden_field 'password_confirmation', :value => '12345678' %>
 
-    <div class="row center">
+    <div class="row right">
       <%= link_to "Cancelar", "/admin/admins", {:class=>"btn btn-default"} %>
-      <%= f.submit nil, :class => 'btn btn-default'%>
+      <%= f.submit "Crear", :class => 'btn btn-default'%>
     </div>
   <% end %>
 </div>

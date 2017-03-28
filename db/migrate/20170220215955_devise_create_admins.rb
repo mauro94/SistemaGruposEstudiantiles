@@ -34,7 +34,6 @@ class DeviseCreateAdmins < ActiveRecord::Migration[5.0]
       t.string :apellido
       t.string :puesto
       t.string :extension
-      t.string :departamento
       t.string :consejo
       t.string :oficina
 

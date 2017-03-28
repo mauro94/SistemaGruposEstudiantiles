@@ -1,71 +1,50 @@
-<%= simple_form_for @evento do |f| %>
-<br>
-<%= f.input :tipoEvento , as: :select, collection:["Concierto","Planillas","Evento Social"], :label => "Tipo de evento:", :input_html => {:style => 'width: 250px'}%>
 
-<div>
-  <%= f.input :nombre, placeholder: 'Escribe el nombre del evento',:label => "Nombre del evento:", :input_html => {:style => 'width: 350px'}%>
-  <%= f.input :descripcion, placeholder: 'Escribe una descripcion',:label => "Descripcion:"  %>
-</div>
-<div>
-  <table>
-    <tr>
-      <td><%= f.input :fechaInicio, as: :date, :label => "Fecha de Inicio:"%> </td>
-      <td><%= f.input :fechaFin, as: :date, :label => "Fecha de Finalizacion:"%></td>
-    </tr>
-    <tr>
-      <td> <%= f.input :horaInauguracion, as: :time, :label => "Hora de inicio del evento:"%></td>
-      <td>  <%= f.input :numAsistentes, :as => "integer", :label => "Numero de asistentes:", :input_html => {:style => 'width: 50px'}%></td>
-    </tr>
-  </table>
-</div>
-<!--CHECKLIST-->
-<div>
-  Chequeo de aprobaciones: 
-  <%= check_box_tag(:aprobadoMercadotecnia) %>
-  <%= label_tag(:aprobadoMercadotecnia,"Aprobado por mercadotecnia") %>
-  <%= check_box_tag(:aprobadoConsejo) %>
-  <%= label_tag(:aprobadoConsejo, "Aprobado por consejo") %>
-  <%= check_box_tag(:aprobadoLogistica) %>
-  <%= label_tag(:aprobadoLogistica, "Aprobado por logistica") %>
-  <%= check_box_tag(:aprobadoFinanzas) %>
-  <%= label_tag(:aprobadoFinanzas, "Aprobado por finanzas") %>
-  <%= check_box_tag(:revisadoAlimentos) %>
-  <%= label_tag(:revisadoAlimentos, "Revision de alimentos") %>
-  <%= check_box_tag(:revisadoSeguridad) %>
-  <%= label_tag(:revisadoSeguridad, "Revision de seguridad") %>
-</div>
-<!-- CHECKLIST END -->
-<br>
-<div>
-  <table>
-    <tr>
-      <td>  <%= f.input :archivoCroquis, as: :file, wrapper: :vertical_file_input , :label => "Archivo de croquis:"%></td>
-      <td>  <%= f.input :archivoContactosElectricos, as: :file, wrapper: :vertical_file_input, :label => "Archivo de contactos electricos:" %></td>
-      <td>  <%= f.input :archivoMercadotecnia, as: :file, wrapper: :vertical_file_input, :label => "Archivo de mercadotecnia:" %></td>
-      <td>  <%= f.input :archivoPresupuesto, as: :file, wrapper: :vertical_file_input, :label => "Archivo de presupuesto:" %></td>
-    </tr>
-    <tr>
-      <td>  <%= f.input :archivoAlimentos, as: :file, wrapper: :vertical_file_input, :label => "Archivo de alimentos:" %></td>
-      <td>  <%= f.input :archivoAsistentes, as: :file, wrapper: :vertical_file_input, :label => "Archivo de asistentes:" %></td>
-      <td>  <%= f.input :archivoVip, as: :file, wrapper: :vertical_file_input, :label => "Archivo VIP:" %></td>
-    </tr>
-  </table>
-</div>
+<div class="row>"> 
+  <%= simple_form_for @evento do |f| %>
 
-<div>
-  El estatus del evento es actualmente: 
-  <%= f.radio_button :estatus, "Rechazado" %>
-  <%= f.label :estatus, "Rechazado", value:"Rechazado" %>
-  <%= f.radio_button :estatus, "Revision" %>
-  <%= f.label :estatus, "Revision", value:"Revision" %>
-  <%= f.radio_button :estatus, "Aceptado" %>
-  <%= f.label :estatus, "Aceptado", value:"Aceptado" %>
-  <%= f.radio_button :estatus, "Finalizado" %>
-  <%= f.label :estatus, "Finalizado", value:"Finalizado" %>
-</div>
+  <div class="row">
+    <div class="col s12">
+      <label>Nombre</label>
+      <%= f.text_field :nombre, placeholder: "HackMTY"%>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col s12 m6">
+      <label>Número de Asistentes</label>
+      <%= f.input :numAsistentes, :as => "integer", label: false%>
+    </div>
+    <div class="col s12 m6">
+      <label>Tipo de Evento</label>
+      <%= f.input :tipoEvento , as: :select, label: false, collection:["Foro","Congreso","Simposium","Conferencia","Taller","Concurso","Elección","Cierre de Campaña","Junta de Integración de Planilla","Debate","Acto Cívico","Servicio Social","Campamento","Recaudación de Fondos","Recaudación de Víveres","Actividad de Concientización","Visita","Celebración","Entrega de Reconocimiento","Recreativo","Fiesta Segura","Días","Integración","Junta","Desayuno/Comida/Cena","Viaje Estudiantil","Promocional","Cultural","Deportivo","Activación Comercial","Vendimia","Rifa","Toma de Protesta","Focus Group"]%>
+    </div>
+  </div>
 
-<br>
-<%= f.submit nil, :class => 'btn btn-default'%>
-<%= link_to "Cancel", :back, {:class=>"btn btn-default"} %>
-<% end %>
+  <div class="row">
+    <div class="col s12">
+      <label>Descripción detallada</label>
+      <%= f.input :descripcion, as: :text, label: false, input_html: { class: 'materialize-textarea'}%>
+    </div>
+  </div>
+
+  <div class="row">
+      <label>Fecha Inicio (Día/Mes/Año Hora/Min)</label>
+      <%= f.input :fechaInicio, as: :datetime, label: false, datetime_separator: "", time_separator: "", input_html: { class: 'col s12 m4'}, start_year: Date.today.year, end_year: Date.today.year+1%>
+  </div>
+
+  <div class="row">
+      <label>Fecha Fin (Día/Mes/Año Hora/Min)</label>
+      <%= f.input :fechaFin, as: :datetime, label: false, datetime_separator: "", time_separator: "", input_html: { class: 'col s12 m4'}, start_year: Date.today.year, end_year: Date.today.year+1%>
+  </div>
+  <div class="row">
+    <label>Hora Inauguración (Hora/Min)</label>
+    <%= f.input :horaInauguracion, as: :time, label: false, time_separator: "", input_html: { class: 'col s12 m4'}%>
+  </div>
+
+  <%= f.hidden_field 'estatus', :value => 'pendiente' %>
+
+  <div class="row center">
+    <%= link_to "Cancelar", :back, {:class=>"btn btn-default"} %>
+    <%= f.submit nil, :class => 'btn btn-default'%>
+  </div>
+  <% end %>
 </div>

@@ -62,7 +62,7 @@ class AdminInController < ApplicationController
 	private
 
 	def admin_params
-		params.require(:admin).permit(:nombre,:apellido,:email,:puesto,:password,:password_confirmation,:extension,:departamento,:consejo,:oficina)
+		params.require(:admin).permit(:nombre,:apellido,:puesto,:password,:password_confirmation,:extension,:consejo,:oficina)
 	end
 
 end

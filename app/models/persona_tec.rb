@@ -1,5 +1,5 @@
 class PersonaTec < ApplicationRecord
-	belongs_to :grupo_estudiantil
+	belongs_to :grupo
 
 	validates :nombre, :appellido, :puesto, presence: true
 	validates :correoElectronico, presence: true, format: { with: /\A[^@]+@[^@]+\z/, message: "Correo invalido" }

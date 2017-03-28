@@ -10,6 +10,7 @@
         <th>Consejo</th>
         <th>Cuenta Banco</th>
         <th>Correo</th>
+        <th>Deshabilitar</th>
         <th>Editar</th>
         <th>Eliminar</th>
       </tr>
@@ -21,6 +22,7 @@
         <td><%=g.nombre%></td>
         <td><%=g.consejo%></td>
         <td><%=g.cuentaBanco%></td>
+        <td><%=g.email%></td>
         <td><%=g.email%></td>
         <td><%= link_to edit_admin_in_grupo_path(g), :class => "waves-effect waves-light btn" do %>
         <%= content_tag :i, 'edit',  :class => "material-icons center"%>

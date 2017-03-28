@@ -30,7 +30,6 @@ ActiveRecord::Schema.define(version: 20170313164219) do
     t.string   "apellido"
     t.string   "puesto"
     t.string   "extension"
-    t.string   "departamento"
     t.string   "consejo"
     t.string   "oficina"
     t.datetime "created_at",                          null: false
@@ -40,7 +39,7 @@ ActiveRecord::Schema.define(version: 20170313164219) do
   end
 
   create_table "alumnos", id: false, force: :cascade do |t|
-    t.integer  "grupo_estudiantil_id"
+    t.integer  "grupo_id"
     t.string   "correoElectronico"
     t.string   "nombre"
     t.string   "apellido"
@@ -50,13 +49,13 @@ ActiveRecord::Schema.define(version: 20170313164219) do
     t.string   "matricula"
     t.date     "fechaInicio"
     t.date     "fechaFin"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
-    t.index ["grupo_estudiantil_id"], name: "index_alumnos_on_grupo_estudiantil_id", using: :btree
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.index ["grupo_id"], name: "index_alumnos_on_grupo_id", using: :btree
   end
 
   create_table "eventos", id: false, force: :cascade do |t|
-    t.integer  "grupo_estudiantil_id"
+    t.integer  "grupo_id"
     t.string   "nombre"
     t.string   "folio"
     t.string   "descripcion"
@@ -70,7 +69,7 @@ ActiveRecord::Schema.define(version: 20170313164219) do
     t.date     "fechaFin"
     t.date     "fechaInicio"
     t.integer  "numAsistentes"
-    t.time     "horaInauguracion"
+    t.date     "horaInauguracion"
     t.string   "estatus"
     t.string   "tipoEvento"
     t.boolean  "archivoCroquis"
@@ -82,7 +81,7 @@ ActiveRecord::Schema.define(version: 20170313164219) do
     t.boolean  "archivoVip"
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
-    t.index ["grupo_estudiantil_id"], name: "index_eventos_on_grupo_estudiantil_id", using: :btree
+    t.index ["grupo_id"], name: "index_eventos_on_grupo_id", using: :btree
   end
 
   create_table "grupos", force: :cascade do |t|
@@ -124,16 +123,16 @@ ActiveRecord::Schema.define(version: 20170313164219) do
   end
 
   create_table "persona_tecs", id: false, force: :cascade do |t|
-    t.integer  "grupo_estudiantil_id"
+    t.integer  "grupo_id"
     t.string   "nomina"
     t.string   "nombre"
     t.string   "apellido"
     t.string   "puesto"
     t.string   "telefono"
     t.string   "correoElectronico"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
-    t.index ["grupo_estudiantil_id"], name: "index_persona_tecs_on_grupo_estudiantil_id", using: :btree
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.index ["grupo_id"], name: "index_persona_tecs_on_grupo_id", using: :btree
   end
 
   create_table "renta", force: :cascade do |t|
