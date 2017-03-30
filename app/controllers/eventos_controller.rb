@@ -1,27 +1,23 @@
 class EventosController < ApplicationController 
-
+	before_action :authenticate_grupo!
 	def index
 		@eventos = Evento.all
 		@grupo = current_grupo
-		@admin = current_admin
 		@responsable = Grupo.joins(:eventos)
 	end
 
 	def show
 		@evento = Evento.find(params[:id])
 		@grupo = current_grupo
-		@admin = current_admin
 	end
 
 	def new
 		@evento = Evento.new
 		@grupo = current_grupo
-		@admin = current_admin
 	end
 	
 	def create
 		@grupo = current_grupo
-		@evento = Evento.new(evento_params)
 		if @grupo.eventos.create(evento_params)
 			redirect_to '/home'
 		else
@@ -32,7 +28,6 @@ class EventosController < ApplicationController
 	def edit
 		@evento = Evento.find(params[:id])
 		@grupo = current_grupo
-		@admin = current_admin
 	end
 
 	def update
@@ -45,6 +40,10 @@ class EventosController < ApplicationController
 	end
 
 	def destroy
+		@evento = Evento.find(params[:id])
+		if @evento.destroy
+			redirect_to '/home'
+		end
 	end
 
 	private

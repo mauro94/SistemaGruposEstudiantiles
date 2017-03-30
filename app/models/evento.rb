@@ -1,4 +1,6 @@
 class Evento < ApplicationRecord
+	self.primary_key = 'folio'
+
 	has_many :rentums
 	has_many :materiales_ces, through: :rentums
 

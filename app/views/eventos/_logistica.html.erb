@@ -1,0 +1,79 @@
+<div class="row">
+	<div class="row">
+	<h5>Ubicación</h5>
+		<div class="col s12 m6">
+			<span id="bold">Fecha Inicio: </span><span><%=@evento.fechaInicio%></span><p></p>
+    		<span id="bold">Fecha Fin: </span><span><%=@evento.fechaFin%></span><p></p>
+		</div>
+		<div class="col s12 m6">
+			<span id="bold">Hora Inauguración: </span><span><%=@evento.horaInauguracion%></span><p></p><p></p>
+		</div>
+	</div>
+	<%= simple_form_for @evento do |f| %>
+	<div class="row">
+		<div class="col s12 m4">
+			<label>Ubicación Sede:</label>
+		    <%= f.input :tipoEvento , as: :select, label: false, collection:["Sala 1","Sala 2","Sala 3"]%>
+		    <a class="btn-floating btn-large waves-effect waves-light right" href="/admin/grupo/new"><i class="material-icons">add</i></a><br><br><br>
+		    <%= f.submit 'Guardar Cambios', :class => 'btn btn-default'%><br><br>
+		</div>
+		<% end %>
+		<div class="col s12 m7 right">
+			<div class="slider">
+			    <ul class="slides">
+			      <li>
+			        <img class="materialboxed" src="http://lorempixel.com/580/250/nature/1"> 
+			        <div class="caption right-align">
+			          <h3>NOMBRE</h3>
+			          <h5 class="light grey-text text-lighten-3">CAPACIDAD</h5>
+			        </div>
+			      </li>
+			      <li>
+			        <img class="materialboxed" src="http://lorempixel.com/580/250/nature/1"> 
+			        <div class="caption right-align">
+			          <h3>NOMBRE</h3>
+			          <h5 class="light grey-text text-lighten-3">CAPACIDAD</h5>
+			        </div>
+			      </li>
+			      <li>
+			        <img class="materialboxed" src="http://lorempixel.com/580/250/nature/1"> 
+			        <div class="caption right-align">
+			          <h3>NOMBRE</h3>
+			          <h5 class="light grey-text text-lighten-3">CAPACIDAD</h5>
+			        </div>
+			      </li>
+			      <li>
+			        <img class="materialboxed" src="http://lorempixel.com/580/250/nature/1"> 
+			        <div class="caption right-align">
+			          <h3>NOMBRE</h3>
+			          <h5 class="light grey-text text-lighten-3">CAPACIDAD</h5>
+			        </div>
+			      </li>
+			    </ul>
+			  </div>
+		</div>
+	</div>
+</div>
+<div class="divider"></div><br>
+<div class="row">
+	<h5>Materiales</h5>
+		<%= simple_form_for @evento do |f| %>
+		<div class="row center">
+			<div class="col s12 m4">
+				<p>
+			      <input type="checkbox" class="filled-in" id="mobiliario" />
+			      <label for="mobiliario">Mobiliario</label>
+			    </p>
+			</div>
+			<div class="col s12 m4">
+				<p>
+			      <input type="checkbox" class="filled-in" id="audiovisual" />
+			      <label for="audiovisual">Equipo Audiovisual</label>
+			    </p>
+			</div>
+		</div>
+		<div class="row right">
+			<%= f.submit 'Solicitar Cita', :class => 'btn btn-default'%><br><br>
+			<% end %>	
+		</div>
+	</div>

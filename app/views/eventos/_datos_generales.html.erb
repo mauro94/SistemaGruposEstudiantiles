@@ -1,0 +1,59 @@
+<%if current_admin%>
+	<div class="row">
+		<h5>Grupo Estudiantil</h5>
+		<div class="col s12 m6">
+    		<span id="bold">Nombre: </span><span><%=@grupo.nombre%></span><p></p>
+    		<span id="bold">Correo: </span><span><%=@grupo.email%></span><p></p>
+    		<span id="bold">Cuenta: </span><span><%=@grupo.cuentaBanco%></span><p></p>
+		</div>
+		<div class="col s12 m6">
+			<span id="bold">Responsable: </span><span><%=@grupo.nombre%></span><p></p>
+    		<span id="bold">Matricula: </span><span><%=@grupo.email%></span><p></p>
+    		<span id="bold">Correo: </span><span><%=@grupo.email%></span><p></p>
+		</div>
+		</div>
+	<div class="divider"></div><br>
+	<%end%>
+<div class="row">
+	<h5>Estatus</h5>
+	<div class="col s12 m6">
+		<span id="bold">Fecha Registro: </span><span><%=@evento.created_at%></span><p></p>
+	</div>
+	<div class="col s12 m6">
+		<span id="bold">Fecha Última Actualización: </span><span><%=@evento.updated_at%></span><p></p>
+	</div>
+</div>
+<div class="row center">
+	<div class="col s12 m4 center">
+		<a class="btn tooltipped grey" data-position="bottom" data-delay="50" data-tooltip="En Progreso"><i class="material-icons left">schedule</i><%=@grupo.consejo%></a>
+	</div>
+	<div class="col s12 m4 center">
+		<a class="btn tooltipped grey" data-position="bottom" data-delay="50" data-tooltip="En Progreso"><i class="material-icons left">schedule</i>Logística</a>
+	</div>
+	<div class="col s12 m4 center">
+		<a class="btn tooltipped grey" data-position="bottom" data-delay="50" data-tooltip="En Progreso"><i class="material-icons left">schedule</i>Finanzas</a>
+	</div>
+</div>
+<div class="divider"></div><br>
+<div class="row">
+	<h5>Evento</h5>
+	<div class="col s12 m6">
+		<span id="bold">Número de Asistentes: </span><span><%=@evento.numAsistentes%></span><p></p>
+	</div>
+	<div class="col s12 m6">
+		<span id="bold">Tipo de Evento: </span><span><%=@evento.tipoEvento%></span><p></p>
+	</div>
+	<div class="col s12">
+		<span id="bold">Descripción: </span><br><span><%=@evento.descripcion%></span><p></p>
+	</div>
+	<div class="col s12 m6">
+		<span id="bold">Fecha Inicio: </span><span><%=@evento.fechaInicio%></span><p></p>
+		<span id="bold">Fecha Fin: </span><span><%=@evento.fechaFin%></span><p></p>
+	</div>
+	<div class="col s12 m6">
+		<span id="bold">Hora Inauguración: </span><span><%=@evento.horaInauguracion%></span><p></p>
+	</div>
+</div>
+<div class="row center">
+	<%= link_to 'Cancelar Evento', evento_path(@evento.id), :class => "waves-effect waves-light btn red", data: {confirm: "¿Estás seguro de eliminar al administrador?"}, :method => :delete%>
+</div>

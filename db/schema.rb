@@ -56,8 +56,8 @@ ActiveRecord::Schema.define(version: 20170313164219) do
 
   create_table "eventos", id: false, force: :cascade do |t|
     t.integer  "grupo_id"
+    t.string   "folio",                      null: false
     t.string   "nombre"
-    t.string   "folio"
     t.string   "descripcion"
     t.boolean  "aprobadoMercadotecnia"
     t.boolean  "aprobadoConsejo"
@@ -66,10 +66,10 @@ ActiveRecord::Schema.define(version: 20170313164219) do
     t.boolean  "revisadoAlimentos"
     t.boolean  "revisadoSeguridad"
     t.string   "ubicacion"
-    t.date     "fechaFin"
-    t.date     "fechaInicio"
+    t.datetime "fechaFin"
+    t.datetime "fechaInicio"
     t.integer  "numAsistentes"
-    t.date     "horaInauguracion"
+    t.time     "horaInauguracion"
     t.string   "estatus"
     t.string   "tipoEvento"
     t.boolean  "archivoCroquis"
@@ -81,6 +81,7 @@ ActiveRecord::Schema.define(version: 20170313164219) do
     t.boolean  "archivoVip"
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
+    t.index ["folio"], name: "index_eventos_on_folio", unique: true, using: :btree
     t.index ["grupo_id"], name: "index_eventos_on_grupo_id", using: :btree
   end
 
