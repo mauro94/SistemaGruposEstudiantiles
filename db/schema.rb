@@ -125,14 +125,21 @@ ActiveRecord::Schema.define(version: 20170403163518) do
   end
 
   create_table "reservas", force: :cascade do |t|
+    t.integer  "ubicacion_id"
+    t.integer  "evento_id"
     t.datetime "horario"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["evento_id"], name: "index_reservas_on_evento_id", using: :btree
+    t.index ["ubicacion_id"], name: "index_reservas_on_ubicacion_id", using: :btree
   end
 
   create_table "ubicacions", force: :cascade do |t|
-    t.string   "nombre"
+    t.string   "zona"
+    t.integer  "numero"
     t.integer  "capacidad"
+    t.float    "ancho"
+    t.float    "alto"
     t.datetime "horarioInicio"
     t.datetime "horarioFin"
     t.datetime "created_at",    null: false
