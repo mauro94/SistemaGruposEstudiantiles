@@ -6,8 +6,8 @@ class CreateUbicacions < ActiveRecord::Migration[5.0]
     	t.integer :capacidad
     	t.float :ancho
     	t.float :alto
-    	t.datetime :horarioInicio
-    	t.datetime :horarioFin
+    	t.time :horarioInicio
+    	t.time :horarioFin
       t.timestamps
     end
   end

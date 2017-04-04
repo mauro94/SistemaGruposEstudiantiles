@@ -22,7 +22,7 @@
           <td style = "text-align: center;"><%=u.zona%></td>
           <td style = "text-align: center;"><%=u.numero%></td>
           <td style = "text-align: center;"><%=u.capacidad%></td>
-          <td style = "text-align: center;"><%=u.ancho%> x <%=u.alto%></td>
+          <td style = "text-align: center;"><%=u.ancho%> m. x <%=u.alto%> m.</td>
           <td style = "text-align: center;"><%=u.horarioInicio%> - <%=u.horarioFin%></td>
           <td style = "text-align: center;"><%= link_to edit_ubicacion_path(u), :class => "waves-effect waves-light btn" do %>
             <%= content_tag :i, 'edit',  :class => "material-icons center"%>
@@ -36,4 +36,13 @@
     </table>
 </div>
 
-<%= link_to "Regresar", :back, {:class=>"btn btn-default"} %>
+<div class="row center">
+  <% if @ubicaciones.first != nil%>
+  <%= will_paginate @ubicaciones, :previous_label => 'Anterior', :next_label => 'Siguiente' %>
+  <%end%>
+</div>
+
+<div class="row">
+  <%= link_to "Regresar", "/admin/home", {:class=>"btn btn-default"} %>
+  <a class="btn-floating btn-large waves-effect waves-light right" href="/ubicacions/new"><i class="material-icons">add</i></a>
+</div>

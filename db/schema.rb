@@ -140,8 +140,8 @@ ActiveRecord::Schema.define(version: 20170403163518) do
     t.integer  "capacidad"
     t.float    "ancho"
     t.float    "alto"
-    t.datetime "horarioInicio"
-    t.datetime "horarioFin"
+    t.time "horarioInicio"
+    t.time "horarioFin"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end
