@@ -18,13 +18,15 @@ class CreateEventos < ActiveRecord::Migration[5.0]
       t.time :horaInauguracion
       t.string :estatus
       t.string :tipoEvento
-      t.boolean :archivoCroquis
-      t.boolean :archivoContactosElectricos
-      t.boolean :archivoMercadotecnia
-      t.boolean :archivoPresupuesto
-      t.boolean :archivoAlimentos
-      t.boolean :archivoAsistentes
-      t.boolean :archivoVip
+      t.string :archivoCroquis
+      t.string :archivoContactosElectricos
+      t.string :archivoMercadotecnia
+      t.string :archivoPresupuesto
+      t.string :archivoAlimentos
+      t.string :archivoAsistentes
+      t.string :archivoVip
+      t.string :archivoCartaContenido
+      t.string :archivoCartaAsesor
 
       t.timestamps
     end

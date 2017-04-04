@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170313164219) do
+ActiveRecord::Schema.define(version: 20170403163518) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -72,13 +72,15 @@ ActiveRecord::Schema.define(version: 20170313164219) do
     t.time     "horaInauguracion"
     t.string   "estatus"
     t.string   "tipoEvento"
-    t.boolean  "archivoCroquis"
-    t.boolean  "archivoContactosElectricos"
-    t.boolean  "archivoMercadotecnia"
-    t.boolean  "archivoPresupuesto"
-    t.boolean  "archivoAlimentos"
-    t.boolean  "archivoAsistentes"
-    t.boolean  "archivoVip"
+    t.string   "archivoCroquis"
+    t.string   "archivoContactosElectricos"
+    t.string   "archivoMercadotecnia"
+    t.string   "archivoPresupuesto"
+    t.string   "archivoAlimentos"
+    t.string   "archivoAsistentes"
+    t.string   "archivoVip"
+    t.string   "archivoCartaContenido"
+    t.string   "archivoCartaAsesor"
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
     t.index ["folio"], name: "index_eventos_on_folio", unique: true, using: :btree
@@ -109,20 +111,6 @@ ActiveRecord::Schema.define(version: 20170313164219) do
     t.index ["reset_password_token"], name: "index_grupos_on_reset_password_token", unique: true, using: :btree
   end
 
-  create_table "materiales_ces", id: false, force: :cascade do |t|
-    t.integer  "cantidad"
-    t.string   "id"
-    t.float    "largo"
-    t.float    "ancho"
-    t.string   "nombre"
-    t.string   "material"
-    t.float    "alto"
-    t.string   "descripcion"
-    t.string   "ubicacion"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
-
   create_table "persona_tecs", id: false, force: :cascade do |t|
     t.integer  "grupo_id"
     t.string   "nomina"
@@ -136,16 +124,19 @@ ActiveRecord::Schema.define(version: 20170313164219) do
     t.index ["grupo_id"], name: "index_persona_tecs_on_grupo_id", using: :btree
   end
 
-  create_table "renta", force: :cascade do |t|
-    t.integer  "evento_id"
-    t.integer  "materiales_ce_id"
-    t.integer  "cantidad"
-    t.date     "fecha"
-    t.string   "folio"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
-    t.index ["evento_id"], name: "index_renta_on_evento_id", using: :btree
-    t.index ["materiales_ce_id"], name: "index_renta_on_materiales_ce_id", using: :btree
+  create_table "reservas", force: :cascade do |t|
+    t.datetime "horario"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "ubicacions", force: :cascade do |t|
+    t.string   "nombre"
+    t.integer  "capacidad"
+    t.datetime "horarioInicio"
+    t.datetime "horarioFin"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
 end

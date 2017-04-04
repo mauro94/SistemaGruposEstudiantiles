@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class MaterialesCeTest < ActiveSupport::TestCase
+class UbicacionTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

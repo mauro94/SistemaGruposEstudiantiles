@@ -32,6 +32,7 @@ class EventosController < ApplicationController
 
 	def update
 		@evento = Evento.find(params[:id])
+		@grupo = current_grupo
 		if @evento.update(evento_params)
 			redirect_to '/home'
 		else
@@ -49,6 +50,6 @@ class EventosController < ApplicationController
 	private
 
 	def evento_params
-		params.require(:evento).permit(:nombre,:numAsistentes,:tipoEvento,:descripcion,:fechaInicio,:fechaFin,:horaInauguracion, :estatus)
+		params.require(:evento).permit(:nombre,:numAsistentes,:tipoEvento,:descripcion,:fechaInicio,:fechaFin,:horaInauguracion, :estatus, :archivoCartaContenido, :archivoCartaAsesor, :archivoCroquis, :archivoContactosElectricos, :archivoPresupuesto)
 	end
 end

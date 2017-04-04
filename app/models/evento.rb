@@ -1,8 +1,15 @@
 class Evento < ApplicationRecord
 	self.primary_key = 'folio'
 
-	has_many :rentums
-	has_many :materiales_ces, through: :rentums
+	belongs_to :grupo
+	has_many :reservas
+	has_many :ubicacions, through: :reservas
+
+	mount_uploader :archivoCartaContenido, PdfDocUploader
+	mount_uploader :archivoCartaAsesor, PdfDocUploader
+	mount_uploader :archivoCroquis, PdfDocUploader
+	mount_uploader :archivoContactosElectricos, PdfDocUploader
+	mount_uploader :archivoPresupuesto, ExcelDocUploader
 
 	auto_increment :folio
 

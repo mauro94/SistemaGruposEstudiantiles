@@ -1,0 +1,19 @@
+<div class="row">
+	<div class="row">
+		<h5>Documentos</h5>
+		<%= form_for @evento do |f| %>
+		<div class="row">
+	    <div class="col s12">
+	      <label>Carta Contenido:</label><br>
+	      <%= f.file_field :archivoPresupuesto %>
+	      <%if @evento.archivoPresupuesto_url != nil%>
+	      	<%= link_to "Ver documento", @evento.archivoPresupuesto_url %>
+	      <%end%>
+	    </div>
+	  </div>
+	  <div class="row">
+    	<%= f.submit "Guardar Documentos", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+	</div>
+</div>

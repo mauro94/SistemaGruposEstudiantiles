@@ -41,25 +41,18 @@
         $(".button-collapse").sideNav();
         $(document).ready(function() {
           $('select').material_select();
+          $('.slider').slider({height: 600, interval: 100000000000});
+          $('.materialboxed').materialbox();
+          $('.tooltipped').tooltip({delay: 50});
+          $('ul.tabs').tabs();
         });
         $('#textarea1').val('New Text');
         $('#textarea1').trigger('autoresize');
-        $(document).ready(function(){
-          $('ul.tabs').tabs();
-        });
-        $(document).ready(function(){
-          $('.tooltipped').tooltip({delay: 50});
-        });
         $('.datepicker').pickadate({
           selectMonths: true, // Creates a dropdown to control month
           selectYears: 2 // Creates a dropdown of 15 years to control year
         });
-        $(document).ready(function(){
-          $('.slider').slider();
-        });
-        $(document).ready(function(){
-          $('.materialboxed').materialbox();
-        });
+
       </script>
   </body>
 </html>
