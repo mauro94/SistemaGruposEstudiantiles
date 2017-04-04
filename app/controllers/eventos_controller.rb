@@ -34,9 +34,9 @@ class EventosController < ApplicationController
 		@evento = Evento.find(params[:id])
 		@grupo = current_grupo
 		if @evento.update(evento_params)
-			redirect_to '/home'
-		else
 			render 'edit'
+		else
+			redirect_to '/home'
 		end
 	end
 

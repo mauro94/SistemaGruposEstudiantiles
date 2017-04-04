@@ -18,6 +18,7 @@ class AdminInController < ApplicationController
 	end
 
 	def create
+		@admin = current_admin
 		@new_admin = Admin.new(admin_params)
 		if @new_admin.save
 			redirect_to '/admin/admins'
@@ -62,7 +63,7 @@ class AdminInController < ApplicationController
 	private
 
 	def admin_params
-		params.require(:admin).permit(:nombre,:apellido,:puesto,:password,:password_confirmation,:extension,:consejo,:oficina)
+		params.require(:admin).permit(:email, :nombre,:apellido,:puesto,:password,:password_confirmation,:extension,:consejo,:oficina)
 	end
 
 end
