@@ -1,0 +1,39 @@
+<div class="row">
+	<h3 style = "text-align: center"> Ubicaciones </h3>
+</div>
+
+<div class="row">
+	<table class="bordered highlight responsive-table">
+      <thead>
+        <tr>
+          <th style = "text-align: center;">Zona</th>
+          <th style = "text-align: center;">Número</th>
+          <th style = "text-align: center;">Capacidad</th>
+          <th style = "text-align: center;">Dimensiones</th>
+          <th style = "text-align: center;">Horario</th>
+          <th style = "text-align: center;">Editar</th>
+          <th style = "text-align: center;">Eliminar</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <%@ubicaciones.each do |u|%>
+        <tr>
+          <td style = "text-align: center;"><%=u.zona%></td>
+          <td style = "text-align: center;"><%=u.numero%></td>
+          <td style = "text-align: center;"><%=u.capacidad%></td>
+          <td style = "text-align: center;"><%=u.ancho%> x <%=u.alto%></td>
+          <td style = "text-align: center;"><%=u.horarioInicio%> - <%=u.horarioFin%></td>
+          <td style = "text-align: center;"><%= link_to edit_ubicacion_path(u), :class => "waves-effect waves-light btn" do %>
+            <%= content_tag :i, 'edit',  :class => "material-icons center"%>
+            <%end%></td>
+          <td style = "text-align: center;"><%= link_to ubicacion_path(u), :class => "waves-effect waves-light btn red", data: {confirm: "¿Estas seguro?"}, :method => :delete do %>
+            <%= content_tag :i, 'delete',  :class => "material-icons center"%>
+            <%end%></td>
+        </tr>
+        <%end%>
+      </tbody>
+    </table>
+</div>
+
+<%= link_to "Regresar", :back, {:class=>"btn btn-default"} %>

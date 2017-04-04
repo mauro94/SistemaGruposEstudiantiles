@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :admin_in
   resources :admin_admin, :controller => 'admin_in'
   resources :admin_in_grupos, :controller => 'admin_in_grupos'
+  resources :ubicaciones
 
   devise_for :admins
   devise_scope :admin do

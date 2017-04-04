@@ -65,6 +65,9 @@
 </div>
 <!--Botones-->
 <div class="row center">
+  <% if @admin.puesto = 'Logística'%>
+    <%= link_to "Ubicaciones", "/admin/eventos" , :class => 'waves-effect waves-light btn'%>
+  <%end%>
   <%= link_to "Eventos", "/admin/eventos" , :class => 'waves-effect waves-light btn'%>
   <%= link_to "Grupos", "/admin/grupos" , :class => 'waves-effect waves-light btn'%>
   <%= link_to "Administradores", "/admin/admins" , :class => 'waves-effect waves-light btn'%>
