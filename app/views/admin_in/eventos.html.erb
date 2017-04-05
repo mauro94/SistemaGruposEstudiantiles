@@ -22,7 +22,7 @@
           <td style = "text-align: center;"><%=e.folio%></td>
           <td style = "text-align: center;"><%=e.fechaInicio%></td>
           <td style = "text-align: center;"><%=e.nombre%></td>
-          <td style = "text-align: center;"><%=(Grupo.find_by evento_id: e.id).nombre%></td>
+          <td style = "text-align: center;"><%=(Grupo.joins(:eventos).where('grupos.id' => e.grupo_id)).first.nombre%></td>
           <td style = "text-align: center;"><%=e.estatus %></td>
           <td style = "text-align: center;"><%= link_to edit_evento_path(e.folio), :class => "waves-effect waves-light btn" do %>
             <%= content_tag :i, 'edit',  :class => "material-icons center"%>

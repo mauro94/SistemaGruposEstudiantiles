@@ -14,9 +14,32 @@ class UbicacionsController < ApplicationController
 		@admin = current_admin
 		@ubicacion = Ubicacion.new(ubicacion_params)
 		if @ubicacion.save
-			redirect_to '/'
+			redirect_to '/ubicacions'
 		else
 			render 'new'
+		end
+	end
+
+	def edit
+		@admin = current_admin
+		@ubicacion = Ubicacion.find(params[:id])
+	end
+
+	def update
+		@admin = current_admin
+		@ubicacion = Ubicacion.find(params[:id])
+		if @ubicacion.update(ubicacion_params)
+			redirect_to '/ubicacions'
+		else
+			render 'edit'
+		end
+	end
+
+	def destroy
+		@ubicacion = Ubicacion.find(params[:id])
+		@admin = current_admin
+		if @ubicacion.destroy
+			redirect_to '/ubicacions'
 		end
 	end
 

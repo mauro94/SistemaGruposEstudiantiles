@@ -23,7 +23,7 @@
           <td style = "text-align: center;"><%=u.numero%></td>
           <td style = "text-align: center;"><%=u.capacidad%></td>
           <td style = "text-align: center;"><%=u.ancho%> m. x <%=u.alto%> m.</td>
-          <td style = "text-align: center;"><%=u.horarioInicio%> - <%=u.horarioFin%></td>
+          <td style = "text-align: center;"><%=(u.horarioInicio).strftime("%I:%M %p")%> - <%=(u.horarioFin).strftime("%I:%M %p")%></td>
           <td style = "text-align: center;"><%= link_to edit_ubicacion_path(u), :class => "waves-effect waves-light btn" do %>
             <%= content_tag :i, 'edit',  :class => "material-icons center"%>
             <%end%></td>

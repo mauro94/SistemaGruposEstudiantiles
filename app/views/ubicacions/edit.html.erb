@@ -1,0 +1,52 @@
+<div class="row">
+  <h3> Nueva Ubicación </h3>
+</div>
+
+<div class="row>"> 
+  <%= simple_form_for @ubicacion do |f| %>
+
+  <div class="row">
+    <div class="col s12 m6">
+      <label>Zona</label>
+      <%= f.input :zona , as: :select, label: false, collection:["CE", "Plaza Aulas 1", "Aulas 2", "Pasillo CE", "A4 Norte", "A4 Sur", "A3 - A4", "Jardin de las Carreras", "Pasillo DAF", "Domo", "A1 - CIAP", "Gimnasio", "A1 - Biotecnologia", "Explanada Centro Estudiantil", "DAF", "Arquitectura"]%>
+    </div>
+    <div class="col s12 m6">
+      <label>Número</label>
+      <%= f.input :numero, :as => "float", label: false%>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col s12 m6">
+      <label>Capacidad</label>
+      <%= f.input :capacidad, :as => "float", label: false%>
+    </div>
+    <div class="col s12 m6">
+      <label>Dimensiones (m x m)</label>
+      <div class="row">
+      <div class="col s6">
+        <%= f.input :ancho, :as => "integer", label: false%>
+      </div>
+      <div class="col s6">
+        <%= f.input :alto, :as => "integer", label: false%>
+      </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col s12 m6">
+      <label>Horario Inicio (Hora/Min)</label>
+      <%= f.input :horarioInicio, as: :time, label: false, time_separator: "", input_html: { class: 'col s6'}%>
+    </div>
+    <div class="col s12 m6">
+      <label>Horario Fin (Hora/Min)</label>
+      <%= f.input :horarioFin, as: :time, label: false, time_separator: "", input_html: { class: 'col s6'}%>
+    </div>
+  </div>
+
+  <div class="row center">
+    <%= link_to "Cancelar", :back, {:class=>"btn btn-default"} %>
+    <%= f.submit nil, :class => 'btn btn-default'%>
+  </div>
+  <% end %>
+</div>
