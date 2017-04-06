@@ -7,6 +7,7 @@ class Evento < ApplicationRecord
 
 	mount_uploader :archivoCartaContenido, PdfDocUploader
 	mount_uploader :archivoCartaAsesor, PdfDocUploader
+	mount_uploader :archivoConsejoOtro, PdfDocUploader
 	mount_uploader :archivoCroquis, PdfDocUploader
 	mount_uploader :archivoContactosElectricos, PdfDocUploader
 	mount_uploader :archivoPresupuesto, ExcelDocUploader

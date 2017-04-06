@@ -36,6 +36,7 @@ class DeviseCreateGrupos < ActiveRecord::Migration[5.0]
       t.string :nombre
       t.string :cuentaBanco
       t.string :consejo
+      t.boolean :activo
 
       t.timestamps null: false
     end

@@ -30,7 +30,7 @@ Rails.application.routes.draw do
   get '/admin/grupo/new' => 'admin_in_grupos#new'
   patch '/admin_in_grupos.:id' => 'admin_in_grupos#update'
   delete '/admin_in_grupos.:id' => 'admin_in_grupos#destroy'
-
+  patch '/admin_in_grupos/update_activo/:id' => 'admin_in_grupos#update_activo'
 
  get '/home' => 'grupo_in#home'
 end

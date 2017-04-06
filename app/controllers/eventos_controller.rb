@@ -27,7 +27,13 @@ class EventosController < ApplicationController
 
 	def edit
 		@evento = Evento.find(params[:id])
+		@ubicaciones = Ubicacion.all
 		@grupo = current_grupo
+
+		@nombres = Array.new(0)
+		@ubicaciones.each do |u|
+    		@nombres.push(u.zona)
+    	end
 	end
 
 	def update

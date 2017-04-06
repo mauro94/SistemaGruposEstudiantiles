@@ -17,10 +17,10 @@
 <div class="row">
 	<h5>Estatus</h5>
 	<div class="col s12 m6">
-		<span id="bold">Fecha Registro: </span><span><%=@evento.created_at%></span><p></p>
+		<span id="bold">Fecha Registro: </span><span><%=(@evento.created_at).strftime("%d/%m/%Y %I:%M %p")%></span><p></p>
 	</div>
 	<div class="col s12 m6">
-		<span id="bold">Fecha Última Actualización: </span><span><%=@evento.updated_at%></span><p></p>
+		<span id="bold">Fecha Última Actualización: </span><span><%=(@evento.updated_at).strftime("%d/%m/%Y %I:%M %p")%></span><p></p>
 	</div>
 </div>
 <div class="row center">
@@ -47,11 +47,11 @@
 		<span id="bold">Descripción: </span><br><span><%=@evento.descripcion%></span><p></p>
 	</div>
 	<div class="col s12 m6">
-		<span id="bold">Fecha Inicio: </span><span><%=@evento.fechaInicio%></span><p></p>
-		<span id="bold">Fecha Fin: </span><span><%=@evento.fechaFin%></span><p></p>
+		<span id="bold">Fecha Inicio: </span><span><%=(@evento.fechaInicio).strftime("%d/%m/%Y %I:%M %p")%></span><p></p>
+		<span id="bold">Fecha Fin: </span><span><%=(@evento.fechaFin).strftime("%d/%m/%Y %I:%M %p")%></span><p></p>
 	</div>
 	<div class="col s12 m6">
-		<span id="bold">Hora Inauguración: </span><span><%=@evento.horaInauguracion%></span><p></p>
+		<span id="bold">Hora Inauguración: </span><span><%=(@evento.horaInauguracion).strftime("%I:%M %p")%></span><p></p>
 	</div>
 </div>
 <div class="row center">

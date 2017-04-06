@@ -10,7 +10,7 @@
         <th style = "text-align: center;">Consejo</th>
         <th style = "text-align: center;">Cuenta Banco</th>
         <th style = "text-align: center;">Correo</th>
-        <th style = "text-align: center;">Deshabilitar</th>
+        <th style = "text-align: center;">Bloquear</th>
         <th style = "text-align: center;">Editar</th>
         <th style = "text-align: center;">Eliminar</th>
       </tr>
@@ -23,7 +23,21 @@
         <td style = "text-align: center;"><%=g.consejo%></td>
         <td style = "text-align: center;"><%=g.cuentaBanco%></td>
         <td style = "text-align: center;"><%=g.email%></td>
-        <td style = "text-align: center;"><%=g.email%></td>
+        <td style = "text-align: center;">
+          <%= form_for g, :url => url_for(:controller => 'admin_in_grupos', :action => 'update_activo', :id => g.id) do |f| %>
+            <% if g.activo %>
+              <%= f.hidden_field 'activo', :value => false %>
+              <%= f.hidden_field 'password', :value => '987654322' %>
+              <%= f.hidden_field 'password_confirmation', :value => '987654322' %>
+              <%= f.submit 'Bloquear', :class => "waves-effect waves-light btn red"%>
+            <% else %>
+              <%= f.hidden_field 'activo', :value => true %>
+              <%= f.hidden_field 'password', :value => '12345678' %>
+              <%= f.hidden_field 'password_confirmation', :value => '12345678' %>
+              <%= f.submit 'Activar', :class => "waves-effect waves-light btn green"%>
+            <%end%>
+          <% end %>
+        </td>
         <td style = "text-align: center;"><%= link_to edit_admin_in_grupo_path(g), :class => "waves-effect waves-light btn" do %>
         <%= content_tag :i, 'edit',  :class => "material-icons center"%>
         <%end%></td>

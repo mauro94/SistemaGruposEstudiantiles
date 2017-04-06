@@ -27,6 +27,7 @@ class CreateEventos < ActiveRecord::Migration[5.0]
       t.string :archivoVip
       t.string :archivoCartaContenido
       t.string :archivoCartaAsesor
+      t.string :archivoConsejoOtro
 
       t.timestamps
     end

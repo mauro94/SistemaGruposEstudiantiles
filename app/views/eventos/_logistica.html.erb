@@ -1,139 +1,36 @@
 <div class="row">
 	<div class="row">
 	<h5>Ubicación</h5>
+	<h6>Aqui pueden reservar su espacio para su evento y solicitar una cita para revisar lo que necesiten para su evento. Al revisar estos datos su estatus de logistica cambiara a 'Revisando' y hasta que se presenten en Centro Estudiantil y se autorizen todas sus solicitudes, su estatus cambiara a 'Aprobado'.</h6>
+	<h6>IMPORTANTE: Nada de lo que se reserve en este sistema confirma su reserva hasta que su estatus de logistica este en 'Aprobado'.</h6><br><br>
 		<div class="col s12 m6">
-			<span id="bold">Fecha Inicio: </span><span><%=@evento.fechaInicio%></span><p></p>
-    		<span id="bold">Fecha Fin: </span><span><%=@evento.fechaFin%></span><p></p>
+			<span id="bold">Fecha Inicio: </span><span><%=(@evento.fechaInicio).strftime("%d/%m/%Y %I:%M %p")%></span><p></p>
+    		<span id="bold">Fecha Fin: </span><span><%=(@evento.fechaFin).strftime("%d/%m/%Y %I:%M %p")%></span><p></p>
 		</div>
 		<div class="col s12 m6">
-			<span id="bold">Hora Inauguración: </span><span><%=@evento.horaInauguracion%></span><p></p><p></p>
+			<span id="bold">Hora Inauguración: </span><span><%=(@evento.horaInauguracion).strftime("%I:%M %p")%></span><p></p><p></p>
 		</div>
 	</div>
 	<%= simple_form_for @evento do |f| %>
 	<div class="row">
-		<div class="col s12 m4">
+		<div class="col s12 m4 center">
 			<label>Ubicación Sede:</label>
-		    <%= f.input :ubicacion , as: :select, label: false, collection:["Sala 1","Sala 2","Sala 3"]%>
-		    <a class="btn-floating btn-large waves-effect waves-light right" href="/admin/grupo/new"><i class="material-icons">add</i></a><br><br><br>
-		    <%= f.submit 'Guardar Cambios', :class => 'btn btn-default'%><br><br>
+		    <%= f.input :ubicacion , as: :select, label: false, collection: @nombres%>
+		    <%= f.submit 'Reservar', :class => 'btn btn-default'%><br><br>
 		</div>
 		<% end %>
 		<div class="col s12 m7 right">
-
 			<div class="slider">
 			    <ul class="slides">
-			      <li>
-			        <img class="materialboxed" src="/assets/a1_biotecnologia.jpg"> 
-			        <div class="caption right-align">
-			          <h3 class="black-text">A1-Biotecnología</h3>
-			          <h5 class="light black-text text-lighten-3">CAPACIDAD</h5>
-			        </div>
-			      </li>
-			      <li>
-			        <img class="materialboxed" src="/assets/a1_ciap.jpg"> 
-			        <div class="caption right-align">
-			          <h3 class="black-text">A1-CIAP</h3>
-			          <h5 class="light black-text text-lighten-3">CAPACIDAD</h5>
-			        </div>
-			      </li>
-			      <li>
-			        <img class="materialboxed" src="/assets/a2.jpg"> 
-			        <div class="caption right-align">
-			          <h3 class="black-text">A2</h3>
-			          <h5 class="light black-text text-lighten-3">CAPACIDAD</h5>
-			        </div>
-			      </li>
-			      <li>
-			        <img class="materialboxed" src="/assets/a3_a4.jpg"> 
-			        <div class="caption right-align">
-			          <h3 class="black-text">A3-A4</h3>
-			          <h5 class="light black-text text-lighten-3">CAPACIDAD</h5>
-			        </div>
-			      </li>
-			      <li>
-			        <img class="materialboxed" src="/assets/a4_norte.jpg"> 
-			        <div class="caption right-align">
-			          <h3 class="black-text">A4 Norte</h3>
-			          <h5 class="light black-text text-lighten-3">CAPACIDAD</h5>
-			        </div>
-			      </li>
-			      <li>
-			        <img class="materialboxed" src="/assets/a4_sur.jpg"> 
-			        <div class="caption right-align">
-			          <h3 class="black-text">A4 Sur</h3>
-			          <h5 class="light black-text text-lighten-3">CAPACIDAD</h5>
-			        </div>
-			      </li>
-			      <li>
-			        <img class="materialboxed" src="/assets/arquitectura.jpg"> 
-			        <div class="caption right-align">
-			          <h3 class="black-text">Arquitectura</h3>
-			          <h5 class="light black-text text-lighten-3">CAPACIDAD</h5>
-			        </div>
-			      </li>
-			      <li>
-			        <img class="materialboxed" src="/assets/ce.jpg"> 
-			        <div class="caption right-align">
-			          <h3 class="black-text">CE</h3>
-			          <h5 class="light black-text text-lighten-3">CAPACIDAD</h5>
-			        </div>
-			      </li>
-			      <li>
-			        <img class="materialboxed" src="/assets/daf.jpg"> 
-			        <div class="caption right-align">
-			          <h3 class="black-text">DAF</h3>
-			          <h5 class="light black-text text-lighten-3">CAPACIDAD</h5>
-			        </div>
-			      </li>
-			      <li>
-			        <img class="materialboxed" src="/assets/domo.jpg"> 
-			        <div class="caption right-align">
-			          <h3 class="black-text">Domo</h3>
-			          <h5 class="light black-text text-lighten-3">CAPACIDAD</h5>
-			        </div>
-			      </li>
-			      <li>
-			        <img class="materialboxed" src="/assets/explanada_ce.jpg"> 
-			        <div class="caption right-align">
-			          <h3 class="black-text">Explanada CE</h3>
-			          <h5 class="light black-text text-lighten-3">CAPACIDAD</h5>
-			        </div>
-			      </li>
-			      <li>
-			        <img class="materialboxed" src="/assets/gimnasio.jpg"> 
-			        <div class="caption right-align">
-			          <h3 class="black-text">Gimnasio</h3>
-			          <h5 class="light black-text text-lighten-3">CAPACIDAD</h5>
-			        </div>
-			      </li>
-			      <li>
-			        <img class="materialboxed" src="/assets/jdc.jpg"> 
-			        <div class="caption right-align">
-			          <h3 class="black-text">JDC</h3>
-			          <h5 class="light black-text text-lighten-3">CAPACIDAD</h5>
-			        </div>
-			      </li>
-			      <li>
-			        <img class="materialboxed" src="/assets/pasillo_ce.jpg"> 
-			        <div class="caption right-align">
-			          <h3 class="black-text">Pasillo CE</h3>
-			          <h5 class="light black-text text-lighten-3">CAPACIDAD</h5>
-			        </div>
-			      </li>
-			      <li>
-			        <img class="materialboxed" src="/assets/pasillo_daf.jpg"> 
-			        <div class="caption right-align">
-			          <h3 class="black-text">Pasillo DAF</h3>
-			          <h5 class="light black-text text-lighten-3">CAPACIDAD</h5>
-			        </div>
-			      </li>
-			      <li>
-			        <img class="materialboxed" src="/assets/plaza_a1.jpg"> 
-			        <div class="caption right-align">
-			          <h3 class="black-text">Paza A1</h3>
-			          <h5 class="light black-text text-lighten-3">CAPACIDAD</h5>
-			        </div>
-			      </li>
+			    	<%@ubicaciones.each do |u|%>
+			    		<li>
+				        <img class="materialboxed" src=<%=u.croquis_url%>> 
+				        <div class="caption right-align">
+				          <h3 class="black-text"><%=u.zona%></h3>
+				          <h5 class="light black-text text-lighten-3"><%=u.capacidad%></h5>
+				        </div>
+				      </li>
+			    	<%end%>
 			    </ul>
 			  </div>
 		</div>

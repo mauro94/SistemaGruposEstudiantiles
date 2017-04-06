@@ -33,9 +33,18 @@ class AdminInGruposController < ApplicationController
 		end
 	end
 
+	def update_activo
+		@grupo = Grupo.find(params[:id])
+		if @grupo.update(grupo_params)
+			redirect_to '/admin/grupos'
+		else
+			redirect_to '/admin/grupos'
+		end
+	end
+
 	private
 
 	def grupo_params
-		params.require(:grupo).permit(:nombre,:cuentaBanco,:consejo,:email,:password,:password_confirmation)
+		params.require(:grupo).permit(:nombre,:cuentaBanco,:consejo,:email,:password,:password_confirmation, :activo)
 	end
 end

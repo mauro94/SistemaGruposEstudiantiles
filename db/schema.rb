@@ -81,6 +81,7 @@ ActiveRecord::Schema.define(version: 20170403163518) do
     t.string   "archivoVip"
     t.string   "archivoCartaContenido"
     t.string   "archivoCartaAsesor"
+    t.string   "archivoConsejoOtro"
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
     t.index ["folio"], name: "index_eventos_on_folio", unique: true, using: :btree
@@ -103,6 +104,7 @@ ActiveRecord::Schema.define(version: 20170403163518) do
     t.string   "nombre"
     t.string   "cuentaBanco"
     t.string   "consejo"
+    t.boolean  "activo"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.index ["email"], name: "index_grupos_on_email", unique: true, using: :btree
@@ -140,8 +142,9 @@ ActiveRecord::Schema.define(version: 20170403163518) do
     t.integer  "capacidad"
     t.float    "ancho"
     t.float    "alto"
-    t.time "horarioInicio"
-    t.time "horarioFin"
+    t.time     "horarioInicio"
+    t.time     "horarioFin"
+    t.string   "croquis"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end

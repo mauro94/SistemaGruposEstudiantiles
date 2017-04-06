@@ -1,17 +1,27 @@
 <div class="row">
 	<div class="row">
 		<h5>Documentos</h5>
+		<h6>Aqui pueden subir el presupuesto de su evento. Si llega a ser autorizado, su estasus de finanzas cambiará a 'Aprobado'.</h6><br>
 		<%= form_for @evento do |f| %>
 		<div class="row">
-	    <div class="col s12">
-	      <label>Carta Contenido:</label><br>
-	      <%= f.file_field :archivoPresupuesto %>
-	      <%if @evento.archivoPresupuesto_url != nil%>
-	      	<%= link_to "Ver documento", @evento.archivoPresupuesto_url %>
+			<div class="col s12">
+	    	<div class="file-field input-field col s12">
+		      <div class="btn">
+		        <span>Presupuesto</span>
+		        <%= f.file_field :archivoPresupuesto %>
+		      </div>
+		      <div class="file-path-wrapper">
+		        <input class="file-path validate" type="text">
+		      </div>
+		    </div>
+		    <%if @evento.archivoPresupuesto_url != nil%>
+		    	<div class="col s12">
+	      	<%= link_to "Ver documento", @evento.archivoPresupuesto_url, :class => 'btn btn-default right' %>
+	      	</div>
 	      <%end%>
 	    </div>
 	  </div>
-	  <div class="row">
+	  <div class="row center">
     	<%= f.submit "Guardar Documentos", class: "btn btn-primary" %>
     </div>
   <% end %>

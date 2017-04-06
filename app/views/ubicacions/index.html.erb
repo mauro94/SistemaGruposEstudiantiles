@@ -7,10 +7,11 @@
       <thead>
         <tr>
           <th style = "text-align: center;">Zona</th>
-          <th style = "text-align: center;">Número</th>
+          <th style = "text-align: center;">Clave</th>
           <th style = "text-align: center;">Capacidad</th>
           <th style = "text-align: center;">Dimensiones</th>
           <th style = "text-align: center;">Horario</th>
+          <th style = "text-align: center;">Croquis</th>
           <th style = "text-align: center;">Editar</th>
           <th style = "text-align: center;">Eliminar</th>
         </tr>
@@ -24,9 +25,17 @@
           <td style = "text-align: center;"><%=u.capacidad%></td>
           <td style = "text-align: center;"><%=u.ancho%> m. x <%=u.alto%> m.</td>
           <td style = "text-align: center;"><%=(u.horarioInicio).strftime("%I:%M %p")%> - <%=(u.horarioFin).strftime("%I:%M %p")%></td>
+          <td style = "text-align: center;">
+            <%if u.croquis_url != nil%>
+              <%= link_to u.croquis_url, :class => "waves-effect waves-light btn" do %>
+            <%= content_tag :i, 'location_on',  :class => "material-icons center"%>
+            <%end%>
+            <%end%>
+          </td>
           <td style = "text-align: center;"><%= link_to edit_ubicacion_path(u), :class => "waves-effect waves-light btn" do %>
             <%= content_tag :i, 'edit',  :class => "material-icons center"%>
-            <%end%></td>
+            <%end%>
+          </td>
           <td style = "text-align: center;"><%= link_to ubicacion_path(u), :class => "waves-effect waves-light btn red", data: {confirm: "¿Estas seguro?"}, :method => :delete do %>
             <%= content_tag :i, 'delete',  :class => "material-icons center"%>
             <%end%></td>
