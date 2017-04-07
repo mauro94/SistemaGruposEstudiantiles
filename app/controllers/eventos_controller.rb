@@ -37,8 +37,10 @@ class EventosController < ApplicationController
 	end
 
 	def update
+		@admin = current_admin
 		@evento = Evento.find(params[:id])
-		@grupo = current_grupo
+		@grupo = (Grupo.joins(:eventos).where('grupos.id' => @evento.grupo_id)).first
+		@ubicaciones = Ubicacion.all
 		if @evento.update(evento_params)
 			render 'edit'
 		else
@@ -59,6 +61,6 @@ class EventosController < ApplicationController
 	private
 
 	def evento_params
-		params.require(:evento).permit(:nombre,:numAsistentes,:tipoEvento,:descripcion,:fechaInicio,:fechaFin,:horaInauguracion, :estatus, :archivoCartaContenido, :archivoCartaAsesor, :archivoCroquis, :archivoContactosElectricos, :archivoPresupuesto)
+		params.require(:evento).permit(:nombre,:numAsistentes,:tipoEvento,:descripcion,:fechaInicio,:fechaFin,:horaInauguracion, :estatus, :archivoCartaContenido, :archivoCartaAsesor, :archivoCroquis, :archivoContactosElectricos, :archivoPresupuesto, :aprobadoConsejo)
 	end
 end

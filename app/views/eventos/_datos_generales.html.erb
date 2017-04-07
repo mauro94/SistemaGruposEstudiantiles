@@ -13,7 +13,7 @@
 		</div>
 		</div>
 	<div class="divider"></div><br>
-	<%end%>
+<%end%>
 <div class="row">
 	<h5>Estatus</h5>
 	<div class="col s12 m6">
@@ -25,7 +25,11 @@
 </div>
 <div class="row center">
 	<div class="col s12 m4 center">
-		<a class="btn tooltipped orange" data-position="bottom" data-delay="50" data-tooltip="En Progreso"><i class="material-icons left">schedule</i><%=@grupo.consejo%></a>
+		<%if not @evento.aprobadoConsejo%>
+			<a class="btn tooltipped orange" data-position="bottom" data-delay="50" data-tooltip="En Progreso"><i class="material-icons left">schedule</i><%=@grupo.consejo%></a>
+		<%else%>
+			<a class="btn tooltipped green" data-position="bottom" data-delay="50" data-tooltip="Autorizado"><i class="material-icons left">done</i><%=@grupo.consejo%></a>
+		<%end%>
 	</div>
 	<div class="col s12 m4 center">
 		<a class="btn tooltipped orange" data-position="bottom" data-delay="50" data-tooltip="En Progreso"><i class="material-icons left">schedule</i>Logística</a>

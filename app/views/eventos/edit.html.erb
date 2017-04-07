@@ -10,24 +10,24 @@
 </div>
 
 <div class="row">
-    <div class="col s12">
-      <ul class="tabs">
-        <li class="tab col s3"><a class="active" href="#general">Datos Generales</a></li>
-        <li class="tab col s3"><a href="#consejo"><%=@grupo.consejo%></a></li>
-        <li class="tab col s3"><a href="#logistica">Logística</a></li>
-        <li class="tab col s3"><a href="#finanzas">Finanzas</a></li>
-      </ul>
-    </div>
-    <div id="consejo" class="col s12">
-    	<%= render 'eventos/consejo' %>
-    </div>
-    <div id="general" class="col s12"><br>
-    	<%= render 'eventos/datos_generales' %>
-    </div>
-    <div id="logistica" class="col s12">
-    	<%= render 'eventos/logistica' %>
-	</div>
-    <div id="finanzas" class="col s12">
-    	<%= render 'eventos/finanzas' %>
-    </div>
+  <div class="col s12">
+    <ul class="tabs">
+      <li class="tab col s3"><a class="active" href="#general">Datos Generales</a></li>
+      <li class="tab col s3"><a href="#consejo"><%=@grupo.consejo%></a></li>
+      <li class="tab col s3"><a href="#logistica">Logística</a></li>
+      <li class="tab col s3"><a href="#finanzas">Finanzas</a></li>
+    </ul>
   </div>
+  <div id="consejo" class="col s12">
+  	<%= render 'eventos/consejo' %>
+  </div>
+  <div id="general" class="col s12"><br>
+  	<%= render 'eventos/datos_generales' %>
+  </div>
+  <div id="logistica" class="col s12">
+  	<%= render 'eventos/logistica' %>
+</div>
+  <div id="finanzas" class="col s12">
+  	<%= render 'eventos/finanzas' %>
+  </div>
+</div>
