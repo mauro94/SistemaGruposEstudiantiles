@@ -17,10 +17,10 @@
 </div>
 <!--Botones-->
 <div class="row center">
-  <% if @admin.puesto == 'Logistica'%>
+  <% if @admin.puesto == 'Logística'%>
     <%= link_to "Ubicaciones", ubicacions_path() , :class => 'waves-effect waves-light btn'%>
     <%= link_to "Eventos", "/admin/eventos" , :class => 'waves-effect waves-light btn'%>
-  <% elsif @admin.puesto == 'Administracion'%>
+  <% elsif @admin.puesto == 'Administración'%>
     <%= link_to "Ubicaciones", ubicacions_path() , :class => 'waves-effect waves-light btn'%>
     <%= link_to "Eventos", "/admin/eventos" , :class => 'waves-effect waves-light btn'%>
     <%= link_to "Grupos", "/admin/grupos" , :class => 'waves-effect waves-light btn'%>

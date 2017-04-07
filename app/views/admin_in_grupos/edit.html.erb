@@ -23,11 +23,7 @@
         <label>Cuenta Banco</label>
       </div>
       <div class="col s12 m6 input-field">
-        <%= f.select(:consejo) do %>
-          <% [['CCE', 'CCE'], ['CSA', 'CSA'], ['CARE', 'CARE'], ['FEITESM', 'FEITESM'], ['N/A', 'N/A']].each do |c| -%>
-            <%= content_tag(:option, c.first, value: c.last) %>
-          <% end %>
-        <% end %>
+        <%= f.select :consejo, ['CCE', 'CSA', 'CARE', 'FEITESM', 'N/A'], :selected => @grupo.consejo %>
         <label>Consejo</label>
       </div>
     </div>
