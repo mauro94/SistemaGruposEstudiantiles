@@ -1,0 +1,173 @@
+<div class="col s12 m6">
+  <h5 style="text-align: center">Eventos Siguiente Semana:</h5>
+  <ul class="collapsible" data-collapsible="accordion">
+    <li>
+      <div class="collapsible-header"><span class="new badge" data-badge-caption=""><%=@events_day_11.length%></span><%=@day_11.strftime("%A - %d/%m/%Y")%></div>
+      <div class="collapsible-body">
+        <ul class="collection">
+          <%@events_day_11.each do |evento|%>
+            <% if (Grupo.joins(:eventos).where('grupos.id' => evento.grupo_id)).first.consejo == 'CCE'%>
+            <li class="collection-item"><div><%=evento.nombre%><a href="/eventos/<%=evento.folio%>" class="secondary-content"><i class="material-icons red-text">send</i></a></div></li>
+            <%end%>
+            <% if (Grupo.joins(:eventos).where('grupos.id' => evento.grupo_id)).first.consejo == 'CSA'%>
+            <li class="collection-item"><div><%=evento.nombre%><a href="/eventos/<%=evento.folio%>" class="secondary-content"><i class="material-icons purple-text">send</i></a></div></li>
+            <%end%>
+            <% if (Grupo.joins(:eventos).where('grupos.id' => evento.grupo_id)).first.consejo == 'CARE'%>
+            <li class="collection-item"><div><%=evento.nombre%><a href="/eventos/<%=evento.folio%>" class="secondary-content"><i class="material-icons orange-text">send</i></a></div></li>
+            <%end%>
+            <% if (Grupo.joins(:eventos).where('grupos.id' => evento.grupo_id)).first.consejo == 'FEITESM'%>
+            <li class="collection-item"><div><%=evento.nombre%><a href="/eventos/<%=evento.folio%>" class="secondary-content"><i class="material-icons blue-text text-darken-4">send</i></a></div></li>
+            <%end%>
+            <% if (Grupo.joins(:eventos).where('grupos.id' => evento.grupo_id)).first.consejo == 'N/A'%>
+            <li class="collection-item"><div><%=evento.nombre%><a href="/eventos/<%=evento.folio%>" class="secondary-content"><i class="material-icons grey-text">send</i></a></div></li>
+            <%end%>
+          <%end%>
+        </ul>
+      </div>
+    </li>
+    <li>
+      <div class="collapsible-header"><span class="new badge" data-badge-caption=""><%=@events_day_12.length%></span><%=@day_12.strftime("%A - %d/%m/%Y")%></div>
+      <div class="collapsible-body">
+        <ul class="collection">
+          <%@events_day_12.each do |evento|%>
+            <% if (Grupo.joins(:eventos).where('grupos.id' => evento.grupo_id)).first.consejo == 'CCE'%>
+            <li class="collection-item"><div><%=evento.nombre%><a href="/eventos/<%=evento.folio%>" class="secondary-content"><i class="material-icons red-text">send</i></a></div></li>
+            <%end%>
+            <% if (Grupo.joins(:eventos).where('grupos.id' => evento.grupo_id)).first.consejo == 'CSA'%>
+            <li class="collection-item"><div><%=evento.nombre%><a href="/eventos/<%=evento.folio%>" class="secondary-content"><i class="material-icons purple-text">send</i></a></div></li>
+            <%end%>
+            <% if (Grupo.joins(:eventos).where('grupos.id' => evento.grupo_id)).first.consejo == 'CARE'%>
+            <li class="collection-item"><div><%=evento.nombre%><a href="/eventos/<%=evento.folio%>" class="secondary-content"><i class="material-icons orange-text">send</i></a></div></li>
+            <%end%>
+            <% if (Grupo.joins(:eventos).where('grupos.id' => evento.grupo_id)).first.consejo == 'FEITESM'%>
+            <li class="collection-item"><div><%=evento.nombre%><a href="/eventos/<%=evento.folio%>" class="secondary-content"><i class="material-icons blue-text text-darken-4">send</i></a></div></li>
+            <%end%>
+            <% if (Grupo.joins(:eventos).where('grupos.id' => evento.grupo_id)).first.consejo == 'N/A'%>
+            <li class="collection-item"><div><%=evento.nombre%><a href="/eventos/<%=evento.folio%>" class="secondary-content"><i class="material-icons grey-text">send</i></a></div></li>
+            <%end%>
+          <%end%>
+        </ul>
+      </div>
+    </li>
+    <li>
+      <div class="collapsible-header"><span class="new badge" data-badge-caption=""><%=@events_day_13.length%></span><%=@day_13.strftime("%A - %d/%m/%Y")%></div>
+      <div class="collapsible-body">
+        <ul class="collection">
+          <%@events_day_13.each do |evento|%>
+            <% if (Grupo.joins(:eventos).where('grupos.id' => evento.grupo_id)).first.consejo == 'CCE'%>
+            <li class="collection-item"><div><%=evento.nombre%><a href="/eventos/<%=evento.folio%>" class="secondary-content"><i class="material-icons red-text">send</i></a></div></li>
+            <%end%>
+            <% if (Grupo.joins(:eventos).where('grupos.id' => evento.grupo_id)).first.consejo == 'CSA'%>
+            <li class="collection-item"><div><%=evento.nombre%><a href="/eventos/<%=evento.folio%>" class="secondary-content"><i class="material-icons purple-text">send</i></a></div></li>
+            <%end%>
+            <% if (Grupo.joins(:eventos).where('grupos.id' => evento.grupo_id)).first.consejo == 'CARE'%>
+            <li class="collection-item"><div><%=evento.nombre%><a href="/eventos/<%=evento.folio%>" class="secondary-content"><i class="material-icons orange-text">send</i></a></div></li>
+            <%end%>
+            <% if (Grupo.joins(:eventos).where('grupos.id' => evento.grupo_id)).first.consejo == 'FEITESM'%>
+            <li class="collection-item"><div><%=evento.nombre%><a href="/eventos/<%=evento.folio%>" class="secondary-content"><i class="material-icons blue-text text-darken-4">send</i></a></div></li>
+            <%end%>
+            <% if (Grupo.joins(:eventos).where('grupos.id' => evento.grupo_id)).first.consejo == 'N/A'%>
+            <li class="collection-item"><div><%=evento.nombre%><a href="/eventos/<%=evento.folio%>" class="secondary-content"><i class="material-icons grey-text">send</i></a></div></li>
+            <%end%>
+          <%end%>
+        </ul>
+      </div>
+    </li>
+    <li>
+      <div class="collapsible-header"><span class="new badge" data-badge-caption=""><%=@events_day_14.length%></span><%=@day_14.strftime("%A - %d/%m/%Y")%></div>
+      <div class="collapsible-body">
+        <ul class="collection">
+          <%@events_day_14.each do |evento|%>
+            <% if (Grupo.joins(:eventos).where('grupos.id' => evento.grupo_id)).first.consejo == 'CCE'%>
+            <li class="collection-item"><div><%=evento.nombre%><a href="/eventos/<%=evento.folio%>" class="secondary-content"><i class="material-icons red-text">send</i></a></div></li>
+            <%end%>
+            <% if (Grupo.joins(:eventos).where('grupos.id' => evento.grupo_id)).first.consejo == 'CSA'%>
+            <li class="collection-item"><div><%=evento.nombre%><a href="/eventos/<%=evento.folio%>" class="secondary-content"><i class="material-icons purple-text">send</i></a></div></li>
+            <%end%>
+            <% if (Grupo.joins(:eventos).where('grupos.id' => evento.grupo_id)).first.consejo == 'CARE'%>
+            <li class="collection-item"><div><%=evento.nombre%><a href="/eventos/<%=evento.folio%>" class="secondary-content"><i class="material-icons orange-text">send</i></a></div></li>
+            <%end%>
+            <% if (Grupo.joins(:eventos).where('grupos.id' => evento.grupo_id)).first.consejo == 'FEITESM'%>
+            <li class="collection-item"><div><%=evento.nombre%><a href="/eventos/<%=evento.folio%>" class="secondary-content"><i class="material-icons blue-text text-darken-4">send</i></a></div></li>
+            <%end%>
+            <% if (Grupo.joins(:eventos).where('grupos.id' => evento.grupo_id)).first.consejo == 'N/A'%>
+            <li class="collection-item"><div><%=evento.nombre%><a href="/eventos/<%=evento.folio%>" class="secondary-content"><i class="material-icons grey-text">send</i></a></div></li>
+            <%end%>
+          <%end%>
+        </ul>
+      </div>
+    </li>
+    <li>
+      <div class="collapsible-header"><span class="new badge" data-badge-caption=""><%=@events_day_15.length%></span><%=@day_15.strftime("%A - %d/%m/%Y")%></div>
+      <div class="collapsible-body">
+        <ul class="collection">
+          <%@events_day_15.each do |evento|%>
+            <% if (Grupo.joins(:eventos).where('grupos.id' => evento.grupo_id)).first.consejo == 'CCE'%>
+            <li class="collection-item"><div><%=evento.nombre%><a href="/eventos/<%=evento.folio%>" class="secondary-content"><i class="material-icons red-text">send</i></a></div></li>
+            <%end%>
+            <% if (Grupo.joins(:eventos).where('grupos.id' => evento.grupo_id)).first.consejo == 'CSA'%>
+            <li class="collection-item"><div><%=evento.nombre%><a href="/eventos/<%=evento.folio%>" class="secondary-content"><i class="material-icons purple-text">send</i></a></div></li>
+            <%end%>
+            <% if (Grupo.joins(:eventos).where('grupos.id' => evento.grupo_id)).first.consejo == 'CARE'%>
+            <li class="collection-item"><div><%=evento.nombre%><a href="/eventos/<%=evento.folio%>" class="secondary-content"><i class="material-icons orange-text">send</i></a></div></li>
+            <%end%>
+            <% if (Grupo.joins(:eventos).where('grupos.id' => evento.grupo_id)).first.consejo == 'FEITESM'%>
+            <li class="collection-item"><div><%=evento.nombre%><a href="/eventos/<%=evento.folio%>" class="secondary-content"><i class="material-icons blue-text text-darken-4">send</i></a></div></li>
+            <%end%>
+            <% if (Grupo.joins(:eventos).where('grupos.id' => evento.grupo_id)).first.consejo == 'N/A'%>
+            <li class="collection-item"><div><%=evento.nombre%><a href="/eventos/<%=evento.folio%>" class="secondary-content"><i class="material-icons grey-text">send</i></a></div></li>
+            <%end%>
+          <%end%>
+        </ul>
+      </div>
+    </li>
+    <li>
+      <div class="collapsible-header"><span class="new badge" data-badge-caption=""><%=@events_day_16.length%></span><%=@day_16.strftime("%A - %d/%m/%Y")%></div>
+      <div class="collapsible-body">
+        <ul class="collection">
+          <%@events_day_16.each do |evento|%>
+            <% if (Grupo.joins(:eventos).where('grupos.id' => evento.grupo_id)).first.consejo == 'CCE'%>
+            <li class="collection-item"><div><%=evento.nombre%><a href="/eventos/<%=evento.folio%>" class="secondary-content"><i class="material-icons red-text">send</i></a></div></li>
+            <%end%>
+            <% if (Grupo.joins(:eventos).where('grupos.id' => evento.grupo_id)).first.consejo == 'CSA'%>
+            <li class="collection-item"><div><%=evento.nombre%><a href="/eventos/<%=evento.folio%>" class="secondary-content"><i class="material-icons purple-text">send</i></a></div></li>
+            <%end%>
+            <% if (Grupo.joins(:eventos).where('grupos.id' => evento.grupo_id)).first.consejo == 'CARE'%>
+            <li class="collection-item"><div><%=evento.nombre%><a href="/eventos/<%=evento.folio%>" class="secondary-content"><i class="material-icons orange-text">send</i></a></div></li>
+            <%end%>
+            <% if (Grupo.joins(:eventos).where('grupos.id' => evento.grupo_id)).first.consejo == 'FEITESM'%>
+            <li class="collection-item"><div><%=evento.nombre%><a href="/eventos/<%=evento.folio%>" class="secondary-content"><i class="material-icons blue-text text-darken-4">send</i></a></div></li>
+            <%end%>
+            <% if (Grupo.joins(:eventos).where('grupos.id' => evento.grupo_id)).first.consejo == 'N/A'%>
+            <li class="collection-item"><div><%=evento.nombre%><a href="/eventos/<%=evento.folio%>" class="secondary-content"><i class="material-icons grey-text">send</i></a></div></li>
+            <%end%>
+          <%end%>
+        </ul>
+      </div>
+    </li>
+    <li>
+      <div class="collapsible-header"><span class="new badge" data-badge-caption=""><%=@events_day_17.length%></span><%=@day_17.strftime("%A - %d/%m/%Y")%></div>
+      <div class="collapsible-body">
+        <ul class="collection">
+          <%@events_day_17.each do |evento|%>
+            <% if (Grupo.joins(:eventos).where('grupos.id' => evento.grupo_id)).first.consejo == 'CCE'%>
+            <li class="collection-item"><div><%=evento.nombre%><a href="/eventos/<%=evento.folio%>" class="secondary-content"><i class="material-icons red-text">send</i></a></div></li>
+            <%end%>
+            <% if (Grupo.joins(:eventos).where('grupos.id' => evento.grupo_id)).first.consejo == 'CSA'%>
+            <li class="collection-item"><div><%=evento.nombre%><a href="/eventos/<%=evento.folio%>" class="secondary-content"><i class="material-icons purple-text">send</i></a></div></li>
+            <%end%>
+            <% if (Grupo.joins(:eventos).where('grupos.id' => evento.grupo_id)).first.consejo == 'CARE'%>
+            <li class="collection-item"><div><%=evento.nombre%><a href="/eventos/<%=evento.folio%>" class="secondary-content"><i class="material-icons orange-text">send</i></a></div></li>
+            <%end%>
+            <% if (Grupo.joins(:eventos).where('grupos.id' => evento.grupo_id)).first.consejo == 'FEITESM'%>
+            <li class="collection-item"><div><%=evento.nombre%><a href="/eventos/<%=evento.folio%>" class="secondary-content"><i class="material-icons blue-text text-darken-4">send</i></a></div></li>
+            <%end%>
+            <% if (Grupo.joins(:eventos).where('grupos.id' => evento.grupo_id)).first.consejo == 'N/A'%>
+            <li class="collection-item"><div><%=evento.nombre%><a href="/eventos/<%=evento.folio%>" class="secondary-content"><i class="material-icons grey-text">send</i></a></div></li>
+            <%end%>
+          <%end%>
+        </ul>
+      </div>
+    </li>
+  </ul>
+</div>

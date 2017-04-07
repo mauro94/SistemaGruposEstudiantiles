@@ -4,7 +4,35 @@ class AdminInController < ApplicationController
 		@admin = current_admin
 		@eventos = Evento.all
 		@weekstart = Date.current
-		@weekdos = @weekstart.at_beginning_of_week+7.days
+		@day_1 = Date.current.at_beginning_of_week
+		@day_2 = Date.current.at_beginning_of_week+1
+		@day_3 = Date.current.at_beginning_of_week+2
+		@day_4 = Date.current.at_beginning_of_week+3
+		@day_5 = Date.current.at_beginning_of_week+4
+		@day_6 = Date.current.at_beginning_of_week+5
+		@day_7 = Date.current.at_beginning_of_week+6
+		@events_day_1 = Evento.where(fechaInicio: @day_1..@day_1+1)
+		@events_day_2 = Evento.where(fechaInicio: @day_2..@day_2+1)
+		@events_day_3 = Evento.where(fechaInicio: @day_3..@day_3+1)
+		@events_day_4 = Evento.where(fechaInicio: @day_4..@day_4+1)
+		@events_day_5 = Evento.where(fechaInicio: @day_5..@day_5+1)
+		@events_day_6 = Evento.where(fechaInicio: @day_6..@day_6+1)
+		@events_day_7 = Evento.where(fechaInicio: @day_7..@day_7+1)
+
+		@day_11 = Date.current.at_beginning_of_week+7
+		@day_12 = Date.current.at_beginning_of_week+8
+		@day_13 = Date.current.at_beginning_of_week+9
+		@day_14 = Date.current.at_beginning_of_week+10
+		@day_15 = Date.current.at_beginning_of_week+11
+		@day_16 = Date.current.at_beginning_of_week+12
+		@day_17 = Date.current.at_beginning_of_week+13
+		@events_day_11 = Evento.where(fechaInicio: @day_11..@day_11+1)
+		@events_day_12 = Evento.where(fechaInicio: @day_12..@day_12+1)
+		@events_day_13 = Evento.where(fechaInicio: @day_13..@day_13+1)
+		@events_day_14 = Evento.where(fechaInicio: @day_14..@day_14+1)
+		@events_day_15 = Evento.where(fechaInicio: @day_15..@day_15+1)
+		@events_day_16 = Evento.where(fechaInicio: @day_16..@day_16+1)
+		@events_day_17 = Evento.where(fechaInicio: @day_17..@day_17+1)
 	end
 
 	def admins
