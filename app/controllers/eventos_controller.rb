@@ -1,5 +1,4 @@
 class EventosController < ApplicationController 
-	before_action :authenticate_grupo!
 	def index
 		@eventos = Evento.all
 		@grupo = current_grupo
@@ -26,9 +25,10 @@ class EventosController < ApplicationController
 	end
 
 	def edit
+		@admin = current_admin
 		@evento = Evento.find(params[:id])
 		@ubicaciones = Ubicacion.all
-		@grupo = current_grupo
+		@grupo = (Grupo.joins(:eventos).where('grupos.id' => @evento.grupo_id)).first
 
 		@nombres = Array.new(0)
 		@ubicaciones.each do |u|
