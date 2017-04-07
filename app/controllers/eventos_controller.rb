@@ -17,6 +17,7 @@ class EventosController < ApplicationController
 		@evento = Evento.new
 		@grupo = current_grupo
 		@admin = current_admin
+		@varo = Time.current + 3.days
 	end
 	
 	def create
