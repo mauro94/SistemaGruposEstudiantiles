@@ -13,7 +13,6 @@
           <th style = "text-align: center;">Responsable</th>
           <th style = "text-align: center;">Estatus</th>
           <th style = "text-align: center;">Revisar</th>
-          <th style = "text-align: center;">Eliminar</th>
         </tr>
       </thead>
 
@@ -41,15 +40,20 @@
           <td style = "text-align: center;"><%=(Grupo.joins(:eventos).where('grupos.id' => e.grupo_id)).first.nombre%></td>
           <%if e.estatus == 'pendiente'%>
             <td style = "text-align: center"><a class="waves-effect waves-light btn yellow"><i class="material-icons center">stop</i></a></td>
+          <%elsif e.estatus == 'cancelado'%>
+            <td style = "text-align: center"><a class="waves-effect waves-light btn red"><i class="material-icons center">not_interested</i></a></td>
           <%else %>
             <td style = "text-align: center"><a class="waves-effect waves-light btn green"><i class="material-icons center">done</i></a></td>
           <%end%>
-          <td style = "text-align: center;"><%= link_to edit_evento_path(e.folio), :class => "waves-effect waves-light btn" do %>
-            <%= content_tag :i, 'edit',  :class => "material-icons center"%>
-            <%end%></td>
-          <td style = "text-align: center;"><%= link_to evento_path(e.folio), :class => "waves-effect waves-light btn red", data: {confirm: "¿Estas seguro?"}, :method => :delete do %>
-            <%= content_tag :i, 'delete',  :class => "material-icons center"%>
-            <%end%></td>
+          <%if e.estatus != 'cancelado'%>
+            <td style = "text-align: center;"><%= link_to edit_evento_path(e.folio), :class => "waves-effect waves-light btn" do %>
+              <%= content_tag :i, 'edit',  :class => "material-icons center"%>
+              <%end%></td>
+          <%else%>
+            <td style = "text-align: center;"><%= link_to edit_evento_path(e.folio), :class => "waves-effect waves-light btn disabled" do %>
+              <%= content_tag :i, 'edit',  :class => "material-icons center"%>
+              <%end%></td>
+          <%end%>
         </tr>
         <%end%>
       </tbody>

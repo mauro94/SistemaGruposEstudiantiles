@@ -46,10 +46,13 @@ class EventosController < ApplicationController
 		end
 	end
 
-	def destroy
+	def cancel
 		@evento = Evento.find(params[:id])
-		if @evento.destroy
+		@evento.estatus = 'cancelado'
+		if @evento.save()
 			redirect_to '/home'
+		else
+			render 'edit'
 		end
 	end
 

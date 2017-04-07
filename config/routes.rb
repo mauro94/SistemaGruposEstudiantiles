@@ -32,5 +32,7 @@ Rails.application.routes.draw do
   delete '/admin_in_grupos.:id' => 'admin_in_grupos#destroy'
   patch '/admin_in_grupos/update_activo/:id' => 'admin_in_grupos#update_activo'
 
+  post '/eventos/:id' => 'eventos#cancel'
+
  get '/home' => 'grupo_in#home'
 end
