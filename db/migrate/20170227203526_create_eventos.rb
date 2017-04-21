@@ -2,13 +2,19 @@ class CreateEventos < ActiveRecord::Migration[5.0]
   def change
     create_table :eventos, id: false do |t|
       t.belongs_to :grupo, index: true
-      t.string :folio, null: false
+      t.integer :folio, null: false
       t.string :nombre
       t.string :descripcion
       t.boolean :aprobadoMercadotecnia
       t.boolean :aprobadoConsejo
       t.boolean :aprobadoLogistica
       t.boolean :aprobadoFinanzas
+      t.string :nombreAprobadoConsejo
+      t.string :nombreAprobadoLogistica
+      t.string :nombreAprobadoFinanzas
+      t.datetime :fechaAprobadoConsejo
+      t.datetime :fechaAprobadoLogistica
+      t.datetime :fechaAprobadoFinanzas
       t.boolean :revisadoAlimentos
       t.boolean :revisadoSeguridad
       t.string :ubicacion

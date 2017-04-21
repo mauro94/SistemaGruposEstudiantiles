@@ -29,9 +29,15 @@
             <td style = "text-align: center;"><%= link_to edit_admin_admin_path(a), :class => "waves-effect waves-light btn" do %>
             <%= content_tag :i, 'edit',  :class => "material-icons center"%>
             <%end%></td>
-            <td style = "text-align: center;"><%= link_to admin_admin_path(a), :class => "waves-effect waves-light btn red", data: {confirm: "¿Estás seguro de eliminar al administrador?"}, :method => :delete do %>
-            <%= content_tag :i, 'delete',  :class => "material-icons center"%>
-            <%end%></td>
+            <%if a.email == current_admin.email%>
+              <td style = "text-align: center;"><%= link_to admin_admin_path(a), :class => "waves-effect waves-light btn red disabled", data: {confirm: "¿Estás seguro de eliminar al administrador?"}, :method => :delete do %>
+              <%= content_tag :i, 'delete',  :class => "material-icons center"%>
+              <%end%></td>
+            <%else%>
+              <td style = "text-align: center;"><%= link_to admin_admin_path(a), :class => "waves-effect waves-light btn red", data: {confirm: "¿Estás seguro de eliminar al administrador?"}, :method => :delete do %>
+              <%= content_tag :i, 'delete',  :class => "material-icons center"%>
+              <%end%></td>
+            <%end%>
           </tr>
       <%end%>
     </tbody>

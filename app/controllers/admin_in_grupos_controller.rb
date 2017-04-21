@@ -1,5 +1,9 @@
 class AdminInGruposController < ApplicationController
+	before_action :authenticate_admin!
+	add_breadcrumb 'Inicio', '/admin/home'
 	def new
+		add_breadcrumb 'Grupos', '/admin/grupos'
+		add_breadcrumb 'Nuevo Grupo'
 		@admin = current_admin
 		@grupo = Grupo.new
 	end
@@ -13,6 +17,8 @@ class AdminInGruposController < ApplicationController
 		end
 	end
 	def edit
+		add_breadcrumb 'Grupos', '/admin/grupos'
+		add_breadcrumb 'Editar Grupo'
 		@admin = current_admin
 		@grupo = Grupo.find(params[:id])
 	end

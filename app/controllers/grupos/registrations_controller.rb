@@ -1,6 +1,8 @@
 class Grupos::RegistrationsController < Devise::RegistrationsController
 # before_action :configure_sign_up_params, only: [:create]
 # before_action :configure_account_update_params, only: [:update]
+add_breadcrumb 'Inicio', '/home'
+add_breadcrumb 'Perfil'
 
   # GET /resource/sign_up
   # def new

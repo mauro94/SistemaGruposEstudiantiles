@@ -1,5 +1,7 @@
 class EventosController < ApplicationController 
 	def index
+		add_breadcrumb 'Inicio', '/admin/home'
+		add_breadcrumb 'Eventos', '/admin/eventos'
 		@eventos = Evento.all
 		@grupo = current_grupo
 		@responsable = Grupo.joins(:eventos)
@@ -25,10 +27,20 @@ class EventosController < ApplicationController
 	end
 
 	def edit
-		@admin = current_admin
 		@evento = Evento.find(params[:id])
+		if current_admin
+			add_breadcrumb 'Inicio', '/admin/home'
+			add_breadcrumb 'Eventos', '/admin/eventos'
+			add_breadcrumb @evento.nombre
+		else
+			add_breadcrumb 'Inicio', '/home'
+			add_breadcrumb @evento.nombre
+		end
+		@admin = current_admin
 		@ubicaciones = Ubicacion.all
 		@grupo = (Grupo.joins(:eventos).where('grupos.id' => @evento.grupo_id)).first
+		@avisos_consejo = Aviso.joins(:evento).where('avisos.evento_id' => @evento.folio).where('avisos.departamento' => 'Consejo')
+		@avisos_finanzas = Aviso.joins(:evento).where('avisos.evento_id' => @evento.folio).where('avisos.departamento' => 'Finanzas')
 
 		@nombres = Array.new(0)
 		@ubicaciones.each do |u|
@@ -41,11 +53,32 @@ class EventosController < ApplicationController
 		@evento = Evento.find(params[:id])
 		@grupo = (Grupo.joins(:eventos).where('grupos.id' => @evento.grupo_id)).first
 		@ubicaciones = Ubicacion.all
+		@avisos_consejo = Aviso.joins(:evento).where('avisos.evento_id' => @evento.folio).where('avisos.departamento' => 'Consejo')
+		@avisos_finanzas = Aviso.joins(:evento).where('avisos.evento_id' => @evento.folio).where('avisos.departamento' => 'Finanzas')
 		if @evento.update(evento_params)
 			render 'edit'
 		else
 			redirect_to '/home'
 		end
+	end
+
+	def aviso
+		@admin = current_admin
+		@evento = Evento.find(params[:id])
+		@grupo = (Grupo.joins(:eventos).where('grupos.id' => @evento.grupo_id)).first
+		@ubicaciones = Ubicacion.all
+		@avisos_consejo = Aviso.joins(:evento).where('avisos.evento_id' => @evento.folio).where('avisos.departamento' => 'Consejo')
+		@avisos_finanzas = Aviso.joins(:evento).where('avisos.evento_id' => @evento.folio).where('avisos.departamento' => 'Finanzas')
+		if @evento.avisos.create(aviso_params)
+			render 'edit'
+		else
+			redirect_to '/home'
+		end
+	end
+
+	def reservar
+		@evento = Evento.find(params[:id])
+		@evento.ubicacions.new()
 	end
 
 	def cancel
@@ -61,6 +94,10 @@ class EventosController < ApplicationController
 	private
 
 	def evento_params
-		params.require(:evento).permit(:nombre,:numAsistentes,:tipoEvento,:descripcion,:fechaInicio,:fechaFin,:horaInauguracion, :estatus, :archivoCartaContenido, :archivoCartaAsesor, :archivoCroquis, :archivoContactosElectricos, :archivoPresupuesto, :aprobadoConsejo)
+		params.require(:evento).permit(:nombre,:numAsistentes,:tipoEvento,:descripcion,:fechaInicio,:fechaFin,:horaInauguracion, :estatus, :archivoCartaContenido, :archivoCartaAsesor, :archivoCroquis, :archivoContactosElectricos, :archivoPresupuesto, :aprobadoConsejo, :aprobadoFinanzas, :aprobadoLogistica, :nombreAprobadoConsejo, :nombreAprobadoLogistica, :nombreAprobadoFinanzas, :fechaAprobadoConsejo, :fechaAprobadoLogistica, :fechaAprobadoFinanzas)
+	end
+
+	def aviso_params
+		params.require(:aviso).permit(:mensaje, :departamento, :remitente, :consejo, :titulo)
 	end
 end

@@ -11,7 +11,7 @@
 			<span id="bold">Hora Inauguración: </span><span><%=(@evento.horaInauguracion).strftime("%I:%M %p")%></span><p></p><p></p>
 		</div>
 	</div>
-	<%= simple_form_for @evento do |f| %>
+	<%= simple_form_for @evento, :url => url_for(:controller => 'eventos', :action => 'reservar', :id => @evento.id) do |f| %>
 	<div class="row">
 		<div class="col s12 m4 center">
 			<label>Ubicación Sede:</label>

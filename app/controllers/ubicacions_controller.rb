@@ -1,11 +1,16 @@
 class UbicacionsController < ApplicationController
 	before_action :authenticate_admin!
+	add_breadcrumb 'Inicio', '/admin/home'
+
 	def index
-			@admin = current_admin
-			@ubicaciones = Ubicacion.paginate(:page => params[:page], :per_page => 10)
+		add_breadcrumb 'Ubicaciones', '/ubicacions'
+		@admin = current_admin
+		@ubicaciones = Ubicacion.paginate(:page => params[:page], :per_page => 10)
 	end
 
 	def new
+		add_breadcrumb 'Ubicaciones', '/ubicacions'
+		add_breadcrumb 'Nueva Ubicación', '/ubicacions/new'
 		@admin = current_admin
 		@ubicacion = Ubicacion.new
 	end

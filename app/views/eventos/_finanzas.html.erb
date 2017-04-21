@@ -1,29 +1,153 @@
-<div class="row">
+<%if current_grupo%>
 	<div class="row">
-		<h5>Documentos</h5>
-		<h6>Aqui pueden subir el presupuesto de su evento. Si llega a ser autorizado, su estasus de finanzas cambiará a 'Aprobado'.</h6><br>
-		<%= form_for @evento do |f| %>
+		<div class="row">
+			<h5>Documentos</h5>
+			<h6>Aqui pueden subir el presupuesto de su evento. Si llega a ser autorizado, su estasus de finanzas cambiará a 'Aprobado'.</h6><br>
+			<%= form_for @evento do |f| %>
+			<div class="row">
+				<div class="col s12">
+		    	<div class="file-field input-field col s12">
+			      <div class="btn">
+			        <span>Presupuesto</span>
+			        <%= f.file_field :archivoPresupuesto %>
+			      </div>
+			      <div class="file-path-wrapper">
+			        <input class="file-path validate" type="text">
+			      </div>
+			    </div>
+			    <%if @evento.archivoPresupuesto_url != nil%>
+			    	<div class="col s12">
+		      	<%= link_to "Ver documento", @evento.archivoPresupuesto_url, :class => 'btn btn-default right' %>
+		      	</div>
+		      <%end%>
+		    </div>
+		  </div>
+		  <div class="row center">
+	    	<%= f.submit "Guardar Documentos", class: "btn btn-primary" %>
+	    </div>
+	  <% end %>
+		</div>
+		<%if @avisos_finanzas.count > 0%>
 		<div class="row">
 			<div class="col s12">
-	    	<div class="file-field input-field col s12">
-		      <div class="btn">
-		        <span>Presupuesto</span>
-		        <%= f.file_field :archivoPresupuesto %>
-		      </div>
-		      <div class="file-path-wrapper">
-		        <input class="file-path validate" type="text">
-		      </div>
+				<h5>Avisos</h5>
+				<table class="bordered highlight responsive-table">
+		      <thead>
+		        <tr>
+		          <th style = "text-align: center;">Remitente</th>
+		          <th style = "text-align: center;">Fecha</th>
+		          <th style = "text-align: center;">Asunto</th>
+		          <th style = "text-align: center;">Mensaje</th>
+		        </tr>
+		      </thead>
+
+		      <tbody>
+		        <%@avisos_finanzas.each do |a|%>
+		        <tr>
+		          <td style = "text-align: center;"><%=a.remitente%></td>
+		          <td style = "text-align: center;"><%=a.created_at.strftime("%d/%m/%Y %I:%M %p")%></td>
+		          <td style = "text-align: center;"><%=a.titulo%></td>
+		          <td style = "text-align: center;"><%=a.mensaje%></td>
+		        </tr>
+		        <%end%>
+	        </tbody>
+	      </table>
+			</div>
+		</div>
+		<%end%>
+	</div>
+<!--............................................................................................................-->
+<%else%>
+<div class="row">
+	<div class="row">
+		<h5>Autorización</h5>
+		<h6>Aqui puedes aprobar este evento por parte del departamento de Finanzas.</h6><br>
+		<div class="col s12 center">
+			<%= form_for @evento do |f| %>
+			<% if not @evento.aprobadoFinanzas and @admin.puesto == 'Finanzas'%>
+          <%= f.hidden_field 'aprobadoFinanzas', :value => true %>
+          <%= f.hidden_field 'nombreAprobadoFinanzas', :value => @admin.nombre + ' ' + @admin.apellido%>
+          <%= f.hidden_field 'fechaAprobadoFinanzas', :value => Time.now %>
+          <%= f.submit 'Autorizar', :class => "waves-effect waves-light btn green", data: {confirm: "Una vez autorizado, no se puede cancelar esta autorización"}%>
+        <% else %>
+          <%= f.submit 'Autorizar', :class => "waves-effect waves-light btn green disabled"%>
+        <%end%>
+      <% end %>
+		</div>
+	</div>
+	<div class="row">
+		<h5>Documentos</h5>
+		<h6>Documentos que subio el grupo estudiantil.</h6><br>
+		<%= form_for @evento do |f| %>
+			<div class="row center">
+		    <div class="col s12">
+			    <%if @evento.archivoPresupuesto_url != nil%>
+			    	<div class="col s12">
+		      	<%= link_to "Presupuesto", @evento.archivoPresupuesto_url, :class => 'btn btn-default' %>
+		      	</div>
+		      <%else%>
+		      	<%= link_to "Presupuesto", @evento.archivoPresupuesto_url, :class => 'btn btn-default disabled' %>
+		      <%end%>
 		    </div>
-		    <%if @evento.archivoPresupuesto_url != nil%>
-		    	<div class="col s12">
-	      	<%= link_to "Ver documento", @evento.archivoPresupuesto_url, :class => 'btn btn-default right' %>
-	      	</div>
+		  </div>
+	  <% end %>
+	</div>
+	<div class="row">
+		<div class="col s12">
+			<h5>Aviso</h5>
+			<h6>Aqui pueden enviar algun aviso a un evento.</h6>
+			<%= simple_form_for Aviso.new, :url => url_for(:controller => 'eventos', :action => 'aviso', :id => @evento.id) do |f| %>
+				<div class="row">
+			    <div class="col s12">
+			      <%= f.text_field :titulo, placeholder: "Asunto"%>
+			    </div>
+			  </div>
+	      <div class="row">
+	        <div class="col s12">
+      			<%= f.input :mensaje, as: :text, label: 'Mensaje', input_html: { class: 'materialize-textarea'}%>
+	        </div>
+	      </div>
+	      <%= f.hidden_field 'departamento', :value => 'Finanzas' %>
+	      <%= f.hidden_field 'consejo', :value => @grupo.consejo %>
+	      <%= f.hidden_field 'remitente', :value => @admin.nombre + ' ' + @admin.apellido %>
+	      <div class="row center">
+	      <%if @admin.puesto == 'Finanzas'%>
+	      	<%= f.submit 'Enviar', :class => "waves-effect waves-light btn"%>
+	      <%else%>
+	      	<%= f.submit 'Enviar', :class => "waves-effect waves-light btn disabled"%>
 	      <%end%>
-	    </div>
-	  </div>
-	  <div class="row center">
-    	<%= f.submit "Guardar Documentos", class: "btn btn-primary" %>
-    </div>
-  <% end %>
+	      </div>
+	    <%end%>
+		</div>
 	</div>
 </div>
+<%if @avisos_finanzas.count > 0%>
+	<div class="row">
+		<div class="col s12">
+			<h5>Avisos Enviados</h5>
+			<table class="bordered highlight responsive-table">
+	      <thead>
+	        <tr>
+	          <th style = "text-align: center;">Remitente</th>
+	          <th style = "text-align: center;">Fecha</th>
+	          <th style = "text-align: center;">Asunto</th>
+	          <th style = "text-align: center;">Mensaje</th>
+	        </tr>
+	      </thead>
+
+	      <tbody>
+	        <%@avisos_finanzas.each do |a|%>
+	        <tr>
+	          <td style = "text-align: center;"><%=a.remitente%></td>
+	          <td style = "text-align: center;"><%=a.created_at.strftime("%d/%m/%Y %I:%M %p")%></td>
+	          <td style = "text-align: center;"><%=a.titulo%></td>
+	          <td style = "text-align: center;"><%=a.mensaje%></td>
+	        </tr>
+	        <%end%>
+        </tbody>
+      </table>
+		</div>
+	</div>
+	<%end%>
+</div>
+<%end%>

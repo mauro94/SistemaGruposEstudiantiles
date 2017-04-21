@@ -63,6 +63,34 @@
 	    </div>
 	  <% end %>
 	</div>
+	<%if @avisos_consejo.count > 0%>
+	<div class="row">
+		<div class="col s12">
+			<h5>Avisos</h5>
+			<table class="bordered highlight responsive-table">
+	      <thead>
+	        <tr>
+	          <th style = "text-align: center;">Remitente</th>
+	          <th style = "text-align: center;">Fecha</th>
+	          <th style = "text-align: center;">Asunto</th>
+	          <th style = "text-align: center;">Mensaje</th>
+	        </tr>
+	      </thead>
+
+	      <tbody>
+	        <%@avisos_consejo.each do |a|%>
+	        <tr>
+	          <td style = "text-align: center;"><%=a.remitente%></td>
+	          <td style = "text-align: center;"><%=a.created_at.strftime("%d/%m/%Y %I:%M %p")%></td>
+	          <td style = "text-align: center;"><%=a.titulo%></td>
+	          <td style = "text-align: center;"><%=a.mensaje%></td>
+	        </tr>
+	        <%end%>
+        </tbody>
+      </table>
+		</div>
+	</div>
+	<%end%>
 </div>
 <!--............................................................................................................-->
 <%else%>
@@ -72,9 +100,11 @@
 		<h6>Aqui puedes aprobar este evento por parte del consejo.</h6><br>
 		<div class="col s12 center">
 			<%= form_for @evento do |f| %>
-			<% if not @evento.aprobadoConsejo and @admin.puesto == 'Administración'%>
+			<% if not @evento.aprobadoConsejo and @admin.puesto == 'Administración' and @admin.consejo == @grupo.consejo%>
           <%= f.hidden_field 'aprobadoConsejo', :value => true %>
-          <%= f.submit 'Autorizar', :class => "waves-effect waves-light btn green"%>
+          <%= f.hidden_field 'nombreAprobadoConsejo', :value => @admin.nombre + ' ' + @admin.apellido%>
+          <%= f.hidden_field 'fechaAprobadoConsejo', :value => Time.now %>
+          <%= f.submit 'Autorizar', :class => "waves-effect waves-light btn green", data: {confirm: "Una vez autorizado, no se puede cancelar esta autorización"}%>
         <% else %>
           <%= f.submit 'Autorizar', :class => "waves-effect waves-light btn green disabled"%>
         <%end%>
@@ -116,5 +146,61 @@
 		  </div>
 	  <% end %>
 	</div>
+	<div class="row">
+		<div class="col s12">
+			<h5>Aviso</h5>
+			<h6>Aqui pueden enviar algun aviso a un evento.</h6>
+			<%= simple_form_for Aviso.new, :url => url_for(:controller => 'eventos', :action => 'aviso', :id => @evento.id) do |f| %>
+				<div class="row">
+			    <div class="col s12">
+			      <%= f.text_field :titulo, placeholder: "Asunto"%>
+			    </div>
+			  </div>
+	      <div class="row">
+	        <div class="col s12">
+      			<%= f.input :mensaje, as: :text, label: 'Mensaje', input_html: { class: 'materialize-textarea'}%>
+	        </div>
+	      </div>
+	      <%= f.hidden_field 'departamento', :value => 'Consejo' %>
+	      <%= f.hidden_field 'consejo', :value => @grupo.consejo %>
+	      <%= f.hidden_field 'remitente', :value => @admin.nombre + ' ' + @admin.apellido %>
+	      <div class="row center">
+	      <%if @admin.puesto == 'Administración' and @admin.consejo == @grupo.consejo%>
+	      	<%= f.submit 'Enviar', :class => "waves-effect waves-light btn"%>
+	      <%else%>
+	      	<%= f.submit 'Enviar', :class => "waves-effect waves-light btn disabled"%>
+	      <%end%>
+	      </div>
+	    <%end%>
+		</div>
+	</div>
+	<%if @avisos_consejo.count > 0%>
+	<div class="row">
+		<div class="col s12">
+			<h5>Avisos Enviados</h5>
+			<table class="bordered highlight responsive-table">
+	      <thead>
+	        <tr>
+	          <th style = "text-align: center;">Remitente</th>
+	          <th style = "text-align: center;">Fecha</th>
+	          <th style = "text-align: center;">Asunto</th>
+	          <th style = "text-align: center;">Mensaje</th>
+	        </tr>
+	      </thead>
+
+	      <tbody>
+	        <%@avisos_consejo.each do |a|%>
+	        <tr>
+	          <td style = "text-align: center;"><%=a.remitente%></td>
+	          <td style = "text-align: center;"><%=a.created_at.strftime("%d/%m/%Y %I:%M %p")%></td>
+	          <td style = "text-align: center;"><%=a.titulo%></td>
+	          <td style = "text-align: center;"><%=a.mensaje%></td>
+	        </tr>
+	        <%end%>
+        </tbody>
+      </table>
+		</div>
+	</div>
+	<%end%>
 </div>
 <%end%>

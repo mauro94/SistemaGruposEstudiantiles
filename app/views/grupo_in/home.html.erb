@@ -19,7 +19,7 @@
           <th style = "text-align: center">Folio</th>
           <th style = "text-align: center">Fecha</th>
           <th style = "text-align: center">Nombre</th>
-          <th style = "text-align: center">Responsable</th>
+          <th style = "text-align: center">Avisos</th>
           <th style = "text-align: center">Estatus</th>
           <th style = "text-align: center">Administrar</th>
         </tr>
@@ -28,16 +28,17 @@
       <tbody>
         <%@eventos.each do |e|%>
         <tr>
+          <%@avisos = Aviso.joins(:evento).where('avisos.evento_id' => e.folio)%>
           <td style = "text-align: center"><%=e.folio%></td>
           <td style = "text-align: center"><%=e.fechaInicio.strftime("%d/%m/%Y %I:%M %p")%></td>
           <td style = "text-align: center"><%=e.nombre%></td>
-          <td style = "text-align: center"><%=@grupo.nombre%></td>
-          <%if e.estatus == 'pendiente'%>
-            <td style = "text-align: center"><a class="btn tooltipped orange" data-position="bottom" data-delay="50" data-tooltip="En Progreso"><i class="material-icons center">stop</i></a></td>
+          <td style = "text-align: center"><a class="btn"><i class="material-icons left">comment</i><%=@avisos.count%></a></td>
+          <%if e.aprobadoConsejo and e.aprobadoLogistica and e.aprobadoFinanzas%>
+            <td style = "text-align: center"><a class="btn tooltipped green" data-position="bottom" data-delay="50" data-tooltip="Autorizado"><i class="material-icons center">done</i></a></td>
           <%elsif e.estatus == 'cancelado'%>
             <td style = "text-align: center"><a class="btn tooltipped red" data-position="bottom" data-delay="50" data-tooltip="Cancelado"><i class="material-icons center">not_interested</i></a></td>
           <%else %>
-            <td style = "text-align: center"><a class="btn tooltipped green" data-position="bottom" data-delay="50" data-tooltip="Aprobado"><i class="material-icons center">done</i></a></td>
+            <td style = "text-align: center"><a class="btn tooltipped orange" data-position="bottom" data-delay="50" data-tooltip="En Progreso"><i class="material-icons center">stop</i></a></td>
           <%end%>
           <%if e.estatus != 'cancelado'%>
             <td style = "text-align: center"><%= link_to edit_evento_path(e.folio), :class => "waves-effect waves-light btn" do %>

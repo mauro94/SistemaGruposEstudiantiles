@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170403163518) do
+ActiveRecord::Schema.define(version: 20170418003857) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,15 +54,35 @@ ActiveRecord::Schema.define(version: 20170403163518) do
     t.index ["grupo_id"], name: "index_alumnos_on_grupo_id", using: :btree
   end
 
+  create_table "avisos", force: :cascade do |t|
+    t.integer  "evento_id"
+    t.integer  "grupo_id"
+    t.string   "mensaje"
+    t.string   "departamento"
+    t.string   "remitente"
+    t.string   "consejo"
+    t.string   "titulo"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["evento_id"], name: "index_avisos_on_evento_id", using: :btree
+    t.index ["grupo_id"], name: "index_avisos_on_grupo_id", using: :btree
+  end
+
   create_table "eventos", id: false, force: :cascade do |t|
     t.integer  "grupo_id"
-    t.string   "folio",                      null: false
+    t.integer  "folio",                      null: false
     t.string   "nombre"
     t.string   "descripcion"
     t.boolean  "aprobadoMercadotecnia"
     t.boolean  "aprobadoConsejo"
     t.boolean  "aprobadoLogistica"
     t.boolean  "aprobadoFinanzas"
+    t.string   "nombreAprobadoConsejo"
+    t.string   "nombreAprobadoLogistica"
+    t.string   "nombreAprobadoFinanzas"
+    t.datetime "fechaAprobadoConsejo"
+    t.datetime "fechaAprobadoLogistica"
+    t.datetime "fechaAprobadoFinanzas"
     t.boolean  "revisadoAlimentos"
     t.boolean  "revisadoSeguridad"
     t.string   "ubicacion"

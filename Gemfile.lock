@@ -52,6 +52,7 @@ GEM
       sass (>= 3.3.4)
     bootstrap-will_paginate (0.0.10)
       will_paginate
+    breadcrumbs_on_rails (3.0.1)
     builder (3.2.3)
     cancan (1.6.10)
     carrierwave (1.0.0)
@@ -365,6 +366,7 @@ DEPENDENCIES
   bcrypt (= 3.1.11)
   bootstrap-sass (= 3.3.6)
   bootstrap-will_paginate (= 0.0.10)
+  breadcrumbs_on_rails
   cancan (= 1.6.10)
   carrierwave (~> 1.0)
   coffee-rails (= 4.2.1)

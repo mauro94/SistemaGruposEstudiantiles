@@ -1,7 +1,9 @@
 class AdminInController < ApplicationController
 	before_action :authenticate_admin!
+	add_breadcrumb 'Inicio', '/admin/home'
 	def home
 		@admin = current_admin
+		@avisos = Aviso.all
 		@eventos = Evento.all
 		@weekstart = Date.current
 		@day_1 = Date.current.at_beginning_of_week
@@ -36,11 +38,14 @@ class AdminInController < ApplicationController
 	end
 
 	def admins
+		add_breadcrumb 'Administradores', '/admin/admins'
 		@admin = current_admin
 		@admins = Admin.paginate(:page => params[:page], :per_page => 10)
 	end
 
 	def new_admin
+		add_breadcrumb 'Administradores', '/admin/admins'
+		add_breadcrumb 'Nuevo Administrador'
 		@admin = current_admin
 		@new_admin = Admin.new
 	end
@@ -56,6 +61,8 @@ class AdminInController < ApplicationController
 	end
 
 	def edit
+		add_breadcrumb 'Administradores', '/admin/admins'
+		add_breadcrumb 'Editar Administrador'
 		@admin = current_admin
 		@edit_admin = Admin.find(params[:id])
 	end
@@ -77,12 +84,14 @@ class AdminInController < ApplicationController
 	end
 
 	def eventos
+		add_breadcrumb 'Eventos', '/admin/eventos'
 		@admin = current_admin
 		@admins = Admin.paginate(:page => params[:page], :per_page => 10)
 		@eventos = Evento.all
 	end
 
 	def grupos
+		add_breadcrumb 'Grupos', '/admin/grupos'
 		@admin = current_admin
 		@grupos = Grupo.all
 		@grupos = Grupo.paginate(:page => params[:page], :per_page => 10)

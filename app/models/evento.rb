@@ -4,6 +4,7 @@ class Evento < ApplicationRecord
 	belongs_to :grupo
 	has_many :reservas
 	has_many :ubicacions, through: :reservas
+	has_many :avisos
 
 	mount_uploader :archivoCartaContenido, PdfDocUploader
 	mount_uploader :archivoCartaAsesor, PdfDocUploader

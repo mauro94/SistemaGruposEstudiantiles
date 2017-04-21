@@ -1,15 +1,32 @@
 <div class="row">
   <h4>Hola <%=@admin.nombre%>,</h4>
 </div>
-<!--Notificaciones-->
+<!--Notificaciones
 <div class="row">
-  <h5 style="text-align: center"><i>Notificaciones<i></h5>
-  <div class="collection" style="text-align: center">
-    <a href="#" class="collection-item">Alvin</a>
-    <a href="#" class="collection-item">Alvin</a>
-    <a href="#" class="collection-item">Alvin</a>
-  </div>
-</div>
+<% if @avisos.first != nil %>
+  <ul class="collapsible popout" data-collapsible="accordion">
+    <li>
+      <div class="collapsible-header"><i class="material-icons">filter_drama</i>First</div>
+      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+    </li>
+    <li>
+      <div class="collapsible-header"><i class="material-icons">place</i>Second</div>
+      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+    </li>
+    <li>
+      <div class="collapsible-header"><i class="material-icons">whatshot</i>Third</div>
+      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+    </li>
+  </ul>
+<%else%>
+  <ul class="collapsible popout" data-collapsible="accordion">
+    <li>
+      <div class="collapsible-header"><i class="material-icons">done</i>No más avisos</div>
+      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+    </li>
+  </ul>
+<%end%>
+</div>-->
 <!--Eventos de la semana-->
 <div class="row">
   <%= render 'admin_in/eventos_esta_semana' %>
