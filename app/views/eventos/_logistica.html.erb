@@ -1,61 +1,282 @@
+<%if current_grupo%>
 <div class="row">
 	<div class="row">
 	<h5>Ubicación</h5>
 	<h6>Aqui pueden reservar su espacio para su evento y solicitar una cita para revisar lo que necesiten para su evento. Al revisar estos datos su estatus de logistica cambiara a 'Revisando' y hasta que se presenten en Centro Estudiantil y se autorizen todas sus solicitudes, su estatus cambiara a 'Aprobado'.</h6>
-	<h6>IMPORTANTE: Nada de lo que se reserve en este sistema confirma su reserva hasta que su estatus de logistica este en 'Aprobado'.</h6><br><br>
+	<h6>IMPORTANTE: Nada de lo que se reserve en este sistema confirma su reserva hasta que su estatus de logistica este en 'Aprobado'.</h6>
+	</div>
+	<%if @evento.sede_id == nil%>
+		<% @controller_action = 'reservar'%>
+	<%else%>
+		<% @controller_action = 'reservar_cambio'%>
+	<%end%>
+	<%= simple_form_for @evento, :url => url_for(:controller => 'eventos', :action => @controller_action, :id => @evento.id) do |f| %>
+	<div class="row">
 		<div class="col s12 m6">
-			<span id="bold">Fecha Inicio: </span><span><%=(@evento.fechaInicio).strftime("%d/%m/%Y %I:%M %p")%></span><p></p>
-    		<span id="bold">Fecha Fin: </span><span><%=(@evento.fechaFin).strftime("%d/%m/%Y %I:%M %p")%></span><p></p>
+			<h6><b>Evento:</b></h6>
+			<div class="col s12 m6">
+				<span id="bold">Número de Asistentes: </span><span><%=@evento.numAsistentes%></span><p></p>
+			</div>
+			<div class="col s12 m6">
+				<span id="bold">Tipo de Evento: </span><span><%=@evento.tipoEvento%></span><p></p>
+			</div>
+			<div class="col s12 m6">
+				<span id="bold">Fecha Inicio: </span><span><%=(@evento.fechaInicio).strftime("%d/%m/%Y %I:%M %p")%></span><p></p>
+			</div>
+			<div class="col s12 m6">
+				<span id="bold">Fecha Fin: </span><span><%=(@evento.fechaFin).strftime("%d/%m/%Y %I:%M %p")%></span><p></p>
+			</div>
+			<div class="col s12 m6">
+				<span id="bold">Hora Inauguración: </span><span><%=(@evento.horaInauguracion).strftime("%I:%M %p")%></span><p></p>
+			</div>
 		</div>
 		<div class="col s12 m6">
-			<span id="bold">Hora Inauguración: </span><span><%=(@evento.horaInauguracion).strftime("%I:%M %p")%></span><p></p><p></p>
+			<h6><b>Ubicación Sede:</b></h6>
+			<%= f.input :sede_id , label: false, collection: @ubicaciones, :label_method => lambda {|u| u.nombre}, prompt: 'Selecciona ubicación', :input_html => { :class =>"form-control", :id => 'ubicacion_select' }%>
+			<%for x in @ubicaciones%>
+			<div class="js-dependent-fields" data-select-id='ubicacion_select' data-option-value='<%=x.id%>'>
+				<div class="col s12 m6">
+					<span id="bold">Zona: </span><span><%=x.zona%></span><p></p>
+				</div>
+			</div>
+			<div class="js-dependent-fields" data-select-id='ubicacion_select' data-option-value='<%=x.id%>'>
+				<div class="col s12 m6">
+					<span id="bold">Capacidad: </span><span><%=x.capacidad%></span><p></p>
+				</div>
+			</div>
+			<div class="js-dependent-fields" data-select-id='ubicacion_select' data-option-value='<%=x.id%>'>
+				<div class="col s12 m6">
+					<span id="bold">Hora Apertura: </span><span><%=(x.horario_inicio).strftime("%I:%M %p")%></span><p></p>
+				</div>
+			</div>
+			<div class="js-dependent-fields" data-select-id='ubicacion_select' data-option-value='<%=x.id%>'>
+				<div class="col s12 m6">
+					<span id="bold">Hora Cierre: </span><span><%=(x.horario_fin).strftime("%I:%M %p")%></span><p></p>
+				</div>
+			</div>
+			<div class="js-dependent-fields" data-select-id='ubicacion_select' data-option-value='<%=x.id%>'>
+				<div class="col s12 center">
+					<img class="materialboxed" data-caption="Croquis" width="250" src=<%=x.croquis_url%>>
+				</div>
+			</div>
+			<%end%>
 		</div>
 	</div>
-	<%= simple_form_for @evento, :url => url_for(:controller => 'eventos', :action => 'reservar', :id => @evento.id) do |f| %>
 	<div class="row">
-		<div class="col s12 m4 center">
-			<label>Ubicación Sede:</label>
-		    <%= f.input :ubicacion , as: :select, label: false, collection: @nombres%>
-		    <%= f.submit 'Reservar', :class => 'btn btn-default'%><br><br>
-		</div>
+		<%if @evento.sede_id == nil%>
+		<%= f.submit 'Reservar', :class => 'btn btn-default right'%><br><br>
+		<%else%>
+		<%= f.submit 'Cambiar Reservación', :class => 'btn btn-default right'%><br><br>
+		<%end%>
 		<% end %>
-		<div class="col s12 m7 right">
-			<div class="slider">
-			    <ul class="slides">
-			    	<%@ubicaciones.each do |u|%>
-			    		<li>
-				        <img class="materialboxed" src=<%=u.croquis_url%>> 
-				        <div class="caption right-align">
-				          <h3 class="black-text"><%=u.zona%></h3>
-				          <h5 class="light black-text text-lighten-3"><%=u.capacidad%></h5>
-				        </div>
-				      </li>
-			    	<%end%>
-			    </ul>
-			  </div>
-		</div>
 	</div>
 </div>
 <div class="divider"></div><br>
 <div class="row">
 	<h5>Materiales</h5>
-		<%= simple_form_for @evento do |f| %>
-		<div class="row center">
-			<div class="col s12 m4">
-				<p>
-			      <input type="checkbox" class="filled-in" id="mobiliario" />
-			      <label for="mobiliario">Mobiliario</label>
-			    </p>
-			</div>
-			<div class="col s12 m4">
-				<p>
-			      <input type="checkbox" class="filled-in" id="audiovisual" />
-			      <label for="audiovisual">Equipo Audiovisual</label>
-			    </p>
-			</div>
+	<%= simple_form_for @evento do |f| %>
+	<div class="row center">
+		<div class="col s12 m4">
+			<p>
+				<%= check_box_tag(:revisadoAlimentos) %>
+				<%= label_tag(:revisadoAlimentos, "Mobiliario") %>
+		    </p>
 		</div>
-		<div class="row right">
-			<%= f.submit 'Solicitar Cita', :class => 'btn btn-default'%><br><br>
-			<% end %>	
+		<div class="col s12 m4">
+			<p>
+		      <input type="checkbox" class="filled-in" id="audiovisual" />
+		      <label for="audiovisual">Equipo Audiovisual</label>
+		    </p>
 		</div>
 	</div>
+	<div class="row right">
+		<%= f.submit 'Solicitar Cita', :class => 'btn btn-default'%><br><br>
+		<% end %>	
+	</div>
+</div>
+<div class="divider"></div><br>
+<%if @avisos_logistica.count > 0%>
+	<div class="row">
+		<div class="col s12">
+			<h5>Avisos Enviados</h5>
+			<table class="bordered highlight responsive-table">
+	      <thead>
+	        <tr>
+	          <th style = "text-align: center;">Remitente</th>
+	          <th style = "text-align: center;">Fecha</th>
+	          <th style = "text-align: center;">Asunto</th>
+	          <th style = "text-align: center;">Mensaje</th>
+	        </tr>
+	      </thead>
+
+	      <tbody>
+	        <%@avisos_logistica.each do |a|%>
+	        <tr>
+	          <td style = "text-align: center;"><%=a.remitente%></td>
+	          <td style = "text-align: center;"><%=a.created_at.strftime("%d/%m/%Y %I:%M %p")%></td>
+	          <td style = "text-align: center;"><%=a.titulo%></td>
+	          <td style = "text-align: center;"><%=a.mensaje%></td>
+	        </tr>
+	        <%end%>
+        </tbody>
+      </table>
+		</div>
+	</div>
+	<%end%>
+<!--............................................................................................................-->
+<%else%>
+<div class="row">
+	<div class="row">
+	<h5>Ubicación</h5>
+	<h6>Aqui pueden reservar su espacio para su evento y solicitar una cita para revisar lo que necesiten para su evento. Al revisar estos datos su estatus de logistica cambiara a 'Revisando' y hasta que se presenten en Centro Estudiantil y se autorizen todas sus solicitudes, su estatus cambiara a 'Aprobado'.</h6>
+	<h6>IMPORTANTE: Nada de lo que se reserve en este sistema confirma su reserva hasta que su estatus de logistica este en 'Aprobado'.</h6>
+	</div>
+	<%if @evento.sede_id == nil%>
+		<% @controller_action = 'reservar'%>
+	<%else%>
+		<% @controller_action = 'reservar_cambio'%>
+	<%end%>
+	<%= simple_form_for @evento, :url => url_for(:controller => 'eventos', :action => @controller_action, :id => @evento.id) do |f| %>
+	<div class="row">
+		<div class="col s12 m6">
+			<h6><b>Evento:</b></h6>
+			<div class="col s12 m6">
+				<span id="bold">Número de Asistentes: </span><span><%=@evento.numAsistentes%></span><p></p>
+			</div>
+			<div class="col s12 m6">
+				<span id="bold">Tipo de Evento: </span><span><%=@evento.tipoEvento%></span><p></p>
+			</div>
+			<div class="col s12 m6">
+				<span id="bold">Fecha Inicio: </span><span><%=(@evento.fechaInicio).strftime("%d/%m/%Y %I:%M %p")%></span><p></p>
+			</div>
+			<div class="col s12 m6">
+				<span id="bold">Fecha Fin: </span><span><%=(@evento.fechaFin).strftime("%d/%m/%Y %I:%M %p")%></span><p></p>
+			</div>
+			<div class="col s12 m6">
+				<span id="bold">Hora Inauguración: </span><span><%=(@evento.horaInauguracion).strftime("%I:%M %p")%></span><p></p>
+			</div>
+		</div>
+		<div class="col s12 m6">
+			<h6><b>Ubicación Sede:</b></h6>
+			<%= f.input :sede_id , label: false, collection: @ubicaciones, :label_method => lambda {|u| u.nombre}, prompt: 'Selecciona ubicación', :input_html => { :class =>"form-control", :id => 'ubicacion_select' }%>
+			<%for x in @ubicaciones%>
+			<div class="js-dependent-fields" data-select-id='ubicacion_select' data-option-value='<%=x.id%>'>
+				<div class="col s12 m6">
+					<span id="bold">Zona: </span><span><%=x.zona%></span><p></p>
+				</div>
+			</div>
+			<div class="js-dependent-fields" data-select-id='ubicacion_select' data-option-value='<%=x.id%>'>
+				<div class="col s12 m6">
+					<span id="bold">Capacidad: </span><span><%=x.capacidad%></span><p></p>
+				</div>
+			</div>
+			<div class="js-dependent-fields" data-select-id='ubicacion_select' data-option-value='<%=x.id%>'>
+				<div class="col s12 m6">
+					<span id="bold">Hora Apertura: </span><span><%=(x.horario_inicio).strftime("%I:%M %p")%></span><p></p>
+				</div>
+			</div>
+			<div class="js-dependent-fields" data-select-id='ubicacion_select' data-option-value='<%=x.id%>'>
+				<div class="col s12 m6">
+					<span id="bold">Hora Cierre: </span><span><%=(x.horario_fin).strftime("%I:%M %p")%></span><p></p>
+				</div>
+			</div>
+			<div class="js-dependent-fields" data-select-id='ubicacion_select' data-option-value='<%=x.id%>'>
+				<div class="col s12 center">
+					<img class="materialboxed" data-caption="Croquis" width="250" src=<%=x.croquis_url%>>
+				</div>
+			</div>
+			<%end%>
+		</div>
+	</div>
+	<div class="row">
+		<%if @evento.sede_id == nil%>
+		<%= f.submit 'Reservar', :class => 'btn btn-default right disabled'%><br><br>
+		<%else%>
+		<%= f.submit 'Cambiar Reservación', :class => 'btn btn-default right disabled'%><br><br>
+		<%end%>
+		<% end %>
+	</div>
+</div>
+<div class="divider"></div><br>
+<div class="row">
+	<h5>Materiales</h5>
+	<%= simple_form_for @evento do |f| %>
+	<div class="row center">
+		<div class="col s12 m4">
+			<p>
+		      <input type="checkbox" class="filled-in" id="mobiliario" />
+		      <label for="mobiliario">Mobiliario</label>
+		    </p>
+		</div>
+		<div class="col s12 m4">
+			<p>
+		      <input type="checkbox" class="filled-in" id="audiovisual" />
+		      <label for="audiovisual">Equipo Audiovisual</label>
+		    </p>
+		</div>
+	</div>
+	<% end %>	
+	<div class="divider"></div><br>
+	<div class="row">
+		<div class="col s12">
+			<h5>Aviso</h5>
+			<h6>Aqui pueden enviar algun aviso a un evento.</h6>
+			<%= simple_form_for Aviso.new, :url => url_for(:controller => 'eventos', :action => 'aviso', :id => @evento.id) do |f| %>
+				<div class="row">
+			    <div class="col s12">
+			      <%= f.text_field :titulo, placeholder: "Asunto"%>
+			    </div>
+			  </div>
+	      <div class="row">
+	        <div class="col s12">
+      			<%= f.input :mensaje, as: :text, label: 'Mensaje', input_html: { class: 'materialize-textarea'}%>
+	        </div>
+	      </div>
+	      <%= f.hidden_field 'departamento', :value => 'Logística' %>
+	      <%= f.hidden_field 'consejo', :value => @grupo.consejo %>
+	      <%= f.hidden_field 'remitente', :value => @admin.nombre + ' ' + @admin.apellido %>
+	      <div class="row center">
+	      <%if @admin.puesto == 'Logística'%>
+	      	<%= f.submit 'Enviar', :class => "waves-effect waves-light btn"%>
+	      <%else%>
+	      	<%= f.submit 'Enviar', :class => "waves-effect waves-light btn disabled"%>
+	      <%end%>
+	      </div>
+	    <%end%>
+		</div>
+	</div>
+	<%if @avisos_logistica.count > 0%>
+	<div class="row">
+		<div class="col s12">
+			<h5>Avisos Enviados</h5>
+			<table class="bordered highlight responsive-table">
+	      <thead>
+	        <tr>
+	          <th style = "text-align: center;">Remitente</th>
+	          <th style = "text-align: center;">Fecha</th>
+	          <th style = "text-align: center;">Asunto</th>
+	          <th style = "text-align: center;">Mensaje</th>
+	        </tr>
+	      </thead>
+
+	      <tbody>
+	        <%@avisos_logistica.each do |a|%>
+	        <tr>
+	          <td style = "text-align: center;"><%=a.remitente%></td>
+	          <td style = "text-align: center;"><%=a.created_at.strftime("%d/%m/%Y %I:%M %p")%></td>
+	          <td style = "text-align: center;"><%=a.titulo%></td>
+	          <td style = "text-align: center;"><%=a.mensaje%></td>
+	        </tr>
+	        <%end%>
+        </tbody>
+      </table>
+		</div>
+	</div>
+	<%end%>
+</div>
+<%end%>
+<script type="text/javascript">
+	$(document).ready(function() {
+     DependentFields.bind()
+ });
+</script>

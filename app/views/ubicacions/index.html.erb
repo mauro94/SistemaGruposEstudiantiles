@@ -7,6 +7,7 @@
       <thead>
         <tr>
           <th style = "text-align: center;">Zona</th>
+          <th style = "text-align: center;">Nombre</th>
           <th style = "text-align: center;">Clave</th>
           <th style = "text-align: center;">Capacidad</th>
           <th style = "text-align: center;">Dimensiones</th>
@@ -21,10 +22,11 @@
         <%@ubicaciones.each do |u|%>
         <tr>
           <td style = "text-align: center;"><%=u.zona%></td>
-          <td style = "text-align: center;"><%=u.numero%></td>
+          <td style = "text-align: center;"><%=u.nombre%></td>
+          <td style = "text-align: center;"><%=u.codigo%></td>
           <td style = "text-align: center;"><%=u.capacidad%></td>
           <td style = "text-align: center;"><%=u.ancho%> m. x <%=u.alto%> m.</td>
-          <td style = "text-align: center;"><%=(u.horarioInicio).strftime("%I:%M %p")%> - <%=(u.horarioFin).strftime("%I:%M %p")%></td>
+          <td style = "text-align: center;"><%=(u.horario_inicio).strftime("%I:%M %p")%> - <%=(u.horario_fin).strftime("%I:%M %p")%></td>
           <td style = "text-align: center;">
             <%if u.croquis_url != nil%>
               <%= link_to u.croquis_url, :class => "waves-effect waves-light btn" do %>

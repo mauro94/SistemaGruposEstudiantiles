@@ -33,6 +33,7 @@ Rails.application.routes.draw do
   patch '/admin_in_grupos/update_activo/:id' => 'admin_in_grupos#update_activo'
 
   patch '/eventos/reservar/:id' => 'eventos#reservar'
+  patch '/eventos/reservar_cambio/:id' => 'eventos#reservar_cambio'
   post '/eventos/aviso/:id' => 'eventos#aviso'
 
   post '/eventos/:id' => 'eventos#cancel'

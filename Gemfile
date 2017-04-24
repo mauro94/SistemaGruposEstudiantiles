@@ -27,6 +27,8 @@ gem 'rails-i18n', 			   '~> 5.0.0'
 gem 'auto_increment'
 gem 'carrierwave', 				'~> 1.0'
 gem 'breadcrumbs_on_rails'
+gem 'dependent-fields-rails'
+gem 'underscore-rails'
 
 group :test do
   gem 'rails-controller-testing', '0.1.1'

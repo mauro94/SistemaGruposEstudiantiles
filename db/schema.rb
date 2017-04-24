@@ -85,7 +85,7 @@ ActiveRecord::Schema.define(version: 20170418003857) do
     t.datetime "fechaAprobadoFinanzas"
     t.boolean  "revisadoAlimentos"
     t.boolean  "revisadoSeguridad"
-    t.string   "ubicacion"
+    t.integer  "sede_id"
     t.datetime "fechaFin"
     t.datetime "fechaInicio"
     t.integer  "numAsistentes"
@@ -149,7 +149,8 @@ ActiveRecord::Schema.define(version: 20170418003857) do
   create_table "reservas", force: :cascade do |t|
     t.integer  "ubicacion_id"
     t.integer  "evento_id"
-    t.datetime "horario"
+    t.datetime "inicio"
+    t.datetime "fin"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
     t.index ["evento_id"], name: "index_reservas_on_evento_id", using: :btree
@@ -158,15 +159,16 @@ ActiveRecord::Schema.define(version: 20170418003857) do
 
   create_table "ubicacions", force: :cascade do |t|
     t.string   "zona"
-    t.integer  "numero"
+    t.string   "nombre"
+    t.integer  "codigo"
     t.integer  "capacidad"
     t.float    "ancho"
     t.float    "alto"
-    t.time     "horarioInicio"
-    t.time     "horarioFin"
+    t.time     "horario_inicio"
+    t.time     "horario_fin"
     t.string   "croquis"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
 end

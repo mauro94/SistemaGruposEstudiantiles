@@ -37,24 +37,23 @@ class EventosController < ApplicationController
 			add_breadcrumb @evento.nombre
 		end
 		@admin = current_admin
-		@ubicaciones = Ubicacion.all
 		@grupo = (Grupo.joins(:eventos).where('grupos.id' => @evento.grupo_id)).first
 		@avisos_consejo = Aviso.joins(:evento).where('avisos.evento_id' => @evento.folio).where('avisos.departamento' => 'Consejo')
 		@avisos_finanzas = Aviso.joins(:evento).where('avisos.evento_id' => @evento.folio).where('avisos.departamento' => 'Finanzas')
+		@avisos_logistica = Aviso.joins(:evento).where('avisos.evento_id' => @evento.folio).where('avisos.departamento' => 'Logística')
 
-		@nombres = Array.new(0)
-		@ubicaciones.each do |u|
-    		@nombres.push(u.zona)
-    	end
+		# validate reservation availability
+		@ubicaciones = Ubicacion.where('ubicacions.id not in (?)', Ubicacion.joins(:reservas).where('ubicacions.id = reservas.ubicacion_id').where('(reservas.inicio < ? and reservas.fin > ?) or (reservas.inicio > ? and reservas.inicio < ?)', @evento.fechaInicio, @evento.fechaInicio, @evento.fechaInicio, @evento.fechaFin).select('id').distinct).where('ubicacions.id not in (?)',Ubicacion. where('(ubicacions.horario_inicio::time < ? and ubicacions.horario_fin::time > ?) or (ubicacions.horario_inicio::time > ? and ubicacions.horario_inicio::time < ?)', @evento.fechaInicio, @evento.fechaInicio, @evento.fechaInicio, @evento.fechaFin).select('id'))
 	end
 
 	def update
 		@admin = current_admin
 		@evento = Evento.find(params[:id])
 		@grupo = (Grupo.joins(:eventos).where('grupos.id' => @evento.grupo_id)).first
-		@ubicaciones = Ubicacion.all
+		@ubicaciones = Ubicacion.where('ubicacions.id not in (?)', Ubicacion.joins(:reservas).where('ubicacions.id = reservas.ubicacion_id').where('(reservas.inicio < ? and reservas.fin > ?) or (reservas.inicio > ? and reservas.inicio < ?)', @evento.fechaInicio, @evento.fechaInicio, @evento.fechaInicio, @evento.fechaFin).select('id').distinct).where('ubicacions.id not in (?)',Ubicacion. where('(ubicacions.horario_inicio::time < ? and ubicacions.horario_fin::time > ?) or (ubicacions.horario_inicio::time > ? and ubicacions.horario_inicio::time < ?)', @evento.fechaInicio, @evento.fechaInicio, @evento.fechaInicio, @evento.fechaFin).select('id'))
 		@avisos_consejo = Aviso.joins(:evento).where('avisos.evento_id' => @evento.folio).where('avisos.departamento' => 'Consejo')
-		@avisos_finanzas = Aviso.joins(:evento).where('avisos.evento_id' => @evento.folio).where('avisos.departamento' => 'Finanzas')
+		@avisos_finanzas = Aviso.joins(:evento).where('avisos.evento_id').where('avisos.departamento' => 'Finanzas')
+		@avisos_logistica = Aviso.joins(:evento).where('avisos.evento_id' => @evento.folio).where('avisos.departamento' => 'Logistica')
 		if @evento.update(evento_params)
 			render 'edit'
 		else
@@ -66,9 +65,20 @@ class EventosController < ApplicationController
 		@admin = current_admin
 		@evento = Evento.find(params[:id])
 		@grupo = (Grupo.joins(:eventos).where('grupos.id' => @evento.grupo_id)).first
-		@ubicaciones = Ubicacion.all
+		@ubicaciones = Ubicacion.where('ubicacions.id not in (?)', Ubicacion.joins(:reservas).where('ubicacions.id = reservas.ubicacion_id').where('(reservas.inicio < ? and reservas.fin > ?) or (reservas.inicio > ? and reservas.inicio < ?)', @evento.fechaInicio, @evento.fechaInicio, @evento.fechaInicio, @evento.fechaFin).select('id').distinct).where('ubicacions.id not in (?)',Ubicacion. where('(ubicacions.horario_inicio::time < ? and ubicacions.horario_fin::time > ?) or (ubicacions.horario_inicio::time > ? and ubicacions.horario_inicio::time < ?)', @evento.fechaInicio, @evento.fechaInicio, @evento.fechaInicio, @evento.fechaFin).select('id'))
 		@avisos_consejo = Aviso.joins(:evento).where('avisos.evento_id' => @evento.folio).where('avisos.departamento' => 'Consejo')
 		@avisos_finanzas = Aviso.joins(:evento).where('avisos.evento_id' => @evento.folio).where('avisos.departamento' => 'Finanzas')
+		@avisos_logistica = Aviso.joins(:evento).where('avisos.evento_id' => @evento.folio).where('avisos.departamento' => 'Logística')
+
+		if current_admin
+			add_breadcrumb 'Inicio', '/admin/home'
+			add_breadcrumb 'Eventos', '/admin/eventos'
+			add_breadcrumb @evento.nombre
+		else
+			add_breadcrumb 'Inicio', '/home'
+			add_breadcrumb @evento.nombre
+		end
+
 		if @evento.avisos.create(aviso_params)
 			render 'edit'
 		else
@@ -78,12 +88,76 @@ class EventosController < ApplicationController
 
 	def reservar
 		@evento = Evento.find(params[:id])
-		@evento.ubicacions.new()
+		@reserva = Reserva.new
+		@reserva.evento_id = @evento.folio
+		@reserva.ubicacion_id = evento_params[:sede_id]
+		@reserva.inicio = @evento.fechaInicio
+		@reserva.fin = @evento.fechaFin
+		@ubicaciones = Ubicacion.where('ubicacions.id not in (?)', Ubicacion.joins(:reservas).where('ubicacions.id = reservas.ubicacion_id').where('(reservas.inicio < ? and reservas.fin > ?) or (reservas.inicio > ? and reservas.inicio < ?)', @evento.fechaInicio, @evento.fechaInicio, @evento.fechaInicio, @evento.fechaFin).select('id').distinct).where('ubicacions.id not in (?)',Ubicacion. where('(ubicacions.horario_inicio::time < ? and ubicacions.horario_fin::time > ?) or (ubicacions.horario_inicio::time > ? and ubicacions.horario_inicio::time < ?)', @evento.fechaInicio, @evento.fechaInicio, @evento.fechaInicio, @evento.fechaFin).select('id'))
+		@grupo = (Grupo.joins(:eventos).where('grupos.id' => @evento.grupo_id)).first
+		@avisos_consejo = Aviso.joins(:evento).where('avisos.evento_id' => @evento.folio).where('avisos.departamento' => 'Consejo')
+		@avisos_finanzas = Aviso.joins(:evento).where('avisos.evento_id' => @evento.folio).where('avisos.departamento' => 'Finanzas')
+		@avisos_logistica = Aviso.joins(:evento).where('avisos.evento_id' => @evento.folio).where('avisos.departamento' => 'Logística')
+
+		if current_admin
+			add_breadcrumb 'Inicio', '/admin/home'
+			add_breadcrumb 'Eventos', '/admin/eventos'
+			add_breadcrumb @evento.nombre
+		else
+			add_breadcrumb 'Inicio', '/home'
+			add_breadcrumb @evento.nombre
+		end
+
+		if @reserva.save
+			@evento.sede_id = Reserva.last.id
+			@evento.save
+			render 'edit'
+		else
+			redirect_to '/home'
+		end
+	end
+
+	def reservar_cambio
+		@evento = Evento.find(params[:id])
+		@reserva = Reserva.new
+		@reserva.evento_id = @evento.folio
+		@reserva.ubicacion_id = evento_params[:sede_id]
+		@reserva.inicio = @evento.fechaInicio
+		@reserva.fin = @evento.fechaFin
+		@ubicaciones = Ubicacion.where('ubicacions.id not in (?)', Ubicacion.joins(:reservas).where('ubicacions.id = reservas.ubicacion_id').where('(reservas.inicio < ? and reservas.fin > ?) or (reservas.inicio > ? and reservas.inicio < ?)', @evento.fechaInicio, @evento.fechaInicio, @evento.fechaInicio, @evento.fechaFin).select('id').distinct).where('ubicacions.id not in (?)',Ubicacion. where('(ubicacions.horario_inicio::time < ? and ubicacions.horario_fin::time > ?) or (ubicacions.horario_inicio::time > ? and ubicacions.horario_inicio::time < ?)', @evento.fechaInicio, @evento.fechaInicio, @evento.fechaInicio, @evento.fechaFin).select('id'))
+		@grupo = (Grupo.joins(:eventos).where('grupos.id' => @evento.grupo_id)).first
+		@avisos_consejo = Aviso.joins(:evento).where('avisos.evento_id' => @evento.folio).where('avisos.departamento' => 'Consejo')
+		@avisos_finanzas = Aviso.joins(:evento).where('avisos.evento_id' => @evento.folio).where('avisos.departamento' => 'Finanzas')
+		@avisos_logistica = Aviso.joins(:evento).where('avisos.evento_id' => @evento.folio).where('avisos.departamento' => 'Logística')
+
+		if current_admin
+			add_breadcrumb 'Inicio', '/admin/home'
+			add_breadcrumb 'Eventos', '/admin/eventos'
+			add_breadcrumb @evento.nombre
+		else
+			add_breadcrumb 'Inicio', '/home'
+			add_breadcrumb @evento.nombre
+		end
+
+		@eliminar_reserva = Reserva.find(@evento.sede_id)
+		@eliminar_reserva.destroy
+
+		if @reserva.save
+			@evento.sede_id = Reserva.last.id
+			@evento.save
+			render 'edit'
+		else
+			redirect_to '/home'
+		end
 	end
 
 	def cancel
 		@evento = Evento.find(params[:id])
 		@evento.estatus = 'cancelado'
+		if @evento.sede_id != nil
+			@eliminar_reserva = Reserva.find(@evento.sede_id)
+			@eliminar_reserva.destroy
+		end
 		if @evento.save()
 			redirect_to '/home'
 		else
@@ -94,7 +168,7 @@ class EventosController < ApplicationController
 	private
 
 	def evento_params
-		params.require(:evento).permit(:nombre,:numAsistentes,:tipoEvento,:descripcion,:fechaInicio,:fechaFin,:horaInauguracion, :estatus, :archivoCartaContenido, :archivoCartaAsesor, :archivoCroquis, :archivoContactosElectricos, :archivoPresupuesto, :aprobadoConsejo, :aprobadoFinanzas, :aprobadoLogistica, :nombreAprobadoConsejo, :nombreAprobadoLogistica, :nombreAprobadoFinanzas, :fechaAprobadoConsejo, :fechaAprobadoLogistica, :fechaAprobadoFinanzas)
+		params.require(:evento).permit(:nombre,:numAsistentes,:tipoEvento,:descripcion,:fechaInicio,:fechaFin,:horaInauguracion, :estatus, :archivoCartaContenido, :archivoCartaAsesor, :archivoCroquis, :archivoContactosElectricos, :archivoPresupuesto, :aprobadoConsejo, :aprobadoFinanzas, :aprobadoLogistica, :nombreAprobadoConsejo, :nombreAprobadoLogistica, :nombreAprobadoFinanzas, :fechaAprobadoConsejo, :fechaAprobadoLogistica, :fechaAprobadoFinanzas, :sede_id)
 	end
 
 	def aviso_params

@@ -51,6 +51,6 @@ class UbicacionsController < ApplicationController
 	private
 
 	def ubicacion_params
-		params.require(:ubicacion).permit(:zona,:numero,:capacidad,:ancho,:alto,:horarioInicio, :horarioFin, :croquis)
+		params.require(:ubicacion).permit(:zona,:codigo,:capacidad,:ancho,:alto,:horario_inicio, :horario_fin, :croquis, :nombre)
 	end
 end

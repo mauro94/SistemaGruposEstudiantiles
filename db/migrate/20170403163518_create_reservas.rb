@@ -3,7 +3,8 @@ class CreateReservas < ActiveRecord::Migration[5.0]
     create_table :reservas do |t|
     	t.belongs_to :ubicacion, index: true
       t.belongs_to :evento, index: true
-    	t.datetime :horario
+    	t.datetime :inicio
+    	t.datetime :fin
       t.timestamps
     end
   end

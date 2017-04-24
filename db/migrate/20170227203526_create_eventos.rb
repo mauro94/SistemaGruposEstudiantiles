@@ -17,7 +17,7 @@ class CreateEventos < ActiveRecord::Migration[5.0]
       t.datetime :fechaAprobadoFinanzas
       t.boolean :revisadoAlimentos
       t.boolean :revisadoSeguridad
-      t.string :ubicacion
+      t.integer :sede_id
       t.datetime :fechaFin
       t.datetime :fechaInicio
       t.integer :numAsistentes

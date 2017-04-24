@@ -4,7 +4,7 @@ class Ubicacion < ApplicationRecord
 
 	mount_uploader :croquis, ImagesUploader
 
-	validates :zona, :horarioInicio, :horarioFin, :croquis, presence: true
-	validates :capacidad, :numero, presence: true, numericality: { only_integer: true }
+	validates :zona, :horario_inicio, :horario_fin, :croquis, presence: true
+	validates :capacidad, :codigo, presence: true, numericality: { only_integer: true }
 	validates :ancho, :alto, presence: true, numericality: true
 end
