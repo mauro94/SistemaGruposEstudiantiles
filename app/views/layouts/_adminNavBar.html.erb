@@ -1,4 +1,36 @@
 <!--Admin Navbar-->
+<% if current_page?(admin_eventos_url)%>
+<ul id="dropdown2" class="dropdown-content">
+  <% if :consejo.blank? %>
+  <li ><%=link_to "aprobado", admin_eventos_url(:estatus => "aprobado")%></li>
+  <li ><%=link_to "pendiente", admin_eventos_url(:estatus => "pendiente")%></li>
+  <li ><%=link_to "cancelado", admin_eventos_url(:estatus => "cancelado")%></li>
+  <% else %>
+  <li ><%=link_to "aprobado", admin_eventos_url(:estatus => "aprobado",:consejo => @consejo)%></li>
+  <li ><%=link_to "pendiente", admin_eventos_url(:estatus => "pendiente", :consejo => @consejo)%></li>
+  <li ><%=link_to "cancelado", admin_eventos_url(:estatus => "cancelado", :consejo => @consejo)%></li>
+  <%end%>
+</ul>
+<%end%>
+<!--Admin Navbar-->
+<% if current_page?(admin_eventos_url)%>
+<ul id="dropdown3" class="dropdown-content">
+<% if :estatus.blank? %>
+  <li ><%=link_to "CCE", admin_eventos_url(:consejo => "CCE")%></li>
+  <li ><%=link_to "CSA", admin_eventos_url(:consejo => "CSA")%></li>
+  <li ><%=link_to "CARE", admin_eventos_url(:consejo => "CARE")%></li>
+  <li ><%=link_to "FEITESM", admin_eventos_url(:consejo => "FEITESM")%></li>
+  <li ><%=link_to "N/A", admin_eventos_url(:consejo => "N/A")%></li>
+  <% else %>
+  <li ><%=link_to "CCE", admin_eventos_url(:consejo => "CCE", :estatus => @estatus)%></li>
+  <li ><%=link_to "CSA", admin_eventos_url(:consejo => "CSA", :estatus => @estatus)%></li>
+  <li ><%=link_to "CARE", admin_eventos_url(:consejo => "CARE", :estatus => @estatus)%></li>
+  <li ><%=link_to "FEITESM", admin_eventos_url(:consejo => "FEITESM", :estatus => @estatus)%></li>
+  <li ><%=link_to "N/A", admin_eventos_url(:consejo => "N/A", :estatus => @estatus)%></li>
+  <%end%>
+</ul>
+<%end%>
+<!--Admin Navbar-->
 <ul id="dropdown1" class="dropdown-content">
   <li><%=link_to "Perfil", "/admin/edit"%></li>
   <li class="divider"></li>
@@ -11,6 +43,16 @@
     <ul id="nav-mobile" class="right hide-on-med-and-down">
       <li><a class="dropdown-button" href="#!" data-activates="dropdown1"><%=@admin.nombre%><i class="material-icons right">arrow_drop_down</i></a></li>
     </ul>
+    <% if current_page?(admin_eventos_url)%>
+    <ul id="nav-mobile2" class="right hide-on-med-and-down">
+      <li><a class="dropdown-button" href="#!" data-activates="dropdown2">Filtrar por estatus<i class="material-icons right">arrow_drop_down</i></a></li>
+    </ul>
+    <% end%>
+    <% if current_page?(admin_eventos_url)%>
+    <ul id="nav-mobile2" class="right hide-on-med-and-down">
+      <li><a class="dropdown-button" href="#!" data-activates="dropdown3">Filtrar por consejo<i class="material-icons right">arrow_drop_down</i></a></li>
+    </ul>
+    <% end%>
     <ul class="side-nav" id="mobile-demo">
       <li><div class="userView">
         <span class="black-text"><%=@admin.nombre%></span>

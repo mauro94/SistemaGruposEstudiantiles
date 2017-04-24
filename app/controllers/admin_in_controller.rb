@@ -86,8 +86,24 @@ class AdminInController < ApplicationController
 	def eventos
 		add_breadcrumb 'Eventos', '/admin/eventos'
 		@admin = current_admin
+		@filter = Array.new
 		@admins = Admin.paginate(:page => params[:page], :per_page => 10)
-		@eventos = Evento.all
+		if params[:estatus].blank? and params[:consejo].blank?
+			@eventos = Evento.all
+		elsif !params[:estatus].blank? and params[:consejo].blank?
+			@estatus = params[:estatus]
+			@eventos = Evento.where(:estatus => params[:estatus])
+		elsif params[:estatus].blank? and !params[:consejo].blank?
+			@consejo = params[:consejo]
+			@aux = Grupo.where(:consejo => params[:consejo])
+			@eventos = Evento.where(:grupo_id => @aux.select(:id))
+		else
+			@consejo = params[:consejo]
+			@estatus = params[:estatus]
+			@aux = Grupo.where(:consejo => params[:consejo])
+			@eventos = Evento.where(:grupo_id => @aux.select(:id),:estatus => params[:estatus])
+		end
+
 	end
 
 	def grupos
