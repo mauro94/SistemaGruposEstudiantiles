@@ -52,8 +52,8 @@ class EventosController < ApplicationController
 		@grupo = (Grupo.joins(:eventos).where('grupos.id' => @evento.grupo_id)).first
 		@ubicaciones = Ubicacion.where('ubicacions.id not in (?)', Ubicacion.joins(:reservas).where('ubicacions.id = reservas.ubicacion_id').where('(reservas.inicio < ? and reservas.fin > ?) or (reservas.inicio > ? and reservas.inicio < ?)', @evento.fechaInicio, @evento.fechaInicio, @evento.fechaInicio, @evento.fechaFin).select('id').distinct).where('ubicacions.id not in (?)',Ubicacion. where('(ubicacions.horario_inicio::time < ? and ubicacions.horario_fin::time > ?) or (ubicacions.horario_inicio::time > ? and ubicacions.horario_inicio::time < ?)', @evento.fechaInicio, @evento.fechaInicio, @evento.fechaInicio, @evento.fechaFin).select('id'))
 		@avisos_consejo = Aviso.joins(:evento).where('avisos.evento_id' => @evento.folio).where('avisos.departamento' => 'Consejo')
-		@avisos_finanzas = Aviso.joins(:evento).where('avisos.evento_id').where('avisos.departamento' => 'Finanzas')
-		@avisos_logistica = Aviso.joins(:evento).where('avisos.evento_id' => @evento.folio).where('avisos.departamento' => 'Logistica')
+		@avisos_finanzas = Aviso.joins(:evento).where('avisos.evento_id' => @evento.folio).where('avisos.departamento' => 'Finanzas')
+		@avisos_logistica = Aviso.joins(:evento).where('avisos.evento_id' => @evento.folio).where('avisos.departamento' => 'Logística')
 		if @evento.update(evento_params)
 			render 'edit'
 		else
@@ -168,7 +168,7 @@ class EventosController < ApplicationController
 	private
 
 	def evento_params
-		params.require(:evento).permit(:nombre,:numAsistentes,:tipoEvento,:descripcion,:fechaInicio,:fechaFin,:horaInauguracion, :estatus, :archivoCartaContenido, :archivoCartaAsesor, :archivoCroquis, :archivoContactosElectricos, :archivoPresupuesto, :aprobadoConsejo, :aprobadoFinanzas, :aprobadoLogistica, :nombreAprobadoConsejo, :nombreAprobadoLogistica, :nombreAprobadoFinanzas, :fechaAprobadoConsejo, :fechaAprobadoLogistica, :fechaAprobadoFinanzas, :sede_id)
+		params.require(:evento).permit(:nombre,:numAsistentes,:tipoEvento,:descripcion,:fechaInicio,:fechaFin,:horaInauguracion, :estatus, :archivoCartaContenido, :archivoCartaAsesor, :archivoCroquis, :archivoContactosElectricos, :archivoPresupuesto, :aprobadoConsejo, :aprobadoFinanzas, :aprobadoLogistica, :nombreAprobadoConsejo, :nombreAprobadoLogistica, :nombreAprobadoFinanzas, :fechaAprobadoConsejo, :fechaAprobadoLogistica, :fechaAprobadoFinanzas, :sede_id, :audiovisual, :materiales)
 	end
 
 	def aviso_params

@@ -16,5 +16,5 @@ class Evento < ApplicationRecord
 	auto_increment :folio
 
 	validates :nombre, :descripcion, :fechaInicio, :fechaFin, :horaInauguracion, :tipoEvento, presence: true
-    validates :numAsistentes, presence: true, numericality: { only_integer: true }
+  validates :numAsistentes, presence: true, numericality: { only_integer: true }
 end

@@ -26,27 +26,27 @@
 <div class="row center">
 	<div class="col s12 m4 center">
 		<%if not @evento.aprobadoConsejo%>
-			<a class="btn tooltipped orange" data-position="bottom" data-delay="50" data-tooltip="En Progreso"><i class="material-icons left">schedule</i><%=@grupo.consejo%></a>
+			<a class="btn tooltipped orange" href="#consejo" data-position="bottom" data-delay="50" data-tooltip="En Progreso"><i class="material-icons left">schedule</i>Consejo</a>
 		<%else%>
-			<a class="btn tooltipped green" data-position="bottom" data-delay="50" data-tooltip="Autorizado"><i class="material-icons left">done</i><%=@grupo.consejo%></a><br>
+			<a class="btn tooltipped green" href="#consejo" data-position="bottom" data-delay="50" data-tooltip="Autorizado"><i class="material-icons left">done</i>Consejo</a><br>
 			<p><b>Aprobado por:</b> <%=@evento.nombreAprobadoConsejo%></p>
 			<p><b>Fecha:</b> <%=@evento.fechaAprobadoConsejo.strftime("%d/%m/%Y %I:%M %p")%></p>
 		<%end%>
 	</div>
 	<div class="col s12 m4 center">
 		<%if not @evento.aprobadoLogistica%>
-			<a class="btn tooltipped orange" data-position="bottom" data-delay="50" data-tooltip="En Progreso"><i class="material-icons left">schedule</i>Logística</a>
+			<a class="btn tooltipped orange" href="#logistica" data-position="bottom" data-delay="50" data-tooltip="En Progreso"><i class="material-icons left">schedule</i>Logística</a>
 		<%else%>
-			<a class="btn tooltipped green" data-position="bottom" data-delay="50" data-tooltip="Autorizado"><i class="material-icons left">done</i>Logística</a><br>
+			<a class="btn tooltipped green" href="#logistica" data-position="bottom" data-delay="50" data-tooltip="Autorizado"><i class="material-icons left">done</i>Logística</a><br>
 			<p><b>Aprobado por:</b> <%=@evento.nombreAprobadoLogistica%></p>
 			<p><b>Fecha:</b> <%=@evento.fechaAprobadoLogistica.strftime("%d/%m/%Y %I:%M %p")%></p>
 		<%end%>
 	</div>
 	<div class="col s12 m4 center">
 		<%if not @evento.aprobadoFinanzas%>
-			<a class="btn tooltipped orange" data-position="bottom" data-delay="50" data-tooltip="En Progreso"><i class="material-icons left">schedule</i>Finanzas</a>
+			<a class="btn tooltipped orange" href="#finanzas" data-position="bottom" data-delay="50" data-tooltip="En Progreso"><i class="material-icons left">schedule</i>Finanzas</a>
 		<%else%>
-			<a class="btn tooltipped green" data-position="bottom" data-delay="50" data-tooltip="Autorizado"><i class="material-icons left">done</i>Finanzas</a><br>
+			<a class="btn tooltipped green" href="#finanzas" data-position="bottom" data-delay="50" data-tooltip="Autorizado"><i class="material-icons left">done</i>Finanzas</a><br>
 			<p><b>Aprobado por:</b> <%=@evento.nombreAprobadoFinanzas%></p>
 			<p><b>Fecha:</b> <%=@evento.fechaAprobadoFinanzas.strftime("%d/%m/%Y %I:%M %p")%></p>
 		<%end%>

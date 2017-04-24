@@ -51,11 +51,14 @@ class AdminInController < ApplicationController
 	end
 
 	def create
+		add_breadcrumb 'Administradores', '/admin/admins'
+		add_breadcrumb 'Nuevo Administrador'
 		@admin = current_admin
 		@new_admin = Admin.new(admin_params)
 		if @new_admin.save
 			redirect_to '/admin/admins'
 		else
+			flash[:alert] = 'Error '
 			render 'new_admin'
 		end
 	end

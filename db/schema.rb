@@ -83,6 +83,8 @@ ActiveRecord::Schema.define(version: 20170418003857) do
     t.datetime "fechaAprobadoConsejo"
     t.datetime "fechaAprobadoLogistica"
     t.datetime "fechaAprobadoFinanzas"
+    t.boolean  "materiales"
+    t.boolean  "audiovisual"
     t.boolean  "revisadoAlimentos"
     t.boolean  "revisadoSeguridad"
     t.integer  "sede_id"

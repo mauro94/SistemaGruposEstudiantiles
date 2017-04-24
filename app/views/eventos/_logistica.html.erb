@@ -31,6 +31,7 @@
 			</div>
 		</div>
 		<div class="col s12 m6">
+			<div class="col s12">
 			<h6><b>Ubicación Sede:</b></h6>
 			<%= f.input :sede_id , label: false, collection: @ubicaciones, :label_method => lambda {|u| u.nombre}, prompt: 'Selecciona ubicación', :input_html => { :class =>"form-control", :id => 'ubicacion_select' }%>
 			<%for x in @ubicaciones%>
@@ -56,36 +57,38 @@
 			</div>
 			<div class="js-dependent-fields" data-select-id='ubicacion_select' data-option-value='<%=x.id%>'>
 				<div class="col s12 center">
-					<img class="materialboxed" data-caption="Croquis" width="250" src=<%=x.croquis_url%>>
+					<img class="materialboxed center" data-caption="Croquis" width="250" src=<%=x.croquis_url%>>
 				</div>
 			</div>
 			<%end%>
+			</div>
+			<div class="col s12"><p></p></div>
+			<div class="col s12">
+				<%if @evento.sede_id == nil%>
+					<%= f.submit 'Reservar', :class => 'btn btn-default right'%><br><br>
+					<%else%>
+					<%= f.submit 'Cambiar Reservación', :class => 'btn btn-default right'%><br><br>
+					<%end%>
+					<% end %>
+			</div>
 		</div>
-	</div>
-	<div class="row">
-		<%if @evento.sede_id == nil%>
-		<%= f.submit 'Reservar', :class => 'btn btn-default right'%><br><br>
-		<%else%>
-		<%= f.submit 'Cambiar Reservación', :class => 'btn btn-default right'%><br><br>
-		<%end%>
-		<% end %>
 	</div>
 </div>
 <div class="divider"></div><br>
 <div class="row">
 	<h5>Materiales</h5>
-	<%= simple_form_for @evento do |f| %>
+	<%= form_for @evento do |f| %>
 	<div class="row center">
 		<div class="col s12 m4">
 			<p>
-				<%= check_box_tag(:revisadoAlimentos) %>
-				<%= label_tag(:revisadoAlimentos, "Mobiliario") %>
+				<%= f.check_box :materiales %>
+				<%= f.label(:materiales, "Mobiliario") %>
 		    </p>
 		</div>
 		<div class="col s12 m4">
 			<p>
-		      <input type="checkbox" class="filled-in" id="audiovisual" />
-		      <label for="audiovisual">Equipo Audiovisual</label>
+				<%= f.check_box :audiovisual %>
+				<%= f.label(:audiovisual, "Equipo Audiovisual") %>
 		    </p>
 		</div>
 	</div>
@@ -94,8 +97,8 @@
 		<% end %>	
 	</div>
 </div>
-<div class="divider"></div><br>
 <%if @avisos_logistica.count > 0%>
+<div class="divider"></div><br>
 	<div class="row">
 		<div class="col s12">
 			<h5>Avisos Enviados</h5>
@@ -157,6 +160,7 @@
 			</div>
 		</div>
 		<div class="col s12 m6">
+			<div class="col s12">
 			<h6><b>Ubicación Sede:</b></h6>
 			<%= f.input :sede_id , label: false, collection: @ubicaciones, :label_method => lambda {|u| u.nombre}, prompt: 'Selecciona ubicación', :input_html => { :class =>"form-control", :id => 'ubicacion_select' }%>
 			<%for x in @ubicaciones%>
@@ -182,19 +186,29 @@
 			</div>
 			<div class="js-dependent-fields" data-select-id='ubicacion_select' data-option-value='<%=x.id%>'>
 				<div class="col s12 center">
-					<img class="materialboxed" data-caption="Croquis" width="250" src=<%=x.croquis_url%>>
+					<img class="materialboxed center" data-caption="Croquis" width="250" src=<%=x.croquis_url%>>
 				</div>
 			</div>
 			<%end%>
+			</div>
+			<div class="col s12"><p></p></div>
+			<div class="col s6">
+				<%if @evento.sede_id == nil%>
+					<%= f.submit 'Reservar', :class => 'btn btn-default'%><br><br>
+					<%else%>
+					<%= f.submit 'Cambiar Reservación', :class => 'btn btn-default'%><br><br>
+					<%end%>
+					<% end %>
+			</div>
+			<div class="col s6 right">
+				<%= simple_form_for @evento, :url => url_for(:controller => 'eventos', :action => 'cancel', :id => @evento.id) do |f| %>
+					<% if @evento.sede_id != nil %>
+						<%= f.hidden_field 'sede_id', :value => nil %>
+			      <%= f.submit 'Cancelar reservación', :class => "waves-effect waves-light btn red"%>
+			     <%end%>
+			    <%end%>
+			</div>
 		</div>
-	</div>
-	<div class="row">
-		<%if @evento.sede_id == nil%>
-		<%= f.submit 'Reservar', :class => 'btn btn-default right disabled'%><br><br>
-		<%else%>
-		<%= f.submit 'Cambiar Reservación', :class => 'btn btn-default right disabled'%><br><br>
-		<%end%>
-		<% end %>
 	</div>
 </div>
 <div class="divider"></div><br>

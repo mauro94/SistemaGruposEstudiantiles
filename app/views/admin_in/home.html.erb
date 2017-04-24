@@ -27,22 +27,22 @@
   </ul>
 <%end%>
 </div>-->
+<!--Botones-->
+<div class="row center">
+  <% if @admin.puesto == 'Logística'%>
+    <%= link_to "Ubicaciones", ubicacions_path() , :class => 'waves-effect waves-light btn-large'%>
+    <%= link_to "Eventos", "/admin/eventos" , :class => 'waves-effect waves-light btn-large'%>
+  <% elsif @admin.puesto == 'Administración'%>
+    <%= link_to "Ubicaciones", ubicacions_path() , :class => 'waves-effect waves-light btn-large'%>
+    <%= link_to "Eventos", "/admin/eventos" , :class => 'waves-effect waves-light btn-large'%>
+    <%= link_to "Grupos", "/admin/grupos" , :class => 'waves-effect waves-light btn-large'%>
+    <%= link_to "Administradores", "/admin/admins" , :class => 'waves-effect waves-light btn-large'%>
+  <% else %>
+    <%= link_to "Eventos", "/admin/eventos" , :class => 'waves-effect waves-light btn-large'%>
+  <%end%>
+</div>
 <!--Eventos de la semana-->
 <div class="row">
   <%= render 'admin_in/eventos_esta_semana' %>
   <%= render 'admin_in/eventos_siguiente_semana' %>
-</div>
-<!--Botones-->
-<div class="row center">
-  <% if @admin.puesto == 'Logística'%>
-    <%= link_to "Ubicaciones", ubicacions_path() , :class => 'waves-effect waves-light btn'%>
-    <%= link_to "Eventos", "/admin/eventos" , :class => 'waves-effect waves-light btn'%>
-  <% elsif @admin.puesto == 'Administración'%>
-    <%= link_to "Ubicaciones", ubicacions_path() , :class => 'waves-effect waves-light btn'%>
-    <%= link_to "Eventos", "/admin/eventos" , :class => 'waves-effect waves-light btn'%>
-    <%= link_to "Grupos", "/admin/grupos" , :class => 'waves-effect waves-light btn'%>
-    <%= link_to "Administradores", "/admin/admins" , :class => 'waves-effect waves-light btn'%>
-  <% else %>
-    <%= link_to "Eventos", "/admin/eventos" , :class => 'waves-effect waves-light btn'%>
-  <%end%>
 </div>

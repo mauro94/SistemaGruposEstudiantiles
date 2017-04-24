@@ -7,7 +7,7 @@
 
     <div class="row">
         <div class="col s12 input-field">
-        <%= f.email_field :email, placeholder: "alejandra.garza@itesm.mx" %>
+        <%= f.email_field :email, placeholder: "alejandra.garza@itesm.mx"%>
         <label class = "active">Correo</label>
       </div>
     </div>
@@ -19,28 +19,8 @@
       </div>
 
       <div class="col s12 m6 input-field">
-        <%= f.text_field :apellido, placeholder: "Garza" %>
+        <%= f.text_field :apellido, placeholder: "Garza"%>
         <label class = "active">Apellido</label>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col s12 m6 input-field">
-        <%= f.select(:puesto) do %>
-          <% [['Logística', 'Logística'], ['Finanzas', 'Finanzas'], ['Administración', 'Administración']].each do |c| -%>
-            <%= content_tag(:option, c.first, value: c.last) %>
-          <% end %>
-        <% end %>
-        <label>Puesto</label>
-      </div>
-      
-      <div class="col s12 m6 input-field">
-        <%= f.select(:consejo) do %>
-          <% [['CCE', 'CCE'], ['CSA', 'CSA'], ['CARE', 'CARE'], ['FEITESM', 'FEITESM'], ['N/A', 'N/A']].each do |c| -%>
-            <%= content_tag(:option, c.first, value: c.last) %>
-          <% end %>
-        <% end %>
-        <label>Consejo</label>
       </div>
     </div>
 
@@ -56,6 +36,20 @@
       </div>
     </div>
 
+    <div class="row">
+      <div class="col s12 m6 input-field">
+        <%= f.select :puesto, ['Logística', 'Finanzas', 'Administración'], prompt: 'Selecciona una opción'%>
+        <label>Puesto</label>
+      </div>
+
+      <div class="js-dependent-fields" data-select-id='admin_puesto' data-option-value='Administración'>
+        <div class="col s12 m6 input-field">
+          <%= f.select :consejo, ['CCE', 'CSA', 'CARE', 'FEITESM', 'N/A'], prompt: 'Selecciona una opción' %>
+          <label>Consejo</label>
+        </div>
+      </div>
+    </div>
+
     <%= f.hidden_field 'password', :value => '12345678' %>
     <%= f.hidden_field 'password_confirmation', :value => '12345678' %>
 
@@ -65,3 +59,8 @@
     </div>
   <% end %>
 </div>
+<script type="text/javascript">
+  $(document).ready(function() {
+     DependentFields.bind()
+  });
+</script>
