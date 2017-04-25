@@ -20,6 +20,10 @@ class EventosController < ApplicationController
 	def create
 		@grupo = current_grupo
 		if @grupo.eventos.create(evento_params)
+			@admins = Admin.where('admins.consejo = ?', @grupo.consejo)
+			for a in @admins
+				GrupoMailer.nuevo_evento(a, @grupo).deliver_now
+			end
 			redirect_to '/home'
 		else
 			render 'new'
@@ -54,6 +58,14 @@ class EventosController < ApplicationController
 		@avisos_consejo = Aviso.joins(:evento).where('avisos.evento_id' => @evento.folio).where('avisos.departamento' => 'Consejo')
 		@avisos_finanzas = Aviso.joins(:evento).where('avisos.evento_id' => @evento.folio).where('avisos.departamento' => 'Finanzas')
 		@avisos_logistica = Aviso.joins(:evento).where('avisos.evento_id' => @evento.folio).where('avisos.departamento' => 'Logística')
+		if current_admin
+			add_breadcrumb 'Inicio', '/admin/home'
+			add_breadcrumb 'Eventos', '/admin/eventos'
+			add_breadcrumb @evento.nombre
+		else
+			add_breadcrumb 'Inicio', '/home'
+			add_breadcrumb @evento.nombre
+		end
 		if @evento.update(evento_params)
 			render 'edit'
 		else

@@ -93,7 +93,7 @@
 		</div>
 	</div>
 	<div class="row right">
-		<%= f.submit 'Solicitar Cita', :class => 'btn btn-default'%><br><br>
+		<%= f.submit 'Guardar Materiales', :class => 'btn btn-default'%><br><br>
 		<% end %>	
 	</div>
 </div>
@@ -129,6 +129,23 @@
 <!--............................................................................................................-->
 <%else%>
 <div class="row">
+	<div class="row">
+		<h5>Autorización</h5>
+		<h6>Aqui puedes aprobar este evento por parte del departamento de Logística.</h6><br>
+		<div class="col s12 center">
+			<%= form_for @evento do |f| %>
+			<% if not @evento.aprobadoLogistica and @admin.puesto == 'Logística'%>
+          <%= f.hidden_field 'aprobadoLogistica', :value => true %>
+          <%= f.hidden_field 'nombreAprobadoLogistica', :value => @admin.nombre + ' ' + @admin.apellido%>
+          <%= f.hidden_field 'fechaAprobadoLogistica', :value => Time.now %>
+          <%= f.submit 'Autorizar', :class => "waves-effect waves-light btn green", data: {confirm: "Una vez autorizado, no se puede cancelar esta autorización"}%>
+        <% else %>
+          <%= f.submit 'Autorizar', :class => "waves-effect waves-light btn green disabled"%>
+        <%end%>
+      <% end %>
+		</div>
+	</div>
+	<div class="divider"></div><br>
 	<div class="row">
 	<h5>Ubicación</h5>
 	<h6>Aqui pueden reservar su espacio para su evento y solicitar una cita para revisar lo que necesiten para su evento. Al revisar estos datos su estatus de logistica cambiara a 'Revisando' y hasta que se presenten en Centro Estudiantil y se autorizen todas sus solicitudes, su estatus cambiara a 'Aprobado'.</h6>
@@ -214,22 +231,26 @@
 <div class="divider"></div><br>
 <div class="row">
 	<h5>Materiales</h5>
-	<%= simple_form_for @evento do |f| %>
+	<%= form_for @evento do |f| %>
 	<div class="row center">
 		<div class="col s12 m4">
 			<p>
-		      <input type="checkbox" class="filled-in" id="mobiliario" />
-		      <label for="mobiliario">Mobiliario</label>
+				<%= f.check_box :materiales, disabled: true %>
+				<%= f.label(:materiales, "Mobiliario") %>
 		    </p>
 		</div>
 		<div class="col s12 m4">
 			<p>
-		      <input type="checkbox" class="filled-in" id="audiovisual" />
-		      <label for="audiovisual">Equipo Audiovisual</label>
+				<%= f.check_box :audiovisual, disabled: true %>
+				<%= f.label(:audiovisual, "Equipo Audiovisual") %>
 		    </p>
 		</div>
 	</div>
-	<% end %>	
+	<div class="row right">
+		<%= f.submit 'Guardar Materiales', :class => 'btn btn-default disabled'%><br><br>
+		<% end %>	
+	</div>
+</div>
 	<div class="divider"></div><br>
 	<div class="row">
 		<div class="col s12">
