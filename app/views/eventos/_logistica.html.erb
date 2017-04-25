@@ -2,8 +2,8 @@
 <div class="row">
 	<div class="row">
 	<h5>Ubicación</h5>
-	<h6>Aqui pueden reservar su espacio para su evento y solicitar una cita para revisar lo que necesiten para su evento. Al revisar estos datos su estatus de logistica cambiara a 'Revisando' y hasta que se presenten en Centro Estudiantil y se autorizen todas sus solicitudes, su estatus cambiara a 'Aprobado'.</h6>
-	<h6>IMPORTANTE: Nada de lo que se reserve en este sistema confirma su reserva hasta que su estatus de logistica este en 'Aprobado'.</h6>
+	<h6>Aquí pueden reservar el espacio para su evento y solicitar una cita para revisar lo que necesiten para el mismo. Al revisar estos datos su estatus de Logística cambiará a 'Revisando' y hasta que se presenten en Centro Estudiantil y se autorizen todas sus solicitudes, su estatus cambiará a 'Aprobado'.</h6>
+	<h6>IMPORTANTE: Nada de lo que se reserve en este sistema confirma su reserva hasta que su estatus de Logística esté en 'Aprobado'.</h6>
 	</div>
 	<%if @evento.sede_id == nil%>
 		<% @controller_action = 'reservar'%>
@@ -131,7 +131,7 @@
 <div class="row">
 	<div class="row">
 		<h5>Autorización</h5>
-		<h6>Aqui puedes aprobar este evento por parte del departamento de Logística.</h6><br>
+		<h6>Aquí puedes aprobar este evento por parte del departamento de Logística.</h6><br>
 		<div class="col s12 center">
 			<%= form_for @evento do |f| %>
 			<% if not @evento.aprobadoLogistica and @admin.puesto == 'Logística'%>
@@ -148,8 +148,8 @@
 	<div class="divider"></div><br>
 	<div class="row">
 	<h5>Ubicación</h5>
-	<h6>Aqui pueden reservar su espacio para su evento y solicitar una cita para revisar lo que necesiten para su evento. Al revisar estos datos su estatus de logistica cambiara a 'Revisando' y hasta que se presenten en Centro Estudiantil y se autorizen todas sus solicitudes, su estatus cambiara a 'Aprobado'.</h6>
-	<h6>IMPORTANTE: Nada de lo que se reserve en este sistema confirma su reserva hasta que su estatus de logistica este en 'Aprobado'.</h6>
+	<h6>Aquí pueden reservar el espacio para su evento y solicitar una cita para revisar lo que necesiten para el mismo. Al revisar estos datos su estatus de Logística cambiará a 'Revisando' y hasta que se presenten en Centro Estudiantil y se autorizen todas sus solicitudes, su estatus cambiará a 'Aprobado'.</h6>
+	<h6>IMPORTANTE: Nada de lo que se reserve en este sistema confirma su reserva hasta que su estatus de Logística esté en 'Aprobado'.</h6>
 	</div>
 	<%if @evento.sede_id == nil%>
 		<% @controller_action = 'reservar'%>
@@ -255,7 +255,7 @@
 	<div class="row">
 		<div class="col s12">
 			<h5>Aviso</h5>
-			<h6>Aqui pueden enviar algun aviso a un evento.</h6>
+			<h6>Aquí pueden enviar algún aviso a un evento.</h6>
 			<%= simple_form_for Aviso.new, :url => url_for(:controller => 'eventos', :action => 'aviso', :id => @evento.id) do |f| %>
 				<div class="row">
 			    <div class="col s12">
