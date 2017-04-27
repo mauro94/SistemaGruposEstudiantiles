@@ -36,7 +36,7 @@
             <%= content_tag :i, 'edit',  :class => "material-icons center"%>
             <%end%>
           </td>
-          <td style = "text-align: center;"><%= link_to ubicacion_path(u), :class => "waves-effect waves-light btn red", data: {confirm: "¿Estás seguro de eliminar la ubicación?"}, :method => :delete do %>
+          <td style = "text-align: center;"><%= link_to ubicacion_path(u), :class => "waves-effect waves-light btn red", data: {confirm: "¿Estás seguro de querer eliminar la ubicación?"}, :method => :delete do %>
             <%= content_tag :i, 'delete',  :class => "material-icons center"%>
             <%end%></td>
         </tr>

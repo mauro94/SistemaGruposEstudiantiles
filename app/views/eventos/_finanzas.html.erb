@@ -2,7 +2,7 @@
 	<div class="row">
 		<div class="row">
 			<h5>Documentos</h5>
-			<h6>Aqui pueden subir el presupuesto de su evento. Si llega a ser autorizado, su estasus de finanzas cambiará a 'Aprobado'.</h6><br>
+			<h6>Aquí pueden subir el presupuesto del evento. Si llega a ser autorizado, su estatus de Finanzas cambiará a 'Aprobado'.</h6><br>
 			<%= form_for @evento do |f| %>
 			<div class="row">
 				<div class="col s12">
@@ -61,7 +61,7 @@
 <div class="row">
 	<div class="row">
 		<h5>Autorización</h5>
-		<h6>Aqui puedes aprobar este evento por parte del departamento de Finanzas.</h6><br>
+		<h6>Aquí puedes aprobar este evento por parte del departamento de Finanzas.</h6><br>
 		<div class="col s12 center">
 			<%= form_for @evento do |f| %>
 			<% if not @evento.aprobadoFinanzas and @admin.puesto == 'Finanzas'%>
@@ -78,7 +78,7 @@
 	<div class="divider"></div><br>
 	<div class="row">
 		<h5>Documentos</h5>
-		<h6>Documentos que subio el grupo estudiantil.</h6><br>
+		<h6>Documentos que subió el grupo estudiantil.</h6><br>
 		<%= form_for @evento do |f| %>
 			<div class="row center">
 		    <div class="col s12">
@@ -97,7 +97,7 @@
 	<div class="row">
 		<div class="col s12">
 			<h5>Aviso</h5>
-			<h6>Aqui pueden enviar algun aviso a un evento.</h6>
+			<h6>Aquí pueden enviar algún aviso a un evento.</h6>
 			<%= simple_form_for Aviso.new, html: { id: 'new_aviso_finanzas' }, :url => url_for(:controller => 'eventos', :action => 'aviso', :id => @evento.id) do |f| %>
 				<div class="row">
 			    <div class="col s12 input-field">
