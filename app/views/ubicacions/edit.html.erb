@@ -1,47 +1,71 @@
 <div class="row">
-  <h3> Nueva Ubicación </h3>
+  <h3> Editar Ubicación </h3>
 </div>
 
 <div class="row>"> 
   <%= simple_form_for @ubicacion do |f| %>
 
   <div class="row">
-    <div class="col s12 m6">
-      <label>Zona</label>
-      <%= f.input :zona , as: :select, label: false, collection:["CE", "Plaza Aulas 1", "Aulas 2", "Pasillo CE", "A4 Norte", "A4 Sur", "A3 - A4", "Jardin de las Carreras", "Pasillo DAF", "Domo", "A1 - CIAP", "Gimnasio", "A1 - Biotecnologia", "Explanada Centro Estudiantil", "DAF", "Arquitectura"]%>
-    </div>
-    <div class="col s12 m6">
-      <label>Codigo</label>
-      <%= f.input :codigo, :as => "integer", label: false%>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col s12 m6">
-      <label>Capacidad</label>
-      <%= f.input :capacidad, :as => "integer", label: false%>
-    </div>
-    <div class="col s12 m6">
-      <label>Dimensiones (m x m)</label>
-      <div class="row">
-      <div class="col s6">
-        <%= f.input :ancho, :as => "float", label: false%>
-      </div>
-      <div class="col s6">
-        <%= f.input :alto, :as => "float", label: false%>
-      </div>
-      </div>
+    <div class="col s12 input-field">
+      <%= f.text_field :nombre, placeholder: "Sala 1"%>
+      <label class = "active">Nombre</label>
     </div>
   </div>
 
   <div class="row">
-    <div class="col s12 m6">
-      <label>Horario Inicio (Hora/Min)</label>
-      <%= f.input :horario_inicio, as: :time, label: false, time_separator: "", input_html: { class: 'col s6'}%>
+    <div class="col s12 m6 input-field">
+      <%= f.select :zona, ["CE", "Plaza Aulas 1", "Aulas 2", "Pasillo CE", "A4 Norte", "A4 Sur", "A3 - A4", "Jardin de las Carreras", "Pasillo DAF", "Domo", "A1 - CIAP", "Gimnasio", "A1 - Biotecnologia", "Explanada Centro Estudiantil", "DAF", "Arquitectura"]%>
+      <label class = "active">Zona</label>
+    </div>
+    <div class="col s12 m6 input-field">
+      <%= f.number_field :codigo, placeholder: "12"%>
+      <label class = "active">Codigo</label>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col s12 m6 input-field">
+      <%= f.number_field :capacidad, placeholder: "200"%>
+      <label class = "active">Capacidad</label>
     </div>
     <div class="col s12 m6">
-      <label>Horario Fin (Hora/Min)</label>
-      <%= f.input :horario_fin, as: :time, label: false, time_separator: "", input_html: { class: 'col s6'}%>
+        <div class="col s6 input-field">
+          <%= f.number_field :ancho, placeholder: "1"%>
+          <label class = "active">Dimensiones - Ancho(metros)</label>
+        </div>
+        <div class="col s6 input-field">
+          <%= f.number_field :alto, placeholder: "6"%>
+          <label class = "active">Dimensiones - Alto(metros)</label>
+        </div>
     </div>
+  </div>
+
+  <div class="row">
+    <div class="col s12 m6 input-field">
+      <%= f.input :horario_inicio, as: :time, label: false, time_separator: "", input_html: { class: 'col s6'}, ampm: true, minute_step: 15, default: {hour: 0, minute: 0}%>
+      <label class = "active">Hora Apertura (Hora/Min)</label>
+    </div>
+    <div class="col s12 m6 input-field">
+      <%= f.input :horario_fin, as: :time, label: false, time_separator: "", input_html: { class: 'col s6'}, ampm: true, minute_step:  15, default: {hour: 0, minute: 0}%>
+      <label class = "active">Hora Cierre (Hora/Min)</label>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="file-field input-field col s12">
+      <div class="btn">
+        <span>Croquis</span>
+        <%= f.file_field :croquis %>
+      </div>
+      <div class="file-path-wrapper">
+        <input class="file-path validate" type="text">
+      </div>
+    </div>
+    <%if @ubicacion.croquis_url != nil%>
+    <div class="col s12 right">
+        <%= link_to "Ver Croquis", @ubicacion.croquis_url, :class => "waves-effect waves-light btn right"%>
+    </div>
+    <%end%>
   </div>
 
   <div class="row right">
@@ -50,3 +74,76 @@
   </div>
   <% end %>
 </div>
+
+<script>
+  $(document).ready(function() {
+     DependentFields.bind()
+  });
+  $("#edit_ubicacion_<%=@ubicacion.id%>").validate({
+    rules: {
+      'ubicacion[nombre]': {
+          required: true
+      },
+      'ubicacion[zona]': {
+        required: true
+      },
+      'ubicacion[codigo]': {
+        required: true,
+        digits: true
+      },
+      'ubicacion[capacidad]': {
+        required: true,
+        digits: true
+      },
+      'ubicacion[ancho]': {
+        required: true
+      },
+      'ubicacion[alto]': {
+        required: true
+      },
+      'ubicacion[horario_inicio]': {
+        required: true
+      },
+      'ubicacion[horario_fin]': {
+        required: true
+      },
+    },
+    messages: {
+      'ubicacion[nombre]':{
+          required: "Campo obligatorio"
+      },
+      'ubicacion[zona]': {
+        required: "Campo obligatorio"
+      },
+      'ubicacion[codigo]': {
+        required: "Campo obligatorio",
+        digits: "Solo se permiten dígitos"
+      },
+      'ubicacion[capacidad]': {
+        required: "Campo obligatorio",
+        digits: "Solo se permiten dígitos"
+      },
+      'ubicacion[ancho]': {
+        required: "Campo obligatorio"
+      },
+      'ubicacion[alto]': {
+        required: "Campo obligatorio"
+      },
+      'ubicacion[horario_inicio]': {
+        required: "Campo obligatorio"
+      },
+      'ubicacion[horario_fin]': {
+        required: "Campo obligatorio"
+      },
+    },
+    errorElement : 'div',
+    errorPlacement: function(error, element) {
+      var placement = $(element).data('error');
+      if (placement) {
+        $(placement).append(error)
+      } else {
+        error.insertAfter(element);
+      }
+    }
+  });
+</script>

@@ -5,7 +5,7 @@ class Admin < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   validates :nombre, :apellido, :puesto, presence: true
-  validates :extension, presence: true, numericality: { only_integer: true }, length: { minimum: 3, too_short: "mínimo %{count} digitos" }
-  validates :oficina, presence: true, format: { with: /\A[^-]+-[0-9]+\z/}
+  validates :extension, presence: true, numericality: { only_integer: true }
+  validates :oficina, presence: true
 
 end

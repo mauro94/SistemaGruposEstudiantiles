@@ -41,8 +41,54 @@
 
   <div class="row right">
     <div class="actions">
-      <%= link_to "Cancelar", :back , :class => 'btn waves-effect waves-light'%>
+      <%= link_to "Cancelar", '/admin/home' , :class => 'btn waves-effect waves-light'%>
       <%= f.submit "Actualizar", :class => 'btn waves-effect waves-light'%>
     </div>
   </div>
 <% end %>
+<script>
+  $(document).ready(function() {
+     DependentFields.bind()
+  });
+  $("#edit_admin").validate({
+    rules: {
+      'admin[email]': {
+          required: true,
+          email: true
+      },
+      'admin[password]': {
+        required: true
+      },
+      'admin[password_confirmation]': {
+        required: true
+      },
+      'admin[current_password]': {
+        required: true
+      },
+    },
+    messages: {
+      'admin[email]':{
+        required: "Campo obligatorio",
+        email: "Se requiere un correo válido"
+      },
+      'admin[password]': {
+        required: "Campo obligatorio"
+      },
+      'admin[password_confirmation]': {
+        required: "Campo obligatorio"
+      },
+      'admin[current_password]': {
+        required: "Campo obligatorio"
+      },
+    },
+    errorElement : 'div',
+    errorPlacement: function(error, element) {
+      var placement = $(element).data('error');
+      if (placement) {
+        $(placement).append(error)
+      } else {
+        error.insertAfter(element);
+      }
+    }
+  });
+</script>

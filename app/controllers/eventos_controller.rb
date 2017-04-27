@@ -13,6 +13,8 @@ class EventosController < ApplicationController
 	end
 
 	def new
+		add_breadcrumb 'Inicio', '/home'
+		add_breadcrumb 'Nuevo Evento'
 		@evento = Evento.new
 		@grupo = current_grupo
 	end

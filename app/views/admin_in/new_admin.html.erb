@@ -38,13 +38,13 @@
 
     <div class="row">
       <div class="col s12 m6 input-field">
-        <%= f.select :puesto, ['Logística', 'Finanzas', 'Administración'], prompt: 'Selecciona una opción'%>
+        <%= f.select :puesto, ['Logística', 'Finanzas', 'Administración']%>
         <label>Puesto</label>
       </div>
 
       <div class="js-dependent-fields" data-select-id='admin_puesto' data-option-value='Administración'>
         <div class="col s12 m6 input-field">
-          <%= f.select :consejo, ['CCE', 'CSA', 'CARE', 'FEITESM', 'N/A'], prompt: 'Selecciona una opción' %>
+          <%= f.select :consejo, ['N/A', 'CCE', 'CSA', 'CARE', 'FEITESM']%>
           <label>Consejo</label>
         </div>
       </div>
@@ -59,8 +59,61 @@
     </div>
   <% end %>
 </div>
-<script type="text/javascript">
+<script>
   $(document).ready(function() {
      DependentFields.bind()
+  });
+  $("#new_admin").validate({
+    rules: {
+      'admin[email]': {
+          required: true,
+          email: true
+      },
+      'admin[nombre]': {
+        required: true
+      },
+      'admin[apellido]': {
+        required: true
+      },
+      'admin[extension]': {
+        required: true,
+        digits: true,
+        minlength: 4,
+        maxlength: 4
+      },
+      'admin[oficina]': {
+        required: true
+      },
+    },
+    messages: {
+      'admin[email]':{
+          required: "Campo obligatorio",
+          email: "Se requiere un correo válido"
+      },
+      'admin[nombre]': {
+        required: "Campo obligatorio"
+      },
+      'admin[apellido]': {
+        required: "Campo obligatorio"
+      },
+      'admin[extension]': {
+        required: "Campo obligatorio",
+        digits: "Solo se permiten dígitos",
+        minlength: "Solo 4 dígitos",
+        maxlength: "Solo 4 dígitos"
+      },
+      'admin[oficina]': {
+        required: "Campo obligatorio"
+      },
+    },
+    errorElement : 'div',
+    errorPlacement: function(error, element) {
+      var placement = $(element).data('error');
+      if (placement) {
+        $(placement).append(error)
+      } else {
+        error.insertAfter(element);
+      }
+    }
   });
 </script>

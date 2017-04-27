@@ -98,15 +98,17 @@
 		<div class="col s12">
 			<h5>Aviso</h5>
 			<h6>Aqui pueden enviar algun aviso a un evento.</h6>
-			<%= simple_form_for Aviso.new, :url => url_for(:controller => 'eventos', :action => 'aviso', :id => @evento.id) do |f| %>
+			<%= simple_form_for Aviso.new, html: { id: 'new_aviso_finanzas' }, :url => url_for(:controller => 'eventos', :action => 'aviso', :id => @evento.id) do |f| %>
 				<div class="row">
-			    <div class="col s12">
-			      <%= f.text_field :titulo, placeholder: "Asunto"%>
+			    <div class="col s12 input-field">
+			      <%= f.text_field :titulo, label: false, placeholder: "Enviar documento"%>
+			      <label class = "active">Asunto</label>
 			    </div>
 			  </div>
 	      <div class="row">
-	        <div class="col s12">
-      			<%= f.input :mensaje, as: :text, label: 'Mensaje', input_html: { class: 'materialize-textarea'}%>
+	        <div class="col s12 input-field">
+      			<%= f.input :mensaje, as: :text, label: false, placeholder: 'Favor de subir los documentos pendientes lo antes posible', input_html: { class: 'materialize-textarea'}%>
+      			<label class = "active">Mensaje</label>
 	        </div>
 	      </div>
 	      <%= f.hidden_field 'departamento', :value => 'Finanzas' %>
@@ -152,4 +154,36 @@
 	</div>
 	<%end%>
 </div>
+<script>
+  $(document).ready(function() {
+     DependentFields.bind()
+  });
+  $("#new_aviso_finanzas").validate({
+    rules: {
+      'aviso[titulo]': {
+        required: true
+      },
+      'aviso[mensaje]': {
+        required: true
+      },
+    },
+    messages: {
+      'aviso[titulo]':{
+        required: "Campo obligatorio"
+      },
+      'aviso[mensaje]': {
+        required: "Campo obligatorio"
+      },
+    },
+    errorElement : 'div',
+    errorPlacement: function(error, element) {
+      var placement = $(element).data('error');
+      if (placement) {
+        $(placement).append(error)
+      } else {
+        error.insertAfter(element);
+      }
+    }
+  });
+</script>
 <%end%>

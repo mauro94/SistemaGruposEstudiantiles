@@ -29,6 +29,7 @@ gem 'carrierwave', 				'~> 1.0'
 gem 'breadcrumbs_on_rails'
 gem 'dependent-fields-rails'
 gem 'underscore-rails'
+gem 'jquery-validation-rails'
 
 group :test do
   gem 'rails-controller-testing', '0.1.1'

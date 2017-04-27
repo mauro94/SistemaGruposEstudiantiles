@@ -41,9 +41,54 @@
 
   <div class="row right">
     <div class="actions">
-      <%= link_to "Cancelar", :back , :class => 'btn waves-effect waves-light'%>
+      <%= link_to "Cancelar", '/home' , :class => 'btn waves-effect waves-light'%>
       <%= f.submit "Actualizar", :class => 'btn waves-effect waves-light'%>
     </div>
   </div>
 <% end %>
-
+<script>
+  $(document).ready(function() {
+     DependentFields.bind()
+  });
+  $("#edit_grupo").validate({
+    rules: {
+      'grupo[email]': {
+          required: true,
+          email: true
+      },
+      'grupo[password]': {
+        required: true
+      },
+      'grupo[password_confirmation]': {
+        required: true
+      },
+      'grupo[current_password]': {
+        required: true
+      },
+    },
+    messages: {
+      'grupo[email]':{
+        required: "Campo obligatorio",
+        email: "Se requiere un correo válido"
+      },
+      'grupo[password]': {
+        required: "Campo obligatorio"
+      },
+      'grupo[password_confirmation]': {
+        required: "Campo obligatorio"
+      },
+      'grupo[current_password]': {
+        required: "Campo obligatorio"
+      },
+    },
+    errorElement : 'div',
+    errorPlacement: function(error, element) {
+      var placement = $(element).data('error');
+      if (placement) {
+        $(placement).append(error)
+      } else {
+        error.insertAfter(element);
+      }
+    }
+  });
+</script>

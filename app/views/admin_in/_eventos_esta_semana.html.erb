@@ -2,7 +2,7 @@
   <h5 style="text-align: center">Eventos Esta Semana:</h5>
   <ul class="collapsible" data-collapsible="accordion">
     <li>
-      <div class="collapsible-header"><span class="new badge" data-badge-caption=""><%=@events_day_1.length%></span><%=@day_1.strftime("%A - %d/%m/%Y")%></div>
+      <div class="collapsible-header"><span class="new badge" data-badge-caption=""><%=@events_day_1.length%></span><%=l(@day_1, format: "%A - %d/%m/%Y")%></div>
       <div class="collapsible-body">
         <ul class="collection">
           <%@events_day_1.each do |evento|%>
@@ -43,7 +43,7 @@
       </div>
     </li>
     <li>
-      <div class="collapsible-header"><span class="new badge" data-badge-caption=""><%=@events_day_2.length%></span><%=@day_2.strftime("%A - %d/%m/%Y")%></div>
+      <div class="collapsible-header"><span class="new badge" data-badge-caption=""><%=@events_day_2.length%></span><%=l(@day_2, format: "%A - %d/%m/%Y")%></div>
       <div class="collapsible-body">
         <ul class="collection">
           <%@events_day_2.each do |evento|%>
@@ -82,7 +82,7 @@
       </div>
     </li>
     <li>
-      <div class="collapsible-header"><span class="new badge" data-badge-caption=""><%=@events_day_3.length%></span><%=@day_3.strftime("%A - %d/%m/%Y")%></div>
+      <div class="collapsible-header"><span class="new badge" data-badge-caption=""><%=@events_day_3.length%></span><%=l(@day_3, format: "%A - %d/%m/%Y")%></div>
       <div class="collapsible-body">
         <ul class="collection">
           <%@events_day_3.each do |evento|%>
@@ -121,7 +121,7 @@
       </div>
     </li>
     <li>
-      <div class="collapsible-header"><span class="new badge" data-badge-caption=""><%=@events_day_4.length%></span><%=@day_4.strftime("%A - %d/%m/%Y")%></div>
+      <div class="collapsible-header"><span class="new badge" data-badge-caption=""><%=@events_day_4.length%></span><%=l(@day_4, format: "%A - %d/%m/%Y")%></div>
       <div class="collapsible-body">
         <ul class="collection">
           <%@events_day_4.each do |evento|%>
@@ -160,7 +160,7 @@
       </div>
     </li>
     <li>
-      <div class="collapsible-header"><span class="new badge" data-badge-caption=""><%=@events_day_5.length%></span><%=@day_5.strftime("%A - %d/%m/%Y")%></div>
+      <div class="collapsible-header"><span class="new badge" data-badge-caption=""><%=@events_day_5.length%></span><%=l(@day_5, format: "%A - %d/%m/%Y")%></div>
       <div class="collapsible-body">
         <ul class="collection">
           <%@events_day_5.each do |evento|%>
@@ -199,7 +199,7 @@
       </div>
     </li>
     <li>
-      <div class="collapsible-header"><span class="new badge" data-badge-caption=""><%=@events_day_6.length%></span><%=@day_6.strftime("%A - %d/%m/%Y")%></div>
+      <div class="collapsible-header"><span class="new badge" data-badge-caption=""><%=@events_day_6.length%></span><%=l(@day_6, format: "%A - %d/%m/%Y")%></div>
       <div class="collapsible-body">
         <ul class="collection">
           <%@events_day_6.each do |evento|%>
@@ -238,7 +238,7 @@
       </div>
     </li>
     <li>
-      <div class="collapsible-header"><span class="new badge" data-badge-caption=""><%=@events_day_7.length%></span><%=@day_7.strftime("%A - %d/%m/%Y")%></div>
+      <div class="collapsible-header"><span class="new badge" data-badge-caption=""><%=@events_day_7.length%></span><%=l(@day_7, format: "%A - %d/%m/%Y")%></div>
       <div class="collapsible-body">
         <ul class="collection">
           <%@events_day_7.each do |evento|%>

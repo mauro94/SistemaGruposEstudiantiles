@@ -6,7 +6,6 @@
 	<table class="bordered highlight responsive-table">
       <thead>
         <tr>
-          <th style = "text-align: center;">Zona</th>
           <th style = "text-align: center;">Nombre</th>
           <th style = "text-align: center;">Clave</th>
           <th style = "text-align: center;">Capacidad</th>
@@ -21,8 +20,7 @@
       <tbody>
         <%@ubicaciones.each do |u|%>
         <tr>
-          <td style = "text-align: center;"><%=u.zona%></td>
-          <td style = "text-align: center;"><%=u.nombre%></td>
+          <td style = "text-align: center;"><%=u.zona + ' - ' + u.nombre%></td>
           <td style = "text-align: center;"><%=u.codigo%></td>
           <td style = "text-align: center;"><%=u.capacidad%></td>
           <td style = "text-align: center;"><%=u.ancho%> m. x <%=u.alto%> m.</td>
@@ -38,7 +36,7 @@
             <%= content_tag :i, 'edit',  :class => "material-icons center"%>
             <%end%>
           </td>
-          <td style = "text-align: center;"><%= link_to ubicacion_path(u), :class => "waves-effect waves-light btn red", data: {confirm: "¿Estas seguro?"}, :method => :delete do %>
+          <td style = "text-align: center;"><%= link_to ubicacion_path(u), :class => "waves-effect waves-light btn red", data: {confirm: "¿Estás seguro de eliminar la ubicación?"}, :method => :delete do %>
             <%= content_tag :i, 'delete',  :class => "material-icons center"%>
             <%end%></td>
         </tr>

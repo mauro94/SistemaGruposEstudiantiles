@@ -8,26 +8,22 @@
     <div class="row">
       <div class="col s12 m6 input-field">
         <%= f.text_field :nombre, placeholder: "ACM Monterrey"%>
-        <label>Nombre</label>
+        <label class = "active">Nombre</label>
       </div>
 
       <div class="col s12 m6 input-field">
         <%= f.email_field :email, placeholder: "acmmonterrey@gmail.com" %>
-        <label>Correo</label>
+        <label class = "active">Correo</label>
       </div>
     </div>
 
     <div class="row">
       <div class="col s12 m6 input-field">
         <%= f.text_field :cuentaBanco, placeholder: "Mínimo 8 dígitos" %>
-        <label>Cuenta Banco</label>
+        <label class = "active">Cuenta Banco</label>
       </div>
       <div class="col s12 m6 input-field">
-        <%= f.select(:consejo) do %>
-          <% [['CCE', 'CCE'], ['CSA', 'CSA'], ['CARE', 'CARE'], ['FEITESM', 'FEITESM'], ['N/A', 'N/A']].each do |c| -%>
-            <%= content_tag(:option, c.first, value: c.last) %>
-          <% end %>
-        <% end %>
+        <%= f.select :consejo, ['N/A', 'CCE', 'CSA', 'CARE', 'FEITESM']%>
         <label>Consejo</label>
       </div>
     </div>
@@ -42,3 +38,55 @@
     </div>
   <% end %>
 </div>
+<script>
+  $(document).ready(function() {
+     DependentFields.bind()
+  });
+  $("#new_grupo").validate({
+    rules: {
+      'grupo[email]': {
+          required: true,
+          email: true
+      },
+      'grupo[nombre]': {
+        required: true
+      },
+      'grupo[cuentaBanco]': {
+        required: true,
+        digits: true,
+        minlength: 8,
+        maxlength: 8
+      },
+      'grupo[consejo]': {
+        required: true
+      },
+    },
+    messages: {
+      'grupo[email]':{
+          required: "Campo obligatorio",
+          email: "Se requiere un correo válido"
+      },
+      'grupo[nombre]': {
+        required: "Campo obligatorio"
+      },
+      'grupo[cuentaBanco]': {
+        required: "Campo obligatorio",
+        digits: "Solo se permiten dígitos",
+        minlength: "Solo 8 dígitos",
+        maxlength: "Solo 8 dígitos"
+      },
+      'grupo[consejo]': {
+        required: "Campo obligatorio"
+      },
+    },
+    errorElement : 'div',
+    errorPlacement: function(error, element) {
+      var placement = $(element).data('error');
+      if (placement) {
+        $(placement).append(error)
+      } else {
+        error.insertAfter(element);
+      }
+    }
+  });
+</script>

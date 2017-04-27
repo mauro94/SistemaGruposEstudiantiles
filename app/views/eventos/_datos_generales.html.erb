@@ -1,18 +1,13 @@
 <%if current_admin%>
-	<div class="row">
-		<h5>Grupo Estudiantil</h5>
-		<div class="col s12 m6">
-    		<span id="bold">Nombre: </span><span><%=@grupo.nombre%></span><p></p>
-    		<span id="bold">Correo: </span><span><%=@grupo.email%></span><p></p>
-    		<span id="bold">Cuenta: </span><span><%=@grupo.cuentaBanco%></span><p></p>
-		</div>
-		<div class="col s12 m6">
-			<span id="bold">Responsable: </span><span><%=@grupo.nombre%></span><p></p>
-    		<span id="bold">Matricula: </span><span><%=@grupo.email%></span><p></p>
-    		<span id="bold">Correo: </span><span><%=@grupo.email%></span><p></p>
-		</div>
-		</div>
-	<div class="divider"></div><br>
+<div class="row">
+	<h5>Grupo Estudiantil</h5>
+	<div class="col s12 m6">
+  		<span id="bold">Nombre: </span><span><%=@grupo.nombre%></span><p></p>
+  		<span id="bold">Correo: </span><span><%=@grupo.email%></span><p></p>
+  		<span id="bold">Cuenta: </span><span><%=@grupo.cuentaBanco%></span><p></p>
+	</div>
+</div>
+<div class="divider"></div><br>
 <%end%>
 <div class="row">
 	<h5>Estatus</h5>
@@ -26,7 +21,7 @@
 <div class="row center">
 	<div class="col s12 m4 center">
 		<%if not @evento.aprobadoConsejo%>
-			<a class="btn tooltipped orange" href="#consejo" data-position="bottom" data-delay="50" data-tooltip="En Progreso"><i class="material-icons left">schedule</i>Consejo</a>
+			<a class="btn tooltipped orange" href="#consejo" data-position="bottom" data-delay="50" data-tooltip="En Progreso"><i class="material-icons left">schedule</i>Consejo</a><br><br>
 		<%else%>
 			<a class="btn tooltipped green" href="#consejo" data-position="bottom" data-delay="50" data-tooltip="Autorizado"><i class="material-icons left">done</i>Consejo</a><br>
 			<p><b>Aprobado por:</b> <%=@evento.nombreAprobadoConsejo%></p>
@@ -35,7 +30,7 @@
 	</div>
 	<div class="col s12 m4 center">
 		<%if not @evento.aprobadoLogistica%>
-			<a class="btn tooltipped orange" href="#logistica" data-position="bottom" data-delay="50" data-tooltip="En Progreso"><i class="material-icons left">schedule</i>Logística</a>
+			<a class="btn tooltipped orange" href="#logistica" data-position="bottom" data-delay="50" data-tooltip="En Progreso"><i class="material-icons left">schedule</i>Logística</a><br><br>
 		<%else%>
 			<a class="btn tooltipped green" href="#logistica" data-position="bottom" data-delay="50" data-tooltip="Autorizado"><i class="material-icons left">done</i>Logística</a><br>
 			<p><b>Aprobado por:</b> <%=@evento.nombreAprobadoLogistica%></p>

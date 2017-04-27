@@ -17,3 +17,5 @@
 //= require materialize-sprockets
 //= require dependent-fields
 //= require underscore
+//= require jquery.validate
+//= require jquery.validate.localization/messages_es

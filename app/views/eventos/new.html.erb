@@ -2,52 +2,124 @@
 	<h3> Nuevo Evento</h3>
 </div>
 
-<div class="row>"> 
+<div class="row"> 
   <%= simple_form_for @evento do |f| %>
 
   <div class="row">
-    <div class="col s12">
-      <label>Nombre</label>
+    <div class="col s12 input-field">
       <%= f.text_field :nombre, placeholder: "HackMTY"%>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col s12 m6">
-      <label>Número de Asistentes</label>
-      <%= f.input :numAsistentes, :as => "integer", label: false%>
-    </div>
-    <div class="col s12 m6">
-      <label>Tipo de Evento</label>
-      <%= f.input :tipoEvento , as: :select, label: false, collection:["Foro","Congreso","Simposium","Conferencia","Taller","Concurso","Elección","Cierre de Campaña","Junta de Integración de Planilla","Debate","Acto Cívico","Servicio Social","Campamento","Recaudación de Fondos","Recaudación de Víveres","Actividad de Concientización","Visita","Celebración","Entrega de Reconocimiento","Recreativo","Fiesta Segura","Días","Integración","Junta","Desayuno/Comida/Cena","Viaje Estudiantil","Promocional","Cultural","Deportivo","Activación Comercial","Vendimia","Rifa","Toma de Protesta","Focus Group"]%>
+      <label class = "active">Nombre</label>
     </div>
   </div>
 
   <div class="row">
-    <div class="col s12">
-      <label>Descripción detallada</label>
-      <%= f.input :descripcion, as: :text, label: false, input_html: { class: 'materialize-textarea'}%>
+    <div class="col s12 m6 input-field">
+      <%= f.number_field :numAsistentes, placeholder: "400"%>
+      <label class = "active">Número de Asistentes</label>
+    </div>
+    <div class="col s12 m6 input-field">
+      <label class = "active">Tipo de Evento</label>
+      <%= f.select :tipoEvento, ["Foro","Congreso","Simposium","Conferencia","Taller","Concurso","Elección","Cierre de Campaña","Junta de Integración de Planilla","Debate","Acto Cívico","Servicio Social","Campamento","Recaudación de Fondos","Recaudación de Víveres","Actividad de Concientización","Visita","Celebración","Entrega de Reconocimiento","Recreativo","Fiesta Segura","Días","Integración","Junta","Desayuno/Comida/Cena","Viaje Estudiantil","Promocional","Cultural","Deportivo","Activación Comercial","Vendimia","Rifa","Toma de Protesta","Focus Group"]%>
     </div>
   </div>
 
   <div class="row">
-      <label>Fecha Inicio (Día/Mes/Año Hora/Min)</label>
-      <%= f.input :fechaInicio, as: :datetime, label: false, datetime_separator: "", time_separator: "", input_html: { class: 'col s12 m4'}, start_year: Date.today.year, end_year: Date.today.year+1%>
+    <div class="col s12 input-field">
+      <label class = "active">Descripción detallada</label>
+      <%= f.input :descripcion, as: :text, label: false, input_html: { class: 'materialize-textarea'}, placeholder: 'HackMTY es el hackathon estudiantil más grande de México. Consiste en una jornada de 24 horas continuas, en la que equipos de 4 participantes exploran, descubren e inventan, dando lugar a increíbles innovaciones. El evento tiene lugar en el Campus Monterrey, del Tecnológico de Monterrey. La inscripción de equipos es totalmente gratuita, y aunque su enfoque es resolver problemas con el uso de la tecnología, está abierto a todas las carreras. Los mejores proyectos y equipos son premiados.'%>
+    </div>
   </div>
 
   <div class="row">
-      <label>Fecha Fin (Día/Mes/Año Hora/Min)</label>
-      <%= f.input :fechaFin, as: :datetime, label: false, datetime_separator: "", time_separator: "", input_html: { class: 'col s12 m4'}, start_year: Date.today.year, end_year: Date.today.year+1%>
+    <div class="col s12 input-field">
+      <label class = "active">Fecha Inicio (Día/Mes/Año Hora/Min)</label>
+      <%= f.input :fechaInicio, as: :datetime, label: false, datetime_separator: "", time_separator: "", input_html: { class: 'col s12 m4'}, start_year: Date.today.year, end_year: Date.today.year+1, ampm: true, minute_step: 15, default: {hour: 0, minute: 0}%>
+    </div>
   </div>
+
   <div class="row">
-    <label>Hora Inauguración (Hora/Min)</label>
-    <%= f.input :horaInauguracion, as: :time, label: false, time_separator: "", input_html: { class: 'col s12 m4'}%>
+    <div class="col s12 input-field">
+      <label class = "active">Fecha Fin (Día/Mes/Año Hora/Min)</label>
+      <%= f.input :fechaFin, as: :datetime, label: false, datetime_separator: "", time_separator: "", input_html: { class: 'col s12 m4'}, start_year: Date.today.year, end_year: Date.today.year+1, ampm: true, minute_step: 15, default: {hour: 0, minute: 0}%>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col s12 input-field">
+      <label class = "active">Hora Inauguración (Hora/Min)</label>
+      <%= f.input :horaInauguracion, as: :time, label: false, time_separator: "", input_html: { class: 'col s12 m4'}, ampm: true, minute_step: 15, default: {hour: 0, minute: 0}%>
+    </div>
   </div>
 
   <%= f.hidden_field 'estatus', :value => 'pendiente' %>
 
-  <div class="row center">
+  <div class="row right">
     <%= link_to "Cancelar", :back, {:class=>"btn btn-default"} %>
     <%= f.submit nil, :class => 'btn btn-default'%>
   </div>
   <% end %>
 </div>
+<script>
+  $(document).ready(function() {
+     DependentFields.bind()
+  });
+  $("#new_evento").validate({
+    rules: {
+      'evento[nombre]': {
+        required: true
+      },
+      'evento[numAsistentes]': {
+        required: true,
+        digits: true
+      },
+      'evento[tipoEvento]': {
+        required: true
+      },
+      'evento[descripcion]': {
+        required: true
+      },
+      'evento[fechaInicio]': {
+        required: true
+      },
+      'evento[fechaFin]': {
+        required: true
+      },
+      'evento[horaInauguracion]': {
+        required: true
+      },
+    },
+    messages: {
+      'evento[nombre]':{
+        required: "Campo obligatorio"
+      },
+      'evento[numAsistentes]': {
+        required: "Campo obligatorio",
+        digits: "Solo se permiten dígitos"
+      },
+      'evento[tipoEvento]': {
+        required: "Campo obligatorio"
+      },
+      'evento[descripcion]': {
+        required: "Campo obligatorio"
+      },
+      'evento[fechaInicio]': {
+        required: "Campo obligatorio"
+      },
+      'evento[fechaFin]': {
+        required: "Campo obligatorio"
+      },
+      'evento[horaInauguracion]': {
+        required: "Campo obligatorio"
+      },
+    },
+    errorElement : 'div',
+    errorPlacement: function(error, element) {
+      var placement = $(element).data('error');
+      if (placement) {
+        $(placement).append(error)
+      } else {
+        error.insertAfter(element);
+      }
+    }
+  });
+</script>

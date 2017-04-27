@@ -26,6 +26,8 @@ class UbicacionsController < ApplicationController
 	end
 
 	def edit
+		add_breadcrumb 'Ubicaciones', '/ubicacions'
+		add_breadcrumb 'Editar Ubicación'
 		@admin = current_admin
 		@ubicacion = Ubicacion.find(params[:id])
 	end

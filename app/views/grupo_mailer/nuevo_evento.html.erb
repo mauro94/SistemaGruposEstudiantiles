@@ -2,15 +2,26 @@
 <html>
   <head>
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
   </head>
+  <nav class="red">
+    <div class="nav-wrapper container">
+      <div class="brand-logo">
+        Grupos Estudiantiles
+      </div>
+    </div>
+  </nav>
   <body>
-    <h2>Hola <%= @admin.nombre %> <%= @admin.apellido %>,</h2>
-    <p>Se ha creado un nuevo por el grupo, <%=@grupo.nombre%>.</p>
-    <p>&nbsp&nbsp&nbsp&nbsp<b>Nombre del evento: </b><%=Evento.last.nombre%></p>
-    <p>&nbsp&nbsp&nbsp&nbsp<b>Tipo de evento: </b><%=Evento.last.tipoEvento%></p>
-    <p>&nbsp&nbsp&nbsp&nbsp<b>Número de asistentes: </b><%=Evento.last.numAsistentes%></p>
-    <p>&nbsp&nbsp&nbsp&nbsp<b>Hora Inauguración: </b><%=(Evento.last.horaInauguracion).strftime("%I:%M %p")%></p>
-    <p>&nbsp&nbsp&nbsp&nbsp<b>Fechas: </b><%=(Evento.last.fechaInicio).strftime("%d/%m/%Y %I:%M %p")%> - <%=(Evento.last.fechaFin).strftime("%d/%m/%Y %I:%M %p")%></p>
-    <p>&nbsp&nbsp&nbsp&nbsp<b>Descripción: </b><%=Evento.last.descripcion%></p>
+    <div class="container">
+      <h4>Hola <%= @admin.nombre %> <%= @admin.apellido %>,</h4>
+      <p>Se ha creado un nuevo por el grupo, <%=@grupo.nombre%>.</p>
+      <p>&nbsp&nbsp&nbsp&nbsp<b>Nombre del evento: </b><%=Evento.last.nombre%></p>
+      <p>&nbsp&nbsp&nbsp&nbsp<b>Tipo de evento: </b><%=Evento.last.tipoEvento%></p>
+      <p>&nbsp&nbsp&nbsp&nbsp<b>Número de asistentes: </b><%=Evento.last.numAsistentes%></p>
+      <p>&nbsp&nbsp&nbsp&nbsp<b>Hora Inauguración: </b><%=(Evento.last.horaInauguracion).strftime("%I:%M %p")%></p>
+      <p>&nbsp&nbsp&nbsp&nbsp<b>Fechas: </b><%=(Evento.last.fechaInicio).strftime("%d/%m/%Y %I:%M %p")%> - <%=(Evento.last.fechaFin).strftime("%d/%m/%Y %I:%M %p")%></p>
+      <p>&nbsp&nbsp&nbsp&nbsp<b>Descripción: </b><%=Evento.last.descripcion%></p>
+    </div>
   </body>
 </html>

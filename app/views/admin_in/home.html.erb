@@ -1,48 +1,37 @@
 <div class="row">
   <h4>Hola <%=@admin.nombre%>,</h4>
 </div>
-<!--Notificaciones
+
 <div class="row">
-<% if @avisos.first != nil %>
-  <ul class="collapsible popout" data-collapsible="accordion">
-    <li>
-      <div class="collapsible-header"><i class="material-icons">filter_drama</i>First</div>
-      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-    </li>
-    <li>
-      <div class="collapsible-header"><i class="material-icons">place</i>Second</div>
-      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-    </li>
-    <li>
-      <div class="collapsible-header"><i class="material-icons">whatshot</i>Third</div>
-      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-    </li>
-  </ul>
-<%else%>
-  <ul class="collapsible popout" data-collapsible="accordion">
-    <li>
-      <div class="collapsible-header"><i class="material-icons">done</i>No más avisos</div>
-      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-    </li>
-  </ul>
-<%end%>
-</div>-->
-<!--Botones-->
-<div class="row center">
-  <% if @admin.puesto == 'Logística'%>
-    <%= link_to "Ubicaciones", ubicacions_path() , :class => 'waves-effect waves-light btn-large'%>
-    <%= link_to "Eventos", "/admin/eventos" , :class => 'waves-effect waves-light btn-large'%>
-  <% elsif @admin.puesto == 'Administración'%>
-    <%= link_to "Ubicaciones", ubicacions_path() , :class => 'waves-effect waves-light btn-large'%>
-    <%= link_to "Eventos", "/admin/eventos" , :class => 'waves-effect waves-light btn-large'%>
-    <%= link_to "Grupos", "/admin/grupos" , :class => 'waves-effect waves-light btn-large'%>
-    <%= link_to "Administradores", "/admin/admins" , :class => 'waves-effect waves-light btn-large'%>
-  <% else %>
-    <%= link_to "Eventos", "/admin/eventos" , :class => 'waves-effect waves-light btn-large'%>
-  <%end%>
-</div>
-<!--Eventos de la semana-->
-<div class="row">
-  <%= render 'admin_in/eventos_esta_semana' %>
-  <%= render 'admin_in/eventos_siguiente_semana' %>
+  <div class="col s12 m4">
+    <% if @admin.puesto == 'Logística'%>
+      <div class="col s12" id='long'>
+        <%= link_to "Ubicaciones", ubicacions_path() , :class => 'waves-effect waves-light btn-large'%>
+      </div><br><br><br>
+      <div class="col s12" id='long'>
+        <%= link_to "Eventos", "/admin/eventos" , :class => 'waves-effect waves-light btn-large'%>
+      </div>
+    <% elsif @admin.puesto == 'Administración'%>
+      <div class="col s12" id='long'>
+        <%= link_to "Ubicaciones", ubicacions_path() , :class => 'waves-effect waves-light btn-large'%>
+      </div><br><br><br>
+      <div class="col s12" id='long'>
+        <%= link_to "Eventos", "/admin/eventos" , :class => 'waves-effect waves-light btn-large'%>
+      </div><br><br><br>
+      <div class="col s12" id='long'>
+        <%= link_to "Grupos", "/admin/grupos" , :class => 'waves-effect waves-light btn-large'%>
+      </div><br><br><br>
+      <div class="col s12" id='long'>
+        <%= link_to "Administradores", "/admin/admins" , :class => 'waves-effect waves-light btn-large'%>
+      </div><br><br><br>
+    <% else %>
+      <div class="col s12" id='long'>
+        <%= link_to "Eventos", "/admin/eventos" , :class => 'waves-effect waves-light btn-large'%>
+      </div>
+    <%end%>
+  </div>
+  <div class="col s12 m8">
+    <%= render 'admin_in/eventos_esta_semana' %>
+    <%= render 'admin_in/eventos_siguiente_semana' %>
+  </div>
 </div>

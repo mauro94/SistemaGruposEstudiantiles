@@ -58,7 +58,6 @@ class AdminInController < ApplicationController
 		if @new_admin.save
 			redirect_to '/admin/admins'
 		else
-			flash[:alert] = 'Error '
 			render 'new_admin'
 		end
 	end
@@ -73,6 +72,10 @@ class AdminInController < ApplicationController
 	def update
 		@update_admin = Admin.find(params[:id])
 		if @update_admin.update(admin_params)
+			if @update_admin.puesto != 'Administración'
+				@update_admin.consejo = 'N/A'
+				@update_admin.save
+			end 
 			redirect_to '/admin/admins'
 		else
 			render 'edit'

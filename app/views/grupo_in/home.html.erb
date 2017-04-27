@@ -1,61 +1,53 @@
 <div class="row">
   <h4>Hola <%=@grupo.nombre%>,</h4>
 </div>
-<!--Notificaciones-->
-<!--<div class="row">
-  <h5>Avisos:</h5>
-  <div class="collection">
-    <a href="#" class="collection-item">Alvin</a>
-  </div>
-</div>-->
 
-<!--Eventos de la semana-->
 <div class="row">
-  <h5>Eventos:</h5>
-  <div class="col s12">
-    <table class="bordered highlight responsive-table">
-      <thead>
-        <tr>
-          <th style = "text-align: center">Folio</th>
-          <th style = "text-align: center">Fecha</th>
-          <th style = "text-align: center">Nombre</th>
-          <th style = "text-align: center">Avisos</th>
-          <th style = "text-align: center">Estatus</th>
-          <th style = "text-align: center">Administrar</th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <%@eventos.each do |e|%>
-        <tr>
-          <%@avisos = Aviso.joins(:evento).where('avisos.evento_id' => e.folio)%>
-          <td style = "text-align: center"><%=e.folio%></td>
-          <td style = "text-align: center"><%=e.fechaInicio.strftime("%d/%m/%Y %I:%M %p")%></td>
-          <td style = "text-align: center"><%=e.nombre%></td>
-          <td style = "text-align: center"><a class="btn"><i class="material-icons left">comment</i><%=@avisos.count%></a></td>
-          <%if e.aprobadoConsejo and e.aprobadoLogistica and e.aprobadoFinanzas%>
-            <td style = "text-align: center"><a class="btn tooltipped green" data-position="bottom" data-delay="50" data-tooltip="Autorizado"><i class="material-icons center">done</i></a></td>
-          <%elsif e.estatus == 'cancelado'%>
-            <td style = "text-align: center"><a class="btn tooltipped red" data-position="bottom" data-delay="50" data-tooltip="Cancelado"><i class="material-icons center">not_interested</i></a></td>
-          <%else %>
-            <td style = "text-align: center"><a class="btn tooltipped orange" data-position="bottom" data-delay="50" data-tooltip="En Progreso"><i class="material-icons center">stop</i></a></td>
-          <%end%>
-          <%if e.estatus != 'cancelado'%>
-            <td style = "text-align: center"><%= link_to edit_evento_path(e.folio), :class => "waves-effect waves-light btn" do %>
-              <%= content_tag :i, 'assignment',  :class => "material-icons center"%>
-              <%end%></td>
-          <%else%>
-            <td style = "text-align: center"><%= link_to edit_evento_path(e.folio), :class => "waves-effect waves-light btn disabled" do %>
-              <%= content_tag :i, 'assignment',  :class => "material-icons center"%>
-              <%end%></td>
-          <%end%>
-        </tr>
-        <%end%>
-      </tbody>
-    </table>
+  <div class="col s12 m4" id='long'>
+    <%= link_to "Crear Evento", new_evento_path() , :class => 'waves-effect waves-light btn-large'%>
   </div>
-</div>
 
-<div class="row center">
-  <%= link_to "Crear Evento", new_evento_path() , :class => 'waves-effect waves-light btn'%>
+  <div class="col s12 m8">
+    <h5>Eventos:</h5>
+    <div class="col s12">
+      <table class="bordered highlight responsive-table">
+        <thead>
+          <tr>
+            <th style = "text-align: center">Folio</th>
+            <th style = "text-align: center">Fecha</th>
+            <th style = "text-align: center">Nombre</th>
+            <th style = "text-align: center">Estatus</th>
+            <th style = "text-align: center">Administrar</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <%@eventos.each do |e|%>
+          <tr>
+            <%@avisos = Aviso.joins(:evento).where('avisos.evento_id' => e.folio)%>
+            <td style = "text-align: center"><%=e.folio%></td>
+            <td style = "text-align: center"><%=e.fechaInicio.strftime("%d/%m/%Y %I:%M %p")%></td>
+            <td style = "text-align: center"><%=e.nombre%></td>
+            <%if e.aprobadoConsejo and e.aprobadoLogistica and e.aprobadoFinanzas%>
+              <td style = "text-align: center"><a class="btn tooltipped green" data-position="bottom" data-delay="50" data-tooltip="Autorizado"><i class="material-icons center">done</i></a></td>
+            <%elsif e.estatus == 'cancelado'%>
+              <td style = "text-align: center"><a class="btn tooltipped red" data-position="bottom" data-delay="50" data-tooltip="Cancelado"><i class="material-icons center">not_interested</i></a></td>
+            <%else %>
+              <td style = "text-align: center"><a class="btn tooltipped orange" data-position="bottom" data-delay="50" data-tooltip="En Progreso"><i class="material-icons center">stop</i></a></td>
+            <%end%>
+            <%if e.estatus != 'cancelado'%>
+              <td style = "text-align: center"><%= link_to edit_evento_path(e.folio), :class => "waves-effect waves-light btn" do %>
+                <%= content_tag :i, 'assignment',  :class => "material-icons center"%>
+                <%end%></td>
+            <%else%>
+              <td style = "text-align: center"><%= link_to edit_evento_path(e.folio), :class => "waves-effect waves-light btn disabled" do %>
+                <%= content_tag :i, 'assignment',  :class => "material-icons center"%>
+                <%end%></td>
+            <%end%>
+          </tr>
+          <%end%>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>
