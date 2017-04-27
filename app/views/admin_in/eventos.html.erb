@@ -9,10 +9,12 @@
     <li ><%=link_to "aprobado", admin_eventos_url(:estatus => "aprobado")%></li>
     <li ><%=link_to "pendiente", admin_eventos_url(:estatus => "pendiente")%></li>
     <li ><%=link_to "cancelado", admin_eventos_url(:estatus => "cancelado")%></li>
+    <li ><%=link_to "todos", admin_eventos_url(:estatus => "Todos")%></li>
     <% else %>
     <li ><%=link_to "aprobado", admin_eventos_url(:estatus => "aprobado",:consejo => @consejo)%></li>
     <li ><%=link_to "pendiente", admin_eventos_url(:estatus => "pendiente", :consejo => @consejo)%></li>
     <li ><%=link_to "cancelado", admin_eventos_url(:estatus => "cancelado", :consejo => @consejo)%></li>
+    <li ><%=link_to "todos", admin_eventos_url(:estatus => "Todos", :consejo => @consejo)%></li>
     <%end%>
   </ul>
   <%end%>
@@ -25,12 +27,14 @@
     <li ><%=link_to "CARE", admin_eventos_url(:consejo => "CARE")%></li>
     <li ><%=link_to "FEITESM", admin_eventos_url(:consejo => "FEITESM")%></li>
     <li ><%=link_to "N/A", admin_eventos_url(:consejo => "N/A")%></li>
+    <li ><%=link_to "TODOS", admin_eventos_url(:consejo => "Todos")%></li>
     <% else %>
     <li ><%=link_to "CCE", admin_eventos_url(:consejo => "CCE", :estatus => @estatus)%></li>
     <li ><%=link_to "CSA", admin_eventos_url(:consejo => "CSA", :estatus => @estatus)%></li>
     <li ><%=link_to "CARE", admin_eventos_url(:consejo => "CARE", :estatus => @estatus)%></li>
     <li ><%=link_to "FEITESM", admin_eventos_url(:consejo => "FEITESM", :estatus => @estatus)%></li>
     <li ><%=link_to "N/A", admin_eventos_url(:consejo => "N/A", :estatus => @estatus)%></li>
+    <li ><%=link_to "TODOS", admin_eventos_url(:consejo => "Todos", :estatus => @estatus)%></li>
     <%end%>
   </ul>
   <%end%>
