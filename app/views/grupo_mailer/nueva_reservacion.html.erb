@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+  </head>
+  <nav class="red">
+    <div class="nav-wrapper container">
+      <div class="brand-logo">
+        Grupos Estudiantiles
+      </div>
+    </div>
+  </nav>
+  <body>
+    <div class="container">
+      <h4>Hola <%= @admin.nombre %> <%= @admin.apellido %>,</h4>
+      <p>El grupo, <%=@grupo.nombre%>, ha realizado una nueva reservación.</p>
+      <h5>Evento</h5>
+      <p>&nbsp&nbsp&nbsp&nbsp<b>Nombre del evento: </b><%=@evento.nombre%></p>
+      <p>&nbsp&nbsp&nbsp&nbsp<b>Tipo de evento: </b><%=@evento.tipoEvento%></p>
+      <p>&nbsp&nbsp&nbsp&nbsp<b>Número de asistentes: </b><%=@evento.numAsistentes%></p>
+      <p>&nbsp&nbsp&nbsp&nbsp<b>Hora Inauguración: </b><%=(@evento.horaInauguracion).strftime("%I:%M %p")%></p>
+      <p>&nbsp&nbsp&nbsp&nbsp<b>Fechas: </b><%=(@evento.fechaInicio).strftime("%d/%m/%Y %I:%M %p")%> - <%=(@evento.fechaFin).strftime("%d/%m/%Y %I:%M %p")%></p>
+      <p>&nbsp&nbsp&nbsp&nbsp<b>Descripción: </b><%=@evento.descripcion%></p>
+      <div class="divider"></div><br>
+      <h5>Reservación</h5>
+      <p>&nbsp&nbsp&nbsp&nbsp<b>Ubicación: </b><%=@evento.nombre%></p>
+    </div>
+  </body>
+</html>

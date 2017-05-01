@@ -1,4 +1,9 @@
-Hola <%= @admin.nombre %>
-===============================================
- 
-TEST
+Grupos Estudiantiles
+Hola <%= @admin.nombre %> <%= @admin.apellido %>,
+Se ha creado un nuevo por el grupo, <%=@grupo.nombre%>.
+	Nombre del evento: <%=Evento.last.nombre%>
+	Tipo de evento: <%=Evento.last.tipoEvento%>
+	Número de asistentes: <%=Evento.last.numAsistentes%>
+	Hora Inauguración: <%=(Evento.last.horaInauguracion).strftime("%I:%M %p")%>
+	Fechas: <%=(Evento.last.fechaInicio).strftime("%d/%m/%Y %I:%M %p")%> - <%=(Evento.last.fechaFin).strftime("%d/%m/%Y %I:%M %p")%>
+	Descripción: <%=Evento.last.descripcion%>

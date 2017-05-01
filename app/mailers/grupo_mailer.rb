@@ -4,4 +4,11 @@ class GrupoMailer < ApplicationMailer
     @grupo = grupo
     mail(to: @admin.email, subject: 'Nuevo Evento')
   end
+
+  def nueva_reservacion(admin, grupo, evento)
+    @admin = admin
+    @grupo = grupo
+    @evento = evento
+    mail(to: @admin.email, subject: 'Nueva Reservación')
+  end
 end
