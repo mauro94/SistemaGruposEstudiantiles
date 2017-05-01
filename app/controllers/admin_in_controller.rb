@@ -94,12 +94,12 @@ class AdminInController < ApplicationController
 		@admin = current_admin
 		@filter = Array.new
 		@admins = Admin.paginate(:page => params[:page], :per_page => 10)
-		if params[:estatus].blank? and params[:consejo].blank?
+		if (params[:estatus].blank? or params[:estatus] == "Todos") and (params[:consejo].blank? or params[:consejo] == "Todos")
 			@eventos = Evento.all
-		elsif !params[:estatus].blank? and params[:consejo].blank?
+		elsif !(params[:estatus].blank? or params[:estatus] == "Todos") and (params[:consejo].blank? or params[:consejo] == "Todos")
 			@estatus = params[:estatus]
 			@eventos = Evento.where(:estatus => params[:estatus])
-		elsif params[:estatus].blank? and !params[:consejo].blank?
+		elsif (params[:estatus].blank? or params[:estatus] == "Todos") and !(params[:consejo].blank? or params[:consejo] == "Todos")
 			@consejo = params[:consejo]
 			@aux = Grupo.where(:consejo => params[:consejo])
 			@eventos = Evento.where(:grupo_id => @aux.select(:id))
