@@ -3,7 +3,6 @@ class GrupoInController < ApplicationController
 	add_breadcrumb 'Inicio', '/home'
 	def home
 		@grupo = current_grupo
-		@eventos = Evento.joins(:grupo).where('eventos.grupo_id' => @grupo.id)
-		@eventos = Evento.paginate(:page => params[:page], :per_page => 10)
+		@eventos = Evento.where('eventos.grupo_id = ?', @grupo.id).paginate(:page => params[:page], :per_page => 10)
 	end
 end

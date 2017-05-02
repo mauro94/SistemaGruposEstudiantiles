@@ -100,7 +100,7 @@
 		<h6>Aquí puedes aprobar este evento por parte del consejo.</h6><br>
 		<div class="col s12 center">
 			<%= form_for @evento do |f| %>
-			<% if not @evento.aprobadoConsejo and @admin.puesto == 'Administración' and @admin.consejo == @grupo.consejo%>
+			<% if not @evento.aprobadoConsejo and @admin.puesto == 'Administración'%>
           <%= f.hidden_field 'aprobadoConsejo', :value => true %>
           <%= f.hidden_field 'nombreAprobadoConsejo', :value => @admin.nombre + ' ' + @admin.apellido%>
           <%= f.hidden_field 'fechaAprobadoConsejo', :value => Time.now %>
@@ -169,7 +169,7 @@
 	      <%= f.hidden_field 'consejo', :value => @grupo.consejo %>
 	      <%= f.hidden_field 'remitente', :value => @admin.nombre + ' ' + @admin.apellido %>
 	      <div class="row center">
-	      <%if @admin.puesto == 'Administración' and @admin.consejo == @grupo.consejo%>
+	      <%if @admin.puesto == 'Administración'%>
 	      	<%= f.submit 'Enviar', :class => "waves-effect waves-light btn"%>
 	      <%else%>
 	      	<%= f.submit 'Enviar', :class => "waves-effect waves-light btn disabled"%>

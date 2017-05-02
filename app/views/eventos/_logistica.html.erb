@@ -210,20 +210,37 @@
 			</div>
 			<div class="col s12"><p></p></div>
 			<div class="col s6">
+				<%if @admin.puesto == 'Logística'%>
 				<%if @evento.sede_id == nil%>
 					<%= f.submit 'Reservar', :class => 'btn btn-default'%><br><br>
 					<%else%>
 					<%= f.submit 'Cambiar Reservación', :class => 'btn btn-default'%><br><br>
 					<%end%>
+					<%else%>
+					<%if @evento.sede_id == nil%>
+					<%= f.submit 'Reservar', :class => 'btn btn-default disabled'%><br><br>
+					<%else%>
+					<%= f.submit 'Cambiar Reservación', :class => 'btn btn-default disabled'%><br><br>
+					<%end%>
+					<%end%>
 					<% end %>
 			</div>
 			<div class="col s6 right">
+				<%if @admin.puesto == 'Logística'%>
 				<%= simple_form_for @evento, :url => url_for(:controller => 'eventos', :action => 'cancel', :id => @evento.id) do |f| %>
 					<% if @evento.sede_id != nil %>
 						<%= f.hidden_field 'sede_id', :value => nil %>
 			      <%= f.submit 'Cancelar reservación', :class => "waves-effect waves-light btn red"%>
 			     <%end%>
 			    <%end%>
+			  <%else%>
+			  <%= simple_form_for @evento, :url => url_for(:controller => 'eventos', :action => 'cancel', :id => @evento.id) do |f| %>
+					<% if @evento.sede_id != nil %>
+						<%= f.hidden_field 'sede_id', :value => nil %>
+			      <%= f.submit 'Cancelar reservación', :class => "waves-effect waves-light btn red disabled"%>
+			     <%end%>
+			    <%end%>
+			  <%end%>
 			</div>
 		</div>
 	</div>
